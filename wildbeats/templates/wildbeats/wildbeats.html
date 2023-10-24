@@ -160,8 +160,8 @@
 {% for i in SubClubs%}
 
     <section id="{{i.club_name}}-club" class="club-section">
-        <div class="club"><a href="{{ i.club_name|slugify }}club.html">
-            <img src="/media/{{i.logo}}" alt="{{i.club_name}} Club" width="250" height="250">
+        <div class="club"><a href="{{ i.club_name|slugify }}">
+            <img src="/media/{{i.image}}" alt="{{i.club_name}} Club" width="250" height="250">
             </a>
             <h2>{{ i.club_name}}</h2>
             <p>{{i.tagline}}</p>

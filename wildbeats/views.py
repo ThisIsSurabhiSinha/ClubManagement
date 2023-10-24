@@ -5,6 +5,7 @@ def index(request):
     SubClubs=SubClub.objects.all()
     return render(request,'wildbeats/wildbeats.html',{'SubClubs':SubClubs})
 def subClub_detail(request,subClub_slug):
+    print("i am coming here")
     slug=subClub_slug[0].upper()+subClub_slug[1:]
     displayClub = SubClub.objects.filter( club_name=slug).first()
     print(displayClub)
