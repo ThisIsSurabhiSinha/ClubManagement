@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{displayClub.club_name}} - Sportec</title>
+    <style>
+        /* Add your CSS styling here */
+        body {
+            background-color: #171717;
+            font-family: Arial, sans-serif;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-image:url("/media/{{displayClub.logo}}");
+            background-size: cover; 
+            background-position: center; 
+            background-repeat: no-repeat;
+            text-align: center;
+            padding: 100px;
+           
+        }
+
+        h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5); /* Add a text shadow */
+            animation: wavyText 2s infinite; /* Wavy text animation */
+        }
+
+        @keyframes wavyText {
+            0% {
+                transform: translateX(-5px);
+            }
+            50% {
+                transform: translateX(5px);
+            }
+            100% {
+                transform: translateX(-5px);
+            }
+        }
+
+        nav {
+            background-color: #333;
+            padding: 15px 0;
+            text-align: center;
+        }
+
+        nav a {
+            color: #FF5733;
+            text-decoration: none;
+            font-size: 1.5rem;
+            margin: 0 20px;
+            transition: color 0.3s;
+            text-transform: uppercase;
+        }
+
+        nav a:hover {
+            color: #fff;
+            transform: scale(1.1); /* Add a scale effect on hover */
+        }
+
+        section {
+            padding: 50px;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: green;
+        }
+
+        p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+        }
+
+        /* Add animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Add a pulse animation to the header */
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        /* Add a wave animation to the social media links */
+        .social-media-icons {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        .social-media-icons a {
+            font-size: 2rem;
+            margin: 0 15px;
+            text-decoration: none;
+            color: #FF5733;
+            animation: wave 2s infinite;
+        }
+
+        @keyframes wave {
+            0% {
+                transform: translateY(0);
+            }
+            25% {
+                transform: translateY(-5px);
+            }
+            50% {
+                transform: translateY(0);
+            }
+            75% {
+                transform: translateY(5px);
+            }
+            100% {
+                transform: translateY(0);
+            }
+        }
+      footer p {
+    bottom: 0;
+    width: 100%;
+    height: 30px;
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    font-size: 1.5rem;
+}
+
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome to<br>{{displayClub.club_name}} - Wildbeats</h1>
+        <p> {{ displayClub.tagline}}</p>
+    </header>
+    <nav>
+        <a href="#about">About</a>
+        <a href="#leaders">Group Leaders</a>
+        <a href="#history">Event History</a>
+        <a href="#upcoming-events">Upcoming Events</a>
+        <a href="#poll">Poll</a>
+        <a href="#suggestion-box">Suggestion Box</a>
+        <a href="#social-media">Social Media</a>
+    </nav>
+
+    <section id="about">
+        <h2>About Us</h2>
+       <p> {{displayClub.about}}
+       </p>
+    </section>
+
+    <section id="leaders">
+        <h2>Group Leaders</h2>
+            <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Role</th>
+                <th>Contact</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for lead in all_leads %}
+            <tr>
+                <td>{{lead}}</td>
+                <td>Sub Lead</td>
+                <td>{{lead}}@example.com</td>
+            </tr>
+           {% endfor %}
+            <!-- Add more leaders here -->
+        </tbody>
+    </table>
+    </section>
+
+    <section id="history">
+        <h2>Event History</h2>
+    </section>
+
+    <section id="upcoming-events">
+        <h2>Upcoming Events</h2>
+    </section>
+
+    <section id="poll">
+        <h2>Poll</h2>
+        <!-- Add a poll or survey form here -->
+    </section>
+
+    <section id="suggestion-box">
+        <h2>Suggestion Box</h2>
+        <!-- Add a suggestion box form or contact information here -->
+    </section>
+
+    <section id="social-media">
+        <h2>Connect with Us</h2>
+        <div class="social-media-icons">
+            <a href="{{ displayClub.facebook_handle }}" target="_blank" class="fa fa-facebook"> Facebook</a>
+            <a href="{{ displayClub.linkedin_handle }}" class="fa fa-twitter"> Linkedin</a>
+            <a href="{{ displayClub.instagram_handle }}" class="fa fa-instagram"> Instagram</a>
+            <a href="{{ displayClub.youtube_handle }}" class="fa fa-youtube"> Youtube</a>
+        </div>
+    </section>
+
+    <!-- Footer with Copyright Notice -->
+    <footer>
+        <p>&copy; 2023 {{displayClub.club_name}} - Sportec. All rights reserved.</p>
+    </footer>
+</body>
+</html>
