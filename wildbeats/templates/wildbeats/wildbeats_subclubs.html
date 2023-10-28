@@ -202,12 +202,17 @@
         <h2>Poll</h2>
         <!-- Add a poll or survey form here -->
     </section>
-
+{% if user.is_authenticated%}
     <section id="suggestion-box">
         <h2>Suggestion Box</h2>
         <!-- Add a suggestion box form or contact information here -->
     </section>
-
+    {%else%}
+    <section id="suggestion-box">
+        <h2>Suggestion Box</h2>
+        <button > <a href="{% url 'login'%}"><h3>Login to give suggestions</h3></a></button>
+    </section>
+{% endif%}
     <section id="social-media">
         <h2>Connect with Us</h2>
         <div class="social-media-icons">

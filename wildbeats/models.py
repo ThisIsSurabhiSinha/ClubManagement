@@ -4,7 +4,7 @@ from datetime import date
 class SubClub(models.Model):
     id=models.AutoField(primary_key=True)
     club_name = models.CharField(max_length=100)
-    image = models.ImageField(upload_to='trendles/images',default="")
+    image = models.ImageField(upload_to='wildbeats/images',default="")
     about = models.TextField(default="")
     leader1 = models.CharField(max_length=100,default="")
     leader2 = models.CharField(max_length=100,default="")

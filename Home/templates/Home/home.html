@@ -1,0 +1,402 @@
+<html>
+
+    <head>
+        <title>
+            Welcome
+        </title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+            integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+        <style>
+          nav{
+            width:100%;
+            padding: 20px 0;
+            text-align: left;
+          }
+          .logo{
+            float: left;
+            width: 100px;
+            height:60px;
+            cursor:pointer;
+            box-shadow:0 0 100px black;
+          }
+          .logo:hover{
+            box-shadow:0 0 100px greenyellow;
+          }
+          ul.sidenav {
+            background-color: green;
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            position: fixed;
+            overflow: auto;
+          }
+          li.section{
+            display: inline;
+          }
+          li.section a {
+            float: right;
+            border-color:black;
+          }
+          
+          a {
+            text-decoration: none;
+            color:black;
+            display: block;
+            padding: 20px 20px;
+            border:2px;
+          }
+          a:hover{
+            background-color:rgba(1, 51, 1, 0.589);
+            color:rgb(0, 251, 67);
+          }
+          
+          
+          
+          
+          
+          
+          body {margin: 0;}
+          
+          div.content {
+          margin-left:auto;
+          padding: 1px 16px;
+          }
+          
+          @media screen and (max-width:2000px) {
+          ul.sidenav {
+            width: 100%;
+            height: auto;
+            position: relative;
+          }
+          
+          ul.sidenav li a {
+            margin-left:0.1%;
+            float: left;
+            padding: 30px;
+            height:30px;
+            font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            font-size: larger;
+          }
+          
+          div.content {margin-left: 0;}
+          }
+          
+          @media screen and (max-width: 400px) {
+          ul.sidenav li a {
+            text-align: center;
+            float: none;
+          }
+          }
+          
+          ul.set2 {
+          float: right;
+          list-style-type: none;
+          margin: 0;
+          padding: 0;
+          width: 50px;
+          background-color: #660443;
+          }
+          
+          .sidebar{
+          border-right: 50px solid #660443;
+          height: 700px;
+          }
+          
+          ul.set2 li a {
+          display: block;
+          color: #000;
+          padding: 8px 16px;
+          text-decoration: none;
+          }
+          
+          /* a:hover{
+          transition:cubic-bezier(0.075, 0.82, 0.165, 1);
+          background-color:black;
+          color:white;
+          cursor:pointer;
+          } */
+          
+          ul.set2 li {
+          font-size: 50px;
+          position: relative;
+          width:5px;
+          height:100px;
+          }
+          
+          
+          
+          
+          
+          
+          
+          
+          div.gallery {
+          border: 1px solid #ccc;
+          }
+          
+          div.gallery:hover {
+          border: 1px solid #777;
+          }
+          
+          div.gallery img {
+          width: 100%;
+          height: 300px;
+          }
+          
+          div.desc {
+          padding: 15px;
+          text-align: center;
+          }
+          
+          * {
+          box-sizing: border-box;
+          box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+          }
+          
+          .responsive {
+          padding: 0 6px;
+          float: left;
+          width: 30%;
+          }
+          
+          @media only screen and (max-width: 700px) {
+          .responsive {
+            width: 60%;
+            margin: 6px 0;
+          }
+          }
+          
+          @media only screen and (max-width: 500px) {
+          .responsive {
+            width: 100%;
+          }
+          }
+          
+          .clearfix:after {
+          content: "";
+          display: table;
+          clear: both;
+          }
+          
+          .desc:hover{
+          background-color: aquamarine;
+          color:rgb(0, 30, 255);
+          }
+          
+          .d1{
+          margin-left: 350px; 
+          }
+          .d2{
+          margin-top: 500px;
+          margin-left: 350px;
+          }
+          
+          
+          
+          
+          .overlay {
+          height: 100%;
+          width: 0;
+          position: fixed;
+          z-index: 1;
+          top: 0;
+          right: 0;
+          background-color: green;
+          background-color: rgba(3, 76, 3, 0.9);
+          overflow-x: hidden;
+          transition: 0.5s;
+          }
+          
+          .overlay-content {
+          position: relative;
+          top: 15%;
+          width: 100%;
+          text-align: left;
+          margin-top: 30px;
+          }
+          
+          .overlay a {
+          padding: 8px;
+          text-decoration: none;
+          font-size: 24px;
+          color: #00ddff;
+          display: block;
+          transition: 0.3s;
+          }
+          
+          .overlay a:hover, .overlay a:focus {
+          color: #ff00e1;
+          }
+          
+          .overlay .closebtn {
+          position: absolute;
+          top: 20px;
+          right: 15px;
+          font-size: 30px;
+          background-color: rgba(0, 152, 56, 0.622);
+          }
+          .overlay .closebtn:hover{
+          background-color: rgba(195, 5, 5, 0.589);
+          }
+          
+          @media screen and (max-height: 450px) {
+          .overlay a {font-size: 20px}
+          .overlay .closebtn {
+          font-size: 40px;
+          top: 15px;
+          right: 40px;
+          }
+          }
+          
+          .three{
+          float: right;
+          }
+          
+          
+          .dark-mode {
+          background-color: black;
+          color: white;
+          }
+        </style>
+    </head>
+    <body>
+{% load static%}
+{% csrf_token %}
+        <div class="header">
+            <nav>
+                <ul class="sidenav">
+                    <li><img src="\static\Home\iiitklogo.jpg" class="logo"></li>
+                    <li class="section"><a href="#">Home</a></li>
+                    <li class="section"><a href="#">About</a></li>
+                    <li class="section"><a href="#">Contact</a></li>
+                    <li class="section"><a href="#">Menu</a></li>
+                    <li class="section"><a href="#">Research</a></li>
+                    <li class="section"><a href="#">Details</a></li>
+
+                    {% if  user.is_authenticated %}
+                    <li class="section" style="float: right;"><a href="{% url 'profile' %}">Profile</a></li>
+                    <li class="section" style="float: right;"><a href="{% url 'handle_logout' %}">Logout</a></li>
+                    {% else%}
+                    <li class="section" style="float: right;"><a href="{% url 'login' %}">Login</a></li>
+                    <li class="section" style="float: right;"><a href="{% url 'signup' %}">Signup</a></li>
+                   
+                    {% endif %}
+                    
+                </ul>
+            </nav>
+            <!-- <nav>
+                <ul class="set2">
+                    <li><span>&#9884;</span></li>
+                    <li><span>&#9884;</span></li>
+                    <li><span>&#9884;</span></li>
+                    <li><span>&#9884;</span></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="sidebar"></div> -->
+
+        <div id="myNav" class="overlay">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            <div class="overlay-content">
+              <a href="#">&#9884;</a>
+              <a href="#">&#9884;</a>
+              <a href="#">&#9884;</a>
+              <a href="#">&#9884;</a>
+            </div>
+          </div>
+          
+          <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; open</span>
+          
+          <script>
+          function openNav() {
+            document.getElementById("myNav").style.width = "15%";
+          }
+          
+          function closeNav() {
+            document.getElementById("myNav").style.width = "0%";
+          }
+          </script>
+          {% for message in messages  %}            
+          <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                <strong>Message : </strong> {{ message }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+          {% endfor %} 
+
+          <div class="d1">
+            <div class="responsive">
+    
+              <div class="gallery">
+                <a target="_blank" href="/wildbeats/">
+                  <img src="\static\Home\wildbeatslogo.jpg" alt="Wildbeats" width="600" height="400">
+                </a>
+                <div class="desc">WILDBEATS</div>
+                <div class="desc">
+                  <button>JOIN</button>
+                </div>
+              </div>
+            </div>
+    
+    
+            <div class="responsive">
+              <div class="gallery">
+                <a target="_blank" href="/trendles/">
+                  <img src="\static\Home\trendleslogo.jpg" alt="Trendles" width="600" height="400">
+                </a>
+                <div class="desc">TRENDLES</div>
+                <div class="desc">
+                  <button>JOIN</button>
+                </div>
+              </div>
+            </div>
+          </div>
+    
+    
+          <div class="d2">
+            <div class="responsive">
+              <div class="gallery">
+                <a target="_blank" href="/betalabs/">
+                  <img src="\static\Home\betalabslogo.jpg" alt="beta labs" width="600" height="400">
+                </a>
+                <div class="desc">BETA LABS</div>
+                <div class="desc">
+                  <button>JOIN</button>
+                </div>
+              </div>
+            </div>
+    
+            <div class="responsive">
+              <div class="gallery">
+                <a target="_blank" href="/sportec/">
+                  <img src="\static\Home\sportslogo.jpg" alt="sports club" width="600" height="400">
+                </a>
+                <div class="desc">SPORTEC</div>
+                <div class="desc">
+                  <button>JOIN</button>
+                </div>
+              </div>
+            </div>
+          </div>
+    
+    
+          <div class="clearfix"></div>
+                <div class="clearfix"></div>
+        
+                <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+        integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+        crossorigin="anonymous"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+        integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+        crossorigin="anonymous"></script>
+            </body>
+</html>

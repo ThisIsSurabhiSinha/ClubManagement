@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>My Profile</title>
+        <style>
+            body {
+                margin: 0;
+                font-family: Arial, sans-serif;
+            }
+/*_____________________________________________________________________________________________________________________________________________________*/
+            nav {
+                min-height: 131px;
+                -webkit-box-shadow: 5px 0 10px rgba(0, 0, 0, .1);
+                box-shadow: 0 0 20px rgba(0, 0, 0, .1);
+                background-color: #fff;
+                position: fixed;
+                top: 0;
+                right: 0;
+                left: 0;
+                z-index: 1030;
+            }
+        /*___________________________________________________________________________for responsiveness of logo________________________________________________________________________________*/
+        .custom-responsive-image {
+            height: 50px;
+            position: absolute;
+            top: 20px;
+            left: 15px;
+        }
+
+        @media only screen and (min-width: 565px) {
+            .custom-responsive-image {
+                height: 80px;
+                top: 10px;
+                left: 10px;
+            }
+        }
+
+        @media only screen and (min-width: 650px) {
+            .custom-responsive-image {
+                height: 100px;
+                top: 5px;
+                left: 10px;
+            }
+        }
+
+        @media only screen and (min-width: 900px) {
+            .custom-responsive-image {
+                height: 120px;
+                top: 5px;
+                left: 10px;
+            }
+        }
+
+        /* ______________________________________________________________________________Animating text_______________________________________________________________________________________ */
+        .custom-brand-name {
+            color: transparent;
+            background: url(https://tse2.mm.bing.net/th?id=OIP.BqA_IdV0cAZu3w6HpAoMOwHaEo&pid=Api&P=0&h=180) repeat;
+            background-size: 200%;
+            background-clip: text;
+            -webkit-background-clip: text;
+            animation-name: masked-animation;
+            animation-duration: 20s;
+            animation-iteration-count: infinite;
+            animation-timing-function: linear;
+            font-family: 'Hind', sans-serif;
+        }
+
+        @keyframes masked-animation {
+            0% {
+                background-position: 0 0;
+            }
+
+            100% {
+                background-position: 100% 0;
+            }
+        }
+
+        /* ______________________________________________________________________to align sentences column wise to wards end__________________________________________________________________ */
+        .flex-end {
+            align-items: flex-end;
+        }
+
+        .flex-column {
+            flex-direction: column;
+        }
+
+        .flex {
+            display: flex;
+        }
+
+        /* __________________________________________________________________________________Sidewise Nav bar_________________________________________________________________________________ */
+        .side-navbar {
+            margin-top: 131px;
+            width: 170px;
+            /* Adjust the width as needed */
+            background-color: #333;
+            /* Sidebar background color */
+            color: #fff;
+            /* Text color */
+            position: fixed;
+            /* Fixed position to stay on the side */
+            height: 100%;
+            /* Make it occupy the full height of the screen */
+            overflow-y: auto;
+            /* Enable vertical scrolling if needed */
+            left: 0px;
+            top: 0px;
+        }
+
+        .side-navbar a {
+            padding: 15px 25px;
+            text-align: left;
+            text-decoration: none;
+            font-size: 18px;
+            color: #ccc;
+            display: block;
+        }
+        .side-navbar a:hover {
+            color: #fff;
+        }
+        .side-navbar ul{
+            display: block;
+                list-style-type: disc;
+                margin-block-start: 1em;
+                margin-block-end: 1em;
+                margin-inline-start: 0px;
+                margin-inline-end: 0px;
+                padding-inline-start: 10px;
+        }
+        /* ___________________________________________________________________________________Main Container__________________________________________________________________________________ */
+        .main-container {
+            background-image: url(https://i.pinimg.com/originals/46/cd/e1/46cde1793ed0e7727ffbf6dc7a7ea189.jpg);
+            background-size: cover;
+            background-position: center bottom;
+            margin-top: 140px;
+            margin-left: 170px;
+            height: 640px;
+            /* 200px for sidebar + 20px for spacing */
+            padding: 10px;
+            border: 1px solid #ddd;
+            background-color: #ffffff;
+        }
+        .card {
+            margin-block: 10px;
+            margin-left: 10px;
+            margin-right: 10px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            min-width: 0;
+            word-wrap: break-word;
+            background-color: #fff;
+            background-clip: border-box;
+            border: 1px solid #d7dfe3;
+            min-height: 150px;
+            box-shadow: 7px 7px 3px #cedadd;
+        }
+        .overlay {
+            bottom: 0;
+            left:0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.7));
+            position: absolute; /* Change to absolute positioning */
+        }
+        .icontent {
+            position: relative;
+            z-index: 5;
+            padding: 20px; /* Add some padding for spacing */
+            color: #fff; /* Text color on top of the background */
+            text-align: center; /* Center-align the text */
+        }
+        .vanish-reappear-text {
+            animation: vanishReappear 5s linear infinite;
+        }
+
+        @keyframes vanishReappear {
+            0% {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            10% {
+                transform: translateX(0);
+                opacity: 1;
+            }
+            90% {
+                transform: translateX(0);
+                opacity: 1;
+            }
+            100% {
+                transform: translateX(-100%);
+                opacity: 0;
+            }
+        }
+
+        .dancegif{
+            position: fixed;
+            bottom: 100px;
+            right: 30px;
+            z-index: 20;
+        }
+        .c{
+            width: 50%;
+        }
+        .card-container{
+            justify-content: space-between;
+        }
+        .profile-container {
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            width: 300px;
+            margin: 20px auto;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+        .profile-pic {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 20px;
+        }
+        h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+        p {
+            margin: 5px 0;
+            font-size: 16px;
+        }
+        .social-links {
+            margin: 10px 0;
+        }
+        .achievements, .contributions {
+            text-align: left;
+            margin-top: 20px;
+        }
+        .logout-button {
+            width: 100%;
+            background-color: #ff0000; /* Red color */
+            color: #fff; /* White text color */
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        </style>
+    </head>
+    <body>
+        <nav class="tofix">
+            <div>
+                <img src="https://lms.iiitkottayam.ac.in/pluginfile.php/1/theme_moove/logo/1663841307/logo.jpg"
+                    alt="IIIT Kottayam Logo" class="custom-responsive-image" style="padding-top: 5px;">
+            </div>
+            <div>
+                <div class="flex flex-column flex-end"> 
+                    <span class="custom-brand-name big-head notranslate"
+                        style="margin:0;font-family: 'Hind', sans-serif; font-size:33px;">
+                        <a href="#!home" style="color: transparent; margin-right: 40px; text-align: right; direction: rtl;"> भारतीय सूचना प्रौद्योगिकी संस्थान कोट्टायम</a>
+                    </span>
+                    <span class="custom-brand-name big-head notranslate" style="margin:0;font-size: 21.5px">
+                        <a href="#!home" style="color: transparent; margin-right: 40px;">Indian Institute of Information Technology
+                            Kottayam</a>
+                    </span>
+                </div>
+            </div>
+        </nav>
+    
+        <nav class="side-navbar">
+            <ul>  <a href="{% url 'Homepage'%}">Home</a>
+                <a href="{% url 'trendlesHome'%}">Dashboard</a>
+                <a href="{% url 'clubleads'%}">Club-leads</a>
+            <a href="{% url 'profile'%}">Profile</a>
+            <a href="{% url 'calander'%}">Calander</a>
+            <a href="{% url 'announcement'%}">Announcements</a>
+            <a href="{% url 'elections'%}">Elections</a>
+            <a href="{% url 'settings'%}">Settings</a>
+                <div class="image-container"></div>
+            </ul>
+        </nav>
+        <div class="main-container">
+            <div class="profile-container">
+                <img class="profile-pic" src="https://www.shareicon.net/data/512x512/2015/09/18/103159_user_512x512.png" alt="Profile Picture">
+                <h1>Name: {{ first_name}} {{last_name}}</h1>
+                <p>Email: {{ email}}</p>
+                {% if phone is not None%}
+                <p>Phone: {{phone}}</p>{% endif%}
+                {% if linkedin_profile is not None%}
+                <p>Linkedin:{{linkedin_profile}}</p>{% endif%}
+                {% if program is not program%}
+                <p>Program :{{program }}</p>{% endif%}
+                {% if batch is not None%}
+                <p>Department:{{ department}}</p>{% endif%}
+                {% if batch is not None%}
+                <p>Batch:{{batch}}</p>{% endif%}
+                
+                <div class="achievements">
+                    <h2>Achievements:</h2>
+                    <ul>
+                        <li>First Place in XYZ Competition</li>
+                        <li>Volunteer of the Year</li>
+                        <!-- Add more achievements as needed -->
+                    </ul>
+                </div>
+        
+                <div class="contributions">
+                    <h2>Contributions:</h2>
+                    <ul>
+                        <li>Started a charity project in 2019</li>
+                        <li>Contributed to open-source projects</li>
+                        <!-- Add more contributions as needed -->
+                    </ul>
+                </div>
+                <button class="logout-button" onclick="logout()">Logout</button>
+            </div>
+        </div>
+        {% comment %} jquery {% endcomment %}
+     <script>
+        function logout()
+        {
+            // Define the URL you want to redirect to
+            var url = '/Home/logout';  // Replace with your desired URL
+
+            // Redirect to the specified URL
+            window.location.href = url;
+        }
+     </script>
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+        integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+        crossorigin="anonymous"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+        integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+        crossorigin="anonymous"></script>
+    </body>
+</html>
