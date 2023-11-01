@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fantastic Glowing Centered Square Box</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: pink;
+        }
+
+        .centered-box {
+            width: 300px;
+            height: 300px;
+            background-color: #ffffff; /* Changed box color to white */
+            border-radius: 10px;
+            position: relative;
+            overflow: hidden;
+            margin:50px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .box-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            font-size: 40px;
+            transition: text-shadow 0.3s ease, color 0.3s ease; /* Added text-shadow and color transitions */
+        }
+
+        .centered-box:hover {
+            transform: scale(1.2);
+            box-shadow: 0 0 40px 20px rgba(255, 215, 0, 1); /* Changed glow color to gold */
+        }
+
+        .centered-box:hover .box-content {
+            color: #ffd700; /* Changed text color to gold */
+            text-shadow: 0 0 20px rgba(255, 215, 0, 1); /* Added glow effect to text */
+        }
+
+        .box-text {
+            margin: 10px;
+        }
+
+        .external-link {
+            display: block;
+            text-align: center;
+            font-size: 24px;
+            margin-top: 20px;
+            text-decoration: none;
+            color: #333;
+        }
+
+        .external-link:hover {
+            color: #ffd700;
+        }
+    </style>
+</head>
+<body>
+    <div class="centered-box">
+        <div class="box-content">
+            <div class="box-text">{{my_list}}</div>
+        </div>
+    </div>
+    <a href="result" class="external-link">Click here to explore all the clubs</a>
+</body>
+</html>

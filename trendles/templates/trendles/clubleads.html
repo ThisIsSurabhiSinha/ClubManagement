@@ -314,10 +314,12 @@
 
     <nav class="side-navbar">
         <ul>
-            <a href="{% url 'trendlesHome'%}">Dashboard</a>
+            <a href="{% url 'trendlesHome'%}">Trendles</a>
             <a href="{% url 'clubleads'%}">Club-leads</a>
             {% if  user.is_authenticated %}
-            <a href="{% url 'profile'%}">Profile</a>
+            <a href="{% url 'userprofile'%}">Profile</a>
+            {% else%}
+            <a href="{% url 'login'%}">Login</a>
             {% endif%}
         <a href="{% url 'calander'%}">Calander</a>
         <a href="{% url 'announcement'%}">Announcements</a>

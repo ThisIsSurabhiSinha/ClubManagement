@@ -353,12 +353,16 @@
 
     <nav class="side-navbar">
         <ul class="side-head">
-            <a href="{% url 'Homepage'%}">Club-leads</a>
+            <a href="{% url 'Homepage'%}">Home</a>
             <a href="#">Dashboard</a>
-            <a href="{% url 'clubleads'%}">Club-leads</a>
+            <a href="{% url 'clubleads' %}?slug=all&majorclub=trendles">Club-leads</a>
+
             {% if  user.is_authenticated %}
-            <a href="{% url 'profile'%}">Profile</a>
+            <a href="{% url 'userprofile'%}">Profile</a>
+            {% else%}
+            <a href="{% url 'login'%}">Login</a>
             {% endif%}
+
             <a href="{% url 'calander'%}">Calander</a>
             <a href="{% url 'announcement'%}">Announcements</a>
             <a href="{% url 'elections'%}">Elections</a>
@@ -431,11 +435,7 @@
     <div class="dancegif">
         <img src="https://media.giphy.com/media/7uwHroFO2GIDe/giphy.gif" width="130px">
     </div>
-    <div class="madeby card">
-        
-        <img src="https://tse1.mm.bing.net/th?id=OIP.6ncJkLNu8d7R4zGLfG2AVAHaGP&pid=Api&P=0&h=180" height="15px" alt="..." class="cmplogo">
-    </div>
-    
+
 </body>
 
 </html> 

@@ -269,16 +269,19 @@
     </nav>
 
     <nav class="side-navbar">
-        <ul> <a href="{% url 'Homepage'%}">Home</a>
-            <a href="{% url 'trendlesHome'%}">Dashboard</a>
+        <ul>  <a href="{% url 'Homepage'%}">Club-leads</a>
+            <a href="#">Dashboard</a>
             <a href="{% url 'clubleads'%}">Club-leads</a>
             {% if  user.is_authenticated %}
-            <a href="{% url 'profile'%}">Profile</a>
+            <a href="{% url 'userprofile'%}">Profile</a>
+            {% else%}
+            <a href="{% url 'login'%}">Login</a>
             {% endif%}
-        <a href="{% url 'calander'%}">Calander</a>
-        <a href="{% url 'announcement'%}">Announcements</a>
-        <a href="{% url 'elections'%}">Elections</a>
-        <a href="{% url 'settings'%}">Settings</a>
+
+            <a href="{% url 'calander'%}">Calander</a>
+            <a href="{% url 'announcement'%}">Announcements</a>
+            <a href="{% url 'elections'%}">Elections</a>
+            <a href="{% url 'settings'%}">Settings</a>
             <div class="image-container"></div>
         </ul>
     </nav>

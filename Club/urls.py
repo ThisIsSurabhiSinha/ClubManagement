@@ -26,4 +26,6 @@ urlpatterns = [
     path('trendles/',include('trendles.urls')),
     path('betalabs/',include('betalabs.urls')),
     path('sportec/',include('sportec.urls')),
+    path('handle_suggestion/',include('wildbeats.urls')),
+  
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

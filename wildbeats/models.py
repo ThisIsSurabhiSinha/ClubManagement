@@ -1,6 +1,7 @@
 from django.db import models
 from django.db.models import Model
 from datetime import date 
+from Home.models import Suggestion
 class SubClub(models.Model):
     id=models.AutoField(primary_key=True)
     club_name = models.CharField(max_length=100)

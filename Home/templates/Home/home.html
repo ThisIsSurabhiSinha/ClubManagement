@@ -5,7 +5,7 @@
             Welcome
         </title>
         <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes">
     
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
@@ -127,14 +127,7 @@
           width:5px;
           height:100px;
           }
-          
-          
-          
-          
-          
-          
-          
-          
+
           div.gallery {
           border: 1px solid #ccc;
           }
@@ -275,7 +268,6 @@
                     <li class="section"><a href="#">About</a></li>
                     <li class="section"><a href="#">Contact</a></li>
                     <li class="section"><a href="#">Menu</a></li>
-                    <li class="section"><a href="#">Research</a></li>
                     <li class="section"><a href="#">Details</a></li>
 
                     {% if  user.is_authenticated %}
@@ -289,21 +281,11 @@
                     
                 </ul>
             </nav>
-            <!-- <nav>
-                <ul class="set2">
-                    <li><span>&#9884;</span></li>
-                    <li><span>&#9884;</span></li>
-                    <li><span>&#9884;</span></li>
-                    <li><span>&#9884;</span></li>
-                </ul>
-            </nav>
-        </div>
-        <div class="sidebar"></div> -->
-
+            
         <div id="myNav" class="overlay">
             <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
             <div class="overlay-content">
-              <a href="#">&#9884;</a>
+              <a href="{% url 'quizpage'%}">&#9884;Quiz</a>
               <a href="#">&#9884;</a>
               <a href="#">&#9884;</a>
               <a href="#">&#9884;</a>
@@ -321,14 +303,16 @@
             document.getElementById("myNav").style.width = "0%";
           }
           </script>
+         
           {% for message in messages  %}            
           <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
-                <strong>Message : </strong> {{ message }}
+                <center><b> {{ message }}</b></center>
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
           {% endfor %} 
+            </div>
 
           <div class="d1">
             <div class="responsive">
@@ -338,9 +322,7 @@
                   <img src="\static\Home\wildbeatslogo.jpg" alt="Wildbeats" width="600" height="400">
                 </a>
                 <div class="desc">WILDBEATS</div>
-                <div class="desc">
-                  <button>JOIN</button>
-                </div>
+           
               </div>
             </div>
     
@@ -351,9 +333,7 @@
                   <img src="\static\Home\trendleslogo.jpg" alt="Trendles" width="600" height="400">
                 </a>
                 <div class="desc">TRENDLES</div>
-                <div class="desc">
-                  <button>JOIN</button>
-                </div>
+             
               </div>
             </div>
           </div>
@@ -366,9 +346,7 @@
                   <img src="\static\Home\betalabslogo.jpg" alt="beta labs" width="600" height="400">
                 </a>
                 <div class="desc">BETA LABS</div>
-                <div class="desc">
-                  <button>JOIN</button>
-                </div>
+               
               </div>
             </div>
     
@@ -378,9 +356,7 @@
                   <img src="\static\Home\sportslogo.jpg" alt="sports club" width="600" height="400">
                 </a>
                 <div class="desc">SPORTEC</div>
-                <div class="desc">
-                  <button>JOIN</button>
-                </div>
+                
               </div>
             </div>
           </div>

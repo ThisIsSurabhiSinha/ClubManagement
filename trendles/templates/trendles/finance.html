@@ -356,21 +356,29 @@
     
         <nav class="side-navbar">
             <ul>
-                <a href="functionalpage.html">Dashboard</a>
-                <a href="clubleads.html">Club-leads</a>
-                <a href="profile.html">Profile</a>
-                <a href="calander.html">Calander</a>
-                <a href="announcements.html">Announcements</a>
-                <a href="elections.html">Elections</a>
-                <a href="settings.html">Settings</a>
-                <div class="image-container"></div>
+                <a href="{% url 'Homepage'%}">Home</a>
+            
+                <a href="#">Dashboard</a>
+                {% comment %} <a href="{% url 'clubleads' %}?subclub_name={{subclub_name}}&majorclub={{majorclub}}">Club-leads</a> {% endcomment %}
+                <a href="{% url 'clubleads' %}?subclub_name={{ subclub_name|urlize }}&majorclub={{ majorclub|urlize }}">Club-leads</a>
+
+                {% if  user.is_authenticated %}
+                <a href="{% url 'userprofile'%}">Profile</a>
+                {% else%}
+                <a href="{% url 'login'%}">Login</a>
+                {% endif%}
+    
+                <a href="{% url 'calander'%}">Calander</a>
+                <a href="{% url 'announcement'%}">Announcements</a>
+                <a href="{% url 'elections'%}">Elections</a>
+                <a href="{% url 'settings'%}">Settings</a>
             </ul>
         </nav>
         <div class="main-container">
             <div class="card profile">
                 <div class="overlay"></div>
                 <div class="profile-content icontent">
-                    <h1>Welcome to Finance Club</h1>
+                    <h1>Welcome to  Club</h1>
                     <h5 class="vanish-reappear-text">----------You can put your Announcements here-------------</h5>
                 </div>
             </div>

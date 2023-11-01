@@ -7,7 +7,7 @@ from django.contrib.auth import authenticate, login,logout
 def index(request):
     # SubClubs=SubClub.objects.all()
     # return render(request,'trendles/trendles.html',{'SubClubs':SubClubs})
-    return render(request,'trendles/functionalpage.html')
+    return render(request,'trendles/functionalpage.html',{'club':"Trendles"})
 '''def subClub_detail(request,subClub_slug):
     slug=subClub_slug[0].upper()+subClub_slug[1:]
     displayClub = SubClub.objects.filter( club_name=slug).first()
@@ -25,19 +25,32 @@ def index(request):
         all_leads.append(displayClub.subleader3)
     return render(request, 'trendles/trendles_subclub.html', {'displayClub': displayClub,'all_leads':all_leads})'''
 def finance(request):
-    return render(request,'trendles/finance.html')
+    return render(request,'trendles/finance.html',{'subclub_name': "Finance",'majorclub':"trendles"})
 def chitrachaya(request):
-    return render(request,'trendles/chitrachaya.html')
+    return render(request,'trendles/chitrachaya.html',{'subclub_name': "Chitrachaya",'majorclub':"Trendles"})
 def marketing(request):
-    return render(request,'trendles/marketing.html')
+    return render(request,'trendles/marketting.html', {'subclub_name': "marketing",'majorclub':"Trendles"})
 def designing(request):
-    return render(request,'trendles/designing.html')
+    return render(request,'trendles/designing.html',{'subclub_name': "Designing",'majorclub':"Trendles"})
 def literature(request):
-    return render(request,'trendles/literature.html')
+    return render(request,'trendles/literature.html',{'club': "Literary",'majorclub':"Trendles"})
 def debating(request):
-    return render(request,'trendles/debating.html')
-def clubleads(request):
-    return render(request,'trendles/clubleads.html')
+    return render(request,'trendles/debating.html',{'subclub_name': "Debate",'majorclub':"Trendles"})
+# def clubleads(request):
+#     displayClub = SubClub.objects.filter( club_name=slug).first()
+    
+#     all_leads=[]
+#     # if displayClub.leader1.lower()!= "none":
+#     #     all_leads.append(displayClub.leader1)
+#     # if displayClub.leader2.lower()!= "none":
+#     #     all_leads.append(displayClub.leader2)
+#     if displayClub.subleader1.lower()!= "none":
+#         all_leads.append(displayClub.subleader1)
+#     if displayClub.subleader2.lower()!= "none":
+#         all_leads.append(displayClub.subleader2)
+#     if displayClub.subleader3.lower()!= "none":
+#         all_leads.append(displayClub.subleader3)
+#     return render(request,'trendles/clubleads.html')
 def calander(request):
     return render(request,'trendles/calander.html')
 def announcement(request):
@@ -64,3 +77,31 @@ def profile(request):
                 'email' : user.email,
             }
     return render(request,'trendles/profile.html',student_info)
+def subclubleads(request):
+
+    subclub_name = request.GET.get('subclub_name')
+    majorclub = request.GET.get('majorclub')
+    print(subclub_name,majorclub)
+    displayClub = SubClub.objects.filter(club_name=subclub_name).first()
+    print(SubClub.objects.all())
+    
+    all_leads = []
+
+    # Define a list of leader fields to iterate through
+    leader_fields = ['leader1', 'leader2', 'subleader1', 'subleader2', 'subleader3']
+
+    for field in leader_fields:
+        leader_name = getattr(displayClub, field)
+        leader_email = getattr(displayClub, f"{field}mail")
+        leader_phone = getattr(displayClub, f"{field}phone")
+
+        if leader_name.lower() != "none" and leader_name:
+            field = {
+                'name': leader_name,
+                'email': leader_email,
+                'phone': leader_phone,
+            }
+            print(field)
+            all_leads.append(field)
+
+    return render(request, 'trendles/subclubleadstemp.html', {'displayClub': displayClub, 'all_leads': all_leads, 'subclub_name': subclub_name,'majorclub':majorclub})

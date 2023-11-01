@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coding Contests</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* styles.css */
+
+/* Set a background color for the whole page */
+body {
+    background-color: #f2f2f2;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Style the header */
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 0;
+    text-align: center;
+}
+
+/* Style the navigation menu */
+nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 10px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+}
+
+/* Style the sections */
+section {
+    padding: 20px;
+    background-color: #fff;
+    margin: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Style the buttons */
+a {
+    display: inline-block;
+    background-color: #333;
+    color: #fff;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+a:hover {
+    background-color: #555;
+}
+
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Coding Contests</h1>
+        <nav>
+            <ul>
+                <li><a href="{% url 'Homepage'%}">Home</a></li>
+                <li><a href="#contests">Contests</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="home">
+        <h2>Welcome to Coding Contests</h2>
+        <p>Compete, learn, and improve your coding skills by participating in our contests.</p>
+    </section>
+
+    <section id="contests">
+        <h2>Upcoming Contests</h2>
+        <ul>
+            <li>
+                <h3>Contest 1</h3>
+                <p>Date: November 30, 2023</p>
+                <p>Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                <a href="{% url 'registration'%}">Register</a>
+            </li>
+            <li>
+                <h3>Contest 2</h3>
+                <p>Date: December 1, 2023</p>
+                <p>Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                <a href="#" href="{% url 'registration'%}">Register</a>
+            </li>
+            <!-- Add more contests here -->
+        </ul>
+    </section>
+
+    <section id="about">
+        <h2>About Us</h2>
+        <p>We are passionate about coding and aim to provide a platform for coders to showcase their skills.</p>
+    </section>
+
+    <section id="contact">
+        <h2>Contact Us</h2>
+        <p>If you have any questions or feedback, please contact us at <a href="mailto:contact@codingcontests.com">contact@codingcontests.com</a>.</p>
+    </section>
+
+    <footer>
+        <p>&copy; 2023 Coding Contests</p>
+    </footer>
+</body>
+</html>

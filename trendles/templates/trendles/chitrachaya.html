@@ -360,14 +360,19 @@
     
         <nav class="side-navbar">
             <ul>
-                <a href="functionalpage.html">Dashboard</a>
-                <a href="clubleads.html">Club-leads</a>
-                <a href="profile.html">Profile</a>
-                <a href="calander.html">Calander</a>
-                <a href="announcements.html">Announcements</a>
-                <a href="elections.html">Elections</a>
-                <a href="settings.html">Settings</a>
-                <div class="image-container"></div>
+                <a href="{% url 'Homepage'%}">Home</a>
+                <a href="#">Dashboard</a>
+                <a href="{% url 'clubleads' %}?subclub_name={{club}}&majorclub=Chitrachaya">Club-leads</a>
+                {% if  user.is_authenticated %}
+                <a href="{% url 'userprofile'%}">Profile</a>
+                {% else%}
+                <a href="{% url 'login'%}">Login</a>
+                {% endif%}
+    
+                <a href="{% url 'calander'%}">Calander</a>
+                <a href="{% url 'announcement'%}">Announcements</a>
+                <a href="{% url 'elections'%}">Elections</a>
+                <a href="{% url 'settings'%}">Settings</a>
             </ul>
         </nav>
         <div class="main-container">
@@ -452,5 +457,15 @@
         </div>
         <div class="moving-hand"></div>
         <div class="trcard"></div>
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+        integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+        crossorigin="anonymous"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+        integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+        crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     </body>
 </html>

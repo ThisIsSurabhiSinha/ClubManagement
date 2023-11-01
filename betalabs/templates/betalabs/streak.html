@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coding Streak</title>
+    <style>
+        /* styles.css */
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 0;
+    text-align: center;
+}
+
+section {
+    background-color: #fff;
+    padding: 20px;
+    margin: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+button {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #555;
+}
+
+footer {
+    text-align: center;
+    background-color: #333;
+    color: #fff;
+    padding: 10px 0;
+}
+
+    </style>
+    
+</head>
+<body>
+    
+    <header>
+        <h1>Coding Streak</h1>
+    </header>
+
+    <section id="streak">
+        <h2>Streak: <span id="streakCount">0</span> days</h2>
+        <button id="increaseStreak">Increase Streak</button>
+    </section>
+
+    <section id="rating">
+        <h2>Rating: <span id="userRating">1000</span></h2>
+        <button id="increaseRating">Increase Rating</button>
+    </section>
+
+    <section id="difficulty">
+        <h2>Current Challenge Difficulty: <span id="currentDifficulty">Medium</span></h2>
+        <button id="changeDifficulty">Change Difficulty</button>
+    </section>
+
+    <footer>
+        <p>&copy; 2023 Coding Streak</p>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>

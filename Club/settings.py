@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'trendles.apps.TrendlesConfig',
     'sportec.apps.SportecConfig',
     'wildbeats.apps.WildbeatsConfig',
+    "phonenumber_field",
 
 ]
 

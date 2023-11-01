@@ -11,5 +11,9 @@ urlpatterns = [
     path('signup/',views.view_signup,name="view_signup"),
     path('login/',views.view_login,name='login'),
     path('login/handle_login/',views.handle_login,name="handlelogin"),
+    path('quizpage/',views.show_quiz,name="quizpage"),
+    path('quizpage/analyze/',views.analyze,name="quizresult"),
+    path('quizpage/analyze/result/',views.show_full_result,name="quizresult2"),
+    
   
 ]
