@@ -358,7 +358,7 @@
             <ul>
                 <a href="{% url 'Homepage'%}">Home</a>
                 <a href="#">Dashboard</a>
-                <a href="{% url 'clubleads' %}?subclub_name={{club}}&majorclub=Literature">Club-leads</a>
+                <a href="{% url 'clubleads' %}?subclub_name={{club}}&majorclub=trendles">Club-leads</a>
                 {% if  user.is_authenticated %}
                 <a href="{% url 'userprofile'%}">Profile</a>
                 {% else%}

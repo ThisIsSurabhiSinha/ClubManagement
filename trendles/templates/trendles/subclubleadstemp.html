@@ -303,26 +303,7 @@
             width: 150px;
         }
     </style>
-{% comment %} <script> 
-    function toggleContainer(containerId) {
-        var container = document.getElementById(containerId);
-        var textArea = container.querySelector("textarea#announcement-text"); // Find the text area within the container
-        
-        if (textArea && textArea === document.activeElement) {
-            return; // Don't toggle the container if the text area is focused
-        }
-    
-        if (!isContainerExpanded) {
-            container.style.maxHeight = "500px";
-            container.classList.add("expanded");
-            isContainerExpanded = true;
-        } else {
-            container.style.maxHeight = null;
-            container.classList.remove("expanded");
-            isContainerExpanded = false;
-        }
-    }
-</script>          {% endcomment %}
+
 <script>
     var isContainerExpanded = false;
 
@@ -390,7 +371,7 @@
 
     <nav class="side-navbar">
         <ul>
-            <a href="{% url 'trendlesHome'%}">Dashboard</a>
+            <a href="{% url 'trendlesHome'%}">Trendles</a>
             <a href='#'>Club-leads</a>
             {% if  user.is_authenticated %}
             <a href="{% url 'userprofile'%}">Profile</a>
@@ -405,38 +386,7 @@
         </ul>
     </nav>
     
-    {% comment %} <div class="main-container">
-        <h2>{{majorclub}} Incharge</h2>
-        {% for lead in all_leads|slice:":2" %}
-        <div class="container" onclick="toggleContainer(this)">
-            <div class="container nillborder flex">
-                <img src="unknown.png" id="incharge{{forloop.counter}}" class="incharge-image element">
-                <div class="element">
-                    <h1>{{ lead.name }}</h1>
-                    <p class="element"><b>Email ID:</b><span id="TM{{forloop.counter}}emailID">{{ lead.email }}  TM{{forloop.counter}}emailID</span></p>
-                    <p class="element"><b>Phone Number:</b><span id="TM{{forloop.counter}}phoneNo">{{ lead.phone }}</span></p>
-                </div>
-            </div>
-            <div id="trendlesContent{{forloop.counter}}" class="expandable-content">
-                <div class="a-container">
-                    <div class="announcements container">
-                        <h2>Contributions List</h2>
-                        <ul class="announcement-list" id="announcement-list{{forloop.counter}}">
-                            <!-- Announcements will be displayed here -->
-                            <li class="announcement-item" id="no-announcements{{forloop.counter}}">No Announcements announcement-list{{forloop.counter}}</li>
-                        </ul>
-                    </div>
-                    <div class="announcement-form">
-                        <h4>Add a Contribution</h2>
-                        <form id="announcement-form{{forloop.counter}}">
-                            <textarea id="announcement-text{{forloop.counter}}" class="announcement-input" rows="4" required></textarea>
-                            <button type="submit" class="a-button">Submit</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-        {% endfor %} {% endcomment %}
+    
         <div class="main-container">
             <h2>{{ majorclub }} Incharge</h2>
             {% for lead in all_leads|slice:":2" %}

@@ -355,7 +355,7 @@
         <ul class="side-head">
             <a href="{% url 'Homepage'%}">Home</a>
             <a href="#">Dashboard</a>
-            <a href="{% url 'clubleads' %}?slug=all&majorclub=trendles">Club-leads</a>
+            <a href="{% url 'allclubleads' %}">Club-leads</a>
 
             {% if  user.is_authenticated %}
             <a href="{% url 'userprofile'%}">Profile</a>
@@ -377,7 +377,7 @@
                 <h1 class="welcome">Welcome to Trendles (Social Club) of IIIT Kottayam</h1>
             </div>
         </div>
-        <a href="{% url 'debating'%}" target="_blank">
+        <a href="{% url 'debating'%}" >
         <div class="card c club club1">
             <div class="overlay"></div>
             <div class="icontent">

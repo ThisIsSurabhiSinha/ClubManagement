@@ -36,21 +36,43 @@ def literature(request):
     return render(request,'trendles/literature.html',{'club': "Literary",'majorclub':"Trendles"})
 def debating(request):
     return render(request,'trendles/debating.html',{'subclub_name': "Debate",'majorclub':"Trendles"})
-# def clubleads(request):
-#     displayClub = SubClub.objects.filter( club_name=slug).first()
+
+def clubleads(request):
+    # Fetch the first SubClub object
+    displayClub = SubClub.objects.all()
+   
+
+
+    # Create a list to store leader and sub-leader information
+    all_leads = {}
+    leader=[]
+    leader1={
+        'name': displayClub[0].leader1,
+                'email': displayClub[0].leader1mail,
+                'phone': displayClub[0].leader1phone,
+            }
+    leader.append(leader1)
+    leader2={
+        'name': displayClub[0].leader2,
+                'email': displayClub[0].leader2mail,
+                'phone': displayClub[0].leader2phone,
+            }
+    leader.append(leader2)
     
-#     all_leads=[]
-#     # if displayClub.leader1.lower()!= "none":
-#     #     all_leads.append(displayClub.leader1)
-#     # if displayClub.leader2.lower()!= "none":
-#     #     all_leads.append(displayClub.leader2)
-#     if displayClub.subleader1.lower()!= "none":
-#         all_leads.append(displayClub.subleader1)
-#     if displayClub.subleader2.lower()!= "none":
-#         all_leads.append(displayClub.subleader2)
-#     if displayClub.subleader3.lower()!= "none":
-#         all_leads.append(displayClub.subleader3)
-#     return render(request,'trendles/clubleads.html')
+    for club in displayClub:
+
+        l=[]
+        if club.subleader1.lower()!="none":
+            l.append(club.subleader1)
+        if club.subleader2.lower()!="none":
+            l.append(club.subleader2)
+        if club.subleader3.lower()!="none":
+            l.append(club.subleader3)
+        all_leads[club]=l
+    print(all_leads)
+  
+
+    return render(request,'trendles/clubleads.html',{'all_leads': all_leads,'majorclub':'Trendles','subclub_name':displayClub,'leader':leader})
 def calander(request):
     return render(request,'trendles/calander.html')
 def announcement(request):

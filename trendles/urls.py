@@ -12,13 +12,16 @@ urlpatterns = [
     path('literature',views.literature,name="literature"),
     path('debating',views.debating,name="debating"),
     re_path(r'^clubleads/$', views.subclubleads, name="clubleads"),
-    # path('clubleads/', views.subclubleads, name="clubleads"),
+    path('allclubleads/', views.clubleads, name="allclubleads"),
     path('profile',views.profile,name="userprofile"),
     path('calander',views.calander,name="calander"),
     path('announcement',views.announcement,name="announcement"),
     path('settings',views.settings,name="settings"),
     path('elections',views.elections,name="elections"),
-    path('<str:slug>',views.subclubleads,name="subclubleads"),
+    # re_path(r'^allclubleads/$', views.subclubleads, name="clubleads2"),
+    # re_path(r'^allclubleads/(?P<subclub_name>[\w\s-]+)/(?P<majorclub>[\w\s-]+)/$', views.subclubleads, name="clubleads2")
+
+    # path('<str:slug>',views.subclubleads,name="subclubleads"),
     
     #path('<str:subClub_slug>', views.subClub_detail, name='subClub_detail'),
 ]

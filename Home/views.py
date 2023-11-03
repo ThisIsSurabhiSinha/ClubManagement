@@ -89,8 +89,7 @@ def analyze(request):
     l=[0,0,0,0]
     for i in range(1,13):
         value1=request.GET.get('q{}'.format(i))
-        #return HttpResponse(value1)
-        
+                
         if value1=='a1':
             l[0]=l[0]+1
         elif value1=='a2':
@@ -100,12 +99,6 @@ def analyze(request):
         elif value1=='a4':
             l[3]=l[3]+1
         print(l[0],l[1],l[2],l[3])
-    '''if l[0]>l[1] and l[0]>l[2]:
-            return HttpResponse("Your interests match with Wildbeats")
-    elif l[1]>l[0] and l[1]>l[2]:
-            return HttpResponse("Your interests match with Trendles")
-    else:
-            return HttpResponse("Your interests match with Sports club")'''
     d={1 :'WILDBEATS' ,
        2 : 'Trendles' ,
        3 :'Sports' ,
@@ -118,7 +111,9 @@ def analyze(request):
                 l[j],l[i]=l[i],l[j]
                 l2[j],l2[i]=l2[i],l2[j]
     l3=[d[l2[0]],d[l2[1]],d[l2[2]],d[l2[3]]]
+    dictt={'mylist':l3}
 
-    return render(request,"Home/quizresult.html",{ 'my_list' : l3 })
+    return render(request,"Home/quizresult.html",{ 'my_list' : dictt })
 def show_full_result(request):
-    return render(request,"Home/quizresult2.html")
+    mylist= request.GET.get('all', '').split(',')
+    return render(request,"Home/quizresult2.html",{'mylist':mylist})

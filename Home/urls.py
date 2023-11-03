@@ -1,5 +1,5 @@
 from django.contrib import admin
-from django.urls import path,include
+from django.urls import path,include,re_path
 from Home import views
 
 
@@ -13,7 +13,7 @@ urlpatterns = [
     path('login/handle_login/',views.handle_login,name="handlelogin"),
     path('quizpage/',views.show_quiz,name="quizpage"),
     path('quizpage/analyze/',views.analyze,name="quizresult"),
-    path('quizpage/analyze/result/',views.show_full_result,name="quizresult2"),
-    
+    re_path(r'^quizpage/analyze/result/$',views.show_full_result,name="quizresult2"),
+    #   re_path(r'^clubleads/$', views.subclubleads, name="clubleads"),
   
 ]
