@@ -1,5 +1,5 @@
 from django.contrib import admin
-from django.urls import path,include
+from django.urls import path,include,re_path
 from betalabs import views
 
 urlpatterns = [
@@ -13,5 +13,7 @@ urlpatterns = [
     path('dp/',views.dp,name="dp"),
     path('advancecoding/',views.advancecoding,name="advancecoding"),
     path('profile/',views.codingprofile,name="codingprofile"),
+    re_path(r'^clubleads/$', views.subclubleads, name="Bclubleads"),
+    path('allclubleads/', views.clubleads, name="Ballclubleads"),
     path('<str:subClub_slug>', views.subClub_detail, name='subClub_detail'),
 ]

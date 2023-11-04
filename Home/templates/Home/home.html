@@ -268,10 +268,8 @@
                     <li class="section"><a href="#">About</a></li>
                     <li class="section"><a href="#">Contact</a></li>
                     <li class="section"><a href="#">Menu</a></li>
-                    <li class="section"><a href="#">Details</a></li>
-
                     {% if  user.is_authenticated %}
-                    <li class="section" style="float: right;"><a href="{% url 'profile' %}">Profile</a></li>
+                    <li class="section" style="float: right;"><a href="{% url 'userprofile' %}">Profile</a></li>
                     <li class="section" style="float: right;"><a href="{% url 'handle_logout' %}">Logout</a></li>
                     {% else%}
                     <li class="section" style="float: right;"><a href="{% url 'login' %}">Login</a></li>
@@ -311,14 +309,14 @@
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
+            
           {% endfor %} 
-            </div>
 
           <div class="d1">
             <div class="responsive">
     
               <div class="gallery">
-                <a target="_blank" href="/wildbeats/">
+                <a href="/wildbeats/">
                   <img src="\static\Home\wildbeatslogo.jpg" alt="Wildbeats" width="600" height="400">
                 </a>
                 <div class="desc">WILDBEATS</div>
@@ -329,7 +327,7 @@
     
             <div class="responsive">
               <div class="gallery">
-                <a target="_blank" href="/trendles/">
+                <a  href="/trendles/">
                   <img src="\static\Home\trendleslogo.jpg" alt="Trendles" width="600" height="400">
                 </a>
                 <div class="desc">TRENDLES</div>
@@ -342,7 +340,7 @@
           <div class="d2">
             <div class="responsive">
               <div class="gallery">
-                <a target="_blank" href="/betalabs/">
+                <a  href="/betalabs/">
                   <img src="\static\Home\betalabslogo.jpg" alt="beta labs" width="600" height="400">
                 </a>
                 <div class="desc">BETA LABS</div>
@@ -352,7 +350,7 @@
     
             <div class="responsive">
               <div class="gallery">
-                <a target="_blank" href="/sportec/">
+                <a  href="/sportec/">
                   <img src="\static\Home\sportslogo.jpg" alt="sports club" width="600" height="400">
                 </a>
                 <div class="desc">SPORTEC</div>

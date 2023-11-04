@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Announcements Page</title>
+    {%load static%}
     <style>
         body {
                 margin: 0;
@@ -221,7 +221,8 @@
             background-color: rgba(172, 255, 47, 0.974)
         }
         .head {
-            background-image: url(announcements.png);
+            background-image: url('{% static 'trendles/announcements.png' %}');
+            
             background-size: cover;
             height: 250px;
         }
@@ -249,9 +250,11 @@
     </style>
 </head>
 <body>
+    {% load static%}
     <nav class="tofix">
         <div>
-            <img src="https://lms.iiitkottayam.ac.in/pluginfile.php/1/theme_moove/logo/1663841307/logo.jpg"
+            <img src="{% static 'trendles/iiitklogo.jpg' %}" 
+
                 alt="IIIT Kottayam Logo" class="custom-responsive-image" style="padding-top: 5px;">
         </div>
         <div>
@@ -297,12 +300,24 @@
                 <li class="announcement-item" id="no-announcements">No Announcements</li>
             </ul>
             </div>
-            <div class="announcement-form">
-                <h4>Add an Announcement</h2>
-                <form id="announcement-form">
-                    <textarea id="announcement-text" class="announcement-input" rows="4" required></textarea>
-                    <button type="submit" class="a-button">Submit</button>
-                </form>
+            {% if request.user.groups.all %}
+            {% for group in request.user.groups.all %}
+                {% if group.name == "Mentors" or group.name == "Subleads" %}
+                            {% comment %} {% if request.user|get_user_group == "Mentors" or request.user|get_user_group == "Subleads" %} {% endcomment %}
+                            <div class="announcement-form">
+                                <h4>Add a Contribution</h4>
+                                <form class="announcement-form" id="announcement-form{{ forloop.counter }}">
+                                    <textarea class="announcement-text" id="announcement-text{{ forloop.counter }}" rows="4" required></textarea>
+                                    <button type="submit" class="a-button">Submit</button>
+                                </form>
+                            </div>
+                            {% comment %} {% endif %} {% endcomment %}
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+                {% endfor %}
+            {% endif %}
             </div>
         </div>
         

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
+        {% load static%}
         <title>Literature</title>
         <style>
             body {
@@ -192,7 +193,7 @@
             }
         }
         .profile {
-            background-image: url(literature.png);
+            background-image: url('{% static "trendles/literature.png" %}');
             background-size: cover;
             /* background-position: center bottom; */
             display: flex;
@@ -222,7 +223,7 @@
         .uploader{
             background-color: rgba(210, 213, 209, 0.508);
             padding: 5px;
-            background-image: url(litrate.png);
+            background-image: url('{%static 'trendles/litrate.png'%}');
             background-size: cover;
             background-position: center bottom;
         }
@@ -264,7 +265,7 @@
             height: 150px;
         }
         .image-container {
-            background-image: url(trendleslogo1.png);
+            background-image: url({% static "trendles/trendleslogo1.png" %});
             background-size: cover;
             width: 200px;
             height: 74px;

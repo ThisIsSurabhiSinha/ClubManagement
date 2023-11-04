@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Settings</title>
+ {%load static%}
     <style>
         body {
                 margin: 0;
@@ -54,7 +54,8 @@
         /* ______________________________________________________________________________Animating text_______________________________________________________________________________________ */
         .custom-brand-name {
             color: transparent;
-            background: url(https://tse2.mm.bing.net/th?id=OIP.BqA_IdV0cAZu3w6HpAoMOwHaEo&pid=Api&P=0&h=180) repeat;
+            background:  url('{% static 'trendles/setting.jpeg' %}');
+            repeat;
             background-size: 200%;
             background-clip: text;
             -webkit-background-clip: text;
@@ -179,7 +180,7 @@
         }
 		.container1{
 			height: 700px;
-			background-image: url(https://penntoday.upenn.edu/sites/default/files/2019-09/PLTV1.jpg);
+			background-image: url('{% static 'trendles/campelection.jpg' %}');
 			background-size: cover;
 			background-position: center bottom;
 		}
@@ -199,7 +200,7 @@
             box-shadow: 4px 4px 10px #cedadd;
         }
 		.club {
-			background-image: url(settings.png);
+			background-image: url('{% static 'trendles/settings.png' %}');
             background-size: cover;
             background-position: center bottom;
             display: flex;
@@ -286,7 +287,7 @@
             <div class="overlay"></div>
             <div class="icontent">
                 <h1 class="sub-head" style="text-shadow: #333;">Settings</h1>
-                <p class="vanish-reappear-text">Will be comming soon (Includes font styles, themes, backgrounds)</p>
+                
                 <h3>Thankyou for preffering Our Website</h3>
             </div>
         </div>

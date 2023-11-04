@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
+
     <head>
+        {% load static%}
         <title>Marketting</title>
         <style>
             body {
@@ -192,7 +194,7 @@
             }
         }
         .profile {
-            background-image: url(marketting.png);
+            background-image: url('{%static "trendles/marketting.png"%}');
             background-size: cover;
             /* background-position: center bottom; */
             display: flex;
@@ -222,7 +224,7 @@
         .uploader{
             background-color: rgba(210, 213, 209, 0.508);
             padding: 5px;
-            background-image: url(litrate.png);
+            background-image: url('{% static "trendles/litrate.png" %}');
             background-size: cover;
             background-position: center bottom;
         }
@@ -264,7 +266,7 @@
             height: 150px;
         }
         .image-container {
-            background-image: url(trendleslogo1.png);
+            background-image: url('{% static "trendles/trendleslogo1.png" %}');
             background-size: cover;
             width: 200px;
             height: 74px;
@@ -357,7 +359,7 @@
         <nav class="side-navbar">
             <ul>
                 <a href="{% url 'Homepage'%}">Home</a>
-                <a href="#">Dashboard</a>
+                <a href="{% url 'trendlesHome'%}">Trendles</a>
                 <a href="{% url 'clubleads' %}?slug=club&majorclub=trendles">Club-leads</a>
                 {% if  user.is_authenticated %}
                 <a href="{% url 'userprofile'%}">Profile</a>
@@ -379,6 +381,27 @@
                     <h5 class="vanish-reappear-text">----------You can put your Announcements here-------------</h5>
                 </div>
             </div>
+            {%if user.is_authenticated%}
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">🚀 Join the Marketing and Outreach Club and Make an Impact! 🌍</h5>
+                    <p class="card-text">
+                        We are the driving force behind spreading the word, making connections, and creating change. 📣
+            
+                        If you have a passion for marketing, outreach, or making a positive impact, this is your chance to shine and amplify your message! 🌟
+            
+                        Join our dynamic club, connect with a team of dedicated professionals, and explore limitless opportunities to create, innovate, and influence. 🎯
+            
+                        Together, we'll craft compelling campaigns, build lasting relationships, and share stories that inspire and engage. 📈
+            
+                        Be a part of our journey to connect with the world, promote causes that matter, and effect real change. 🌍
+            
+                        Your ideas are the catalyst for growth and transformation. Let's make a difference, together! 💪
+                    </p>
+                    {% comment %} <a href="#" class="btn btn-primary">Get Involved</a> {% endcomment %}
+                </div>
+            </div>
+            
             <div class="card-container">
                 <div class="card c uploader">
                     <h3 class="icontent">
@@ -401,6 +424,27 @@
                         <input type="submit" value="Upload Document" id="fileInput" class="corner">
                     </form>
                 </div>
+                {% else %}
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">🚀 Join the Marketing and Outreach Club and Make an Impact! 🌍</h5>
+                        <p class="card-text">
+                            We are the driving force behind spreading the word, making connections, and creating change. 📣
+                
+                            If you have a passion for marketing, outreach, or making a positive impact, this is your chance to shine and amplify your message! 🌟
+                
+                            Join our dynamic club, connect with a team of dedicated professionals, and explore limitless opportunities to create, innovate, and influence. 🎯
+                
+                            Together, we'll craft compelling campaigns, build lasting relationships, and share stories that inspire and engage. 📈
+                
+                            Be a part of our journey to connect with the world, promote causes that matter, and effect real change. 🌍
+                
+                            Your ideas are the catalyst for growth and transformation. Let's make a difference, together! 💪
+                        </p>
+                        <a href="/login" class="btn btn-primary">Login to showcase your  talent</a>
+                    </div>
+                </div>
+{%endif%}                
         </div>
         <div class="dancegif moving-hand">
             <img src="https://tse3.mm.bing.net/th?id=OIP._3Gh3RagXgBT_PlNmlnVNAHaHa&pid=Api&P=0&h=180" alt="Chitra's cam" width="90px">

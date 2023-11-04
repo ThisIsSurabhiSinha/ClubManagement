@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
+        {%load static%}
         <title>Finance</title>
         <style>
             body {
@@ -192,7 +193,7 @@
             }
         }
         .profile {
-            background-image: url(finance.png);
+            background-image: url('{%static 'trendles/finance.png'%}');
             background-size: cover;
             /* background-position: center bottom; */
             display: flex;
@@ -222,7 +223,7 @@
         .uploader{
             background-color: rgba(210, 213, 209, 0.508);
             padding: 5px;
-            background-image: url(litrate.png);
+            background-image: url('{%static 'trendles/litrate.png'%}');
             background-size: cover;
             background-position: center bottom;
         }
@@ -264,7 +265,7 @@
             height: 150px;
         }
         .image-container {
-            background-image: url(trendleslogo1.png);
+            background-image: url('{% static "trendles/trendleslogo1.png" %}');
             background-size: cover;
             width: 200px;
             height: 74px;
@@ -358,8 +359,8 @@
             <ul>
                 <a href="{% url 'Homepage'%}">Home</a>
             
-                <a href="#">Dashboard</a>
-                {% comment %} <a href="{% url 'clubleads' %}?subclub_name={{subclub_name}}&majorclub={{majorclub}}">Club-leads</a> {% endcomment %}
+                <a href="{% url 'trendlesHome'%}">Trendles</a>
+               
                 <a href="{% url 'clubleads' %}?subclub_name={{ subclub_name|urlize }}&majorclub={{ majorclub|urlize }}">Club-leads</a>
 
                 {% if  user.is_authenticated %}
@@ -382,6 +383,27 @@
                     <h5 class="vanish-reappear-text">----------You can put your Announcements here-------------</h5>
                 </div>
             </div>
+            {%if user.is_authenticated%}
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">💰 Join the Finance Club and Shape Your Financial Future! 📈</h5>
+                    <p class="card-text">
+                        We are the architects of financial success, the stewards of wealth, and the builders of prosperous futures. 💼
+            
+                        If you have a passion for finance, investments, or financial planning, this is your opportunity to shine and take control of your financial destiny! 💡
+            
+                        Join our elite club, connect with experts in the field, and unlock a world of possibilities to grow your knowledge, build wealth, and secure your financial future. 💰
+            
+                        Together, we'll explore investment strategies, financial planning techniques, and navigate the complex world of finance with confidence. 📊
+            
+                        Be part of our journey to make informed financial decisions, achieve your goals, and lead a life of financial independence. 🌟
+            
+                        Your financial goals are within reach, and we'll help you get there. Let's shape your financial future, together! 🚀
+                    </p>
+                    {% comment %} <a href="#" class="btn btn-primary">Start Your Journey</a> {% endcomment %}
+                </div>
+            </div>
+            
             <div class="card-container">
                 <div class="card c uploader">
                     <h3 class="icontent">
@@ -404,6 +426,28 @@
                         <input type="submit" value="Upload Document" id="fileInput" class="corner">
                     </form>
                 </div>
+                {%else%}
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">💰 Join the Finance Club and Shape Your Financial Future! 📈</h5>
+                        <p class="card-text">
+                            We are the architects of financial success, the stewards of wealth, and the builders of prosperous futures. 💼
+                
+                            If you have a passion for finance, investments, or financial planning, this is your opportunity to shine and take control of your financial destiny! 💡
+                
+                            Join our elite club, connect with experts in the field, and unlock a world of possibilities to grow your knowledge, build wealth, and secure your financial future. 💰
+                
+                            Together, we'll explore investment strategies, financial planning techniques, and navigate the complex world of finance with confidence. 📊
+                
+                            Be part of our journey to make informed financial decisions, achieve your goals, and lead a life of financial independence. 🌟
+                
+                            Your financial goals are within reach, and we'll help you get there. Let's shape your financial future, together! 🚀
+                        </p>
+                        <a href="/login" class="btn btn-primary">Login to contribute</a>
+                    </div>
+                </div>
+                
+                {%endif%}
         </div>
         <div class="dancegif moving-hand">
             <img src="https://tse3.mm.bing.net/th?id=OIP._3Gh3RagXgBT_PlNmlnVNAHaHa&pid=Api&P=0&h=180" alt="Chitra's cam" width="90px">

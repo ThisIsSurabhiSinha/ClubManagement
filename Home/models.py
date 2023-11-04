@@ -59,3 +59,15 @@ class Suggestion(models.Model):
 
     def __str__(self):
         return f"Suggestion by {self.student.student_id} for {self.club.club_name}"
+
+class Event(models.Model):
+    event_name = models.CharField(max_length=100,default="",blank=True,null=True)
+    event_date = models.DateField(default=date.today,blank=True, null=True, help_text='Date of the event')
+    description = models.TextField(max_length=500,default="",blank=True,null=True)
+    event_link=models.URLField(max_length=500,default="",null=True,blank=True)
+    venue=models.CharField(max_length=100,default="",blank=True,null=True)
+    byClub = models.ForeignKey('MajorClub', on_delete=models.CASCADE)
+    bySubClub=models.CharField(max_length=100,default="",blank=True,null=True)
+
+    def __str__(self):
+        return self.event_name

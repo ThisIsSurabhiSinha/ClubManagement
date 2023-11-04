@@ -372,7 +372,7 @@
     <nav class="side-navbar">
         <ul>
             <a href="{% url 'trendlesHome'%}">Trendles</a>
-            <a href='#'>Club-leads</a>
+            <a href="{% url 'allclubleads'%}">Club-leads</a>
             {% if  user.is_authenticated %}
             <a href="{% url 'userprofile'%}">Profile</a>
             {% else%}
@@ -388,7 +388,7 @@
     
     
         <div class="main-container">
-            <h2>{{ majorclub }} Incharge</h2>
+            <h2>{{ majorclub }} Mentors</h2>
             {% for lead in all_leads|slice:":2" %}
             <div class="container" onclick="toggleContainer(this)">
                 <div class="container nillborder flex">
@@ -423,10 +423,10 @@
             {% endfor %}
         
         <hr>
-        <h4>Sub clubs Incharges</h4>
+        <h2>Sub clubs Leads</h4>
         {% for lead in all_leads %}
         {% if forloop.counter > 2 %}
-            <h5 style="color: #b5b5b5;">{{subclub_name }} Sub leads</h5>
+            <h4 style="color: Black;">{{subclub_name }} Sub leads</h4>
             <div class="container flex">
                 {% comment %} <img src="{% static majorclub|lower %}/unknown.png" id="sub{{ forloop.counter|add:"-2"}} class="element"> {% endcomment %}
                 <img src="{% static majorclub|lower %}/unknown.png" id="incharge{{ forloop.counter }}" class="element" style="border-radius: 50%; width: 150px;">

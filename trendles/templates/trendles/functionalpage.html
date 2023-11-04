@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
-
+{% load static %}
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome to Trendles Functional Page</title>
+    {% comment %} <title>Welcome to Trendles Functional Page</title> {% endcomment %}
     <style>
         /*_______________________________________________________________________________Some normal styles____________________________________________________________________________________*/
         body {
@@ -151,7 +151,7 @@
 
 
         .profile {
-            background-image: url(floweratiiitk.jpg);
+            background-image:  url('{% static 'trendles/floweratiiitk.jpg' %}');
             background-size: cover;
             background-position: center bottom;
             display: flex;
@@ -229,24 +229,24 @@
             transition: font-size ease 0.2s;
         }
         .club1{
-            background-image: url(debate1.png);
+            background-image: url('{% static 'trendles/debate.png' %}');
         }
 
         .club2{
-            background-image: url(literature.png);
+            background-image: url('{% static 'trendles/literature.png' %}');
         }
 
         .club3{
-            background-image: url(photography.png);
+            background-image:url('{% static 'trendles/photography.png' %}');
         }
         .club4{
-            background-image: url(creative.png);
+            background-image: url('{% static 'trendles/creative.png' %}');
         }
         .club5{
-            background-image: url(marketting.png);
+            background-image: url('{% static 'trendles/marketting.png' %}');
         }
         .club6{
-            background-image: url(finance.png);
+            background-image: url('{% static 'trendles/finance.png' %}');
         }
         .madeby{
             text-align: center;
@@ -315,7 +315,7 @@
         }
 /*____________________________________________________________________________________________________trendles logo______________________________________________________________________*/
         .image-container {
-            background-image: url(trendleslogo1.png);
+            {% comment %} background-image:url('{% static 'trendles/trendleslogo1.jpg' %}'); {% endcomment %}
             background-size: cover;
             width: 200px;
             height: 75px;
@@ -354,7 +354,7 @@
     <nav class="side-navbar">
         <ul class="side-head">
             <a href="{% url 'Homepage'%}">Home</a>
-            <a href="#">Dashboard</a>
+            {% comment %} <a href="#">Dashboard</a> {% endcomment %}
             <a href="{% url 'allclubleads' %}">Club-leads</a>
 
             {% if  user.is_authenticated %}
@@ -374,7 +374,7 @@
     <div class="main-container">
         <div class="card profile">
             <div class="profile-content">
-                <h1 class="welcome">Welcome to Trendles (Social Club) of IIIT Kottayam</h1>
+                <h1 class="welcome">Welcome to Trendles  of IIIT Kottayam</h1>
             </div>
         </div>
         <a href="{% url 'debating'%}" >
@@ -395,7 +395,7 @@
             </div>
         </div>
         </a>
-        <a href="{% url 'chitrachaya'%}" target="_blank">
+        <a href="{% url 'chitrachaya'%}" >
         <div class="card c club club3">
             <div class="overlay"></div>
             <div class="icontent">
@@ -404,7 +404,7 @@
             </div>
         </div> 
         </a>
-        <a href="{% url 'designing'%}" target="_blank"> 
+        <a href="{% url 'designing'%}" > 
         <div class="card c club club4">
             <div class="overlay"></div>
             <div class="icontent">
@@ -413,7 +413,7 @@
             </div>
         </div>
         </a>
-        <a href="{% url 'marketing'%}" target="_blank">
+        <a href="{% url 'marketing'%}" >
         <div class="card c club club5">
             <div class="overlay"></div>
             <div class="icontent">
@@ -422,7 +422,7 @@
             </div>
         </div>
         </a>
-        <a href="{% url 'finance'%}" target="_blank">
+        <a href="{% url 'finance'%}" >
         <div class="card c club club6">
             <div class="overlay"></div>
             <div class="icontent">

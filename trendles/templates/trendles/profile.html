@@ -268,19 +268,19 @@
         </nav>
     
         <nav class="side-navbar">
-            <ul>   <a href="{% url 'Homepage'%}">Club-leads</a>
-                <a href="#">Dashboard</a>
-                <a href="{% url 'clubleads'%}">Club-leads</a>
+            <ul>   <a href="{% url 'Homepage'%}">Home</a>
+                {% comment %} <a href="#">Dashboard</a> {% endcomment %}
+                {% comment %} <a href="{% url 'clubleads'%}">Club-leads</a> {% endcomment %}
                 {% if  user.is_authenticated %}
-                <a href="{% url 'profile'%}">Profile</a>
+                {% comment %} <a href="{% url 'profile'%}">Profile</a> {% endcomment %}
                 {% else%}
                 <a href="{% url 'login'%}">Login</a>
                 {% endif%}
-    
+{% comment %}     
                 <a href="{% url 'calander'%}">Calander</a>
                 <a href="{% url 'announcement'%}">Announcements</a>
                 <a href="{% url 'elections'%}">Elections</a>
-                <a href="{% url 'settings'%}">Settings</a>
+                <a href="{% url 'settings'%}">Settings</a> {% endcomment %}
                 <div class="image-container"></div>
             </ul>
         </nav>
@@ -312,9 +312,9 @@
                 <div class="contributions">
                     <h2>Contributions:</h2>
                     <ul>
+                        <li>Suggestions: <b>{{suggestion_count}}</b></li>
                         <li>Started a charity project in 2019</li>
                         <li>Contributed to open-source projects</li>
-                        <!-- Add more contributions as needed -->
                     </ul>
                 </div>
                 <button class="logout-button" onclick="logout()">Logout</button>

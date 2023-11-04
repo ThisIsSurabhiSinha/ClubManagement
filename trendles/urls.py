@@ -18,6 +18,7 @@ urlpatterns = [
     path('announcement',views.announcement,name="announcement"),
     path('settings',views.settings,name="settings"),
     path('elections',views.elections,name="elections"),
+    path('upload_image',views.upload_image,name="upload_image"),
     # re_path(r'^allclubleads/$', views.subclubleads, name="clubleads2"),
     # re_path(r'^allclubleads/(?P<subclub_name>[\w\s-]+)/(?P<majorclub>[\w\s-]+)/$', views.subclubleads, name="clubleads2")
 

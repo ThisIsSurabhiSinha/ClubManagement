@@ -3,6 +3,7 @@
 <head>
     <title>Clubleads</title>
     {% load static%}
+    {% comment %} {% load custom_tags %} {% endcomment %}
     <style>
         body {
                 margin: 0;
@@ -371,7 +372,7 @@
         </ul>
     </nav>
     <div class="main-container">
-        <h2>{{ majorclub }} Incharge</h2>
+        <h2>{{ majorclub }} Mentors</h2>
         {% for lead in leader %}
         <div class="container" onclick="toggleContainer(this)">
             <div class="container nillborder flex">
@@ -386,12 +387,16 @@
             <div class="expandable-content" id="trendlesContent{{ forloop.counter }}">
                 <div class="a-container">
                     <div class="announcements container">
-                        <h2>Contributions List</h2>
+                        <h2>Announcements</h2>
                         <ul class="announcement-list" id="announcement-list{{ forloop.counter }}">
                             <!-- Announcements will be displayed here -->
                             <li class="announcement-item" id="no-announcements{{ forloop.counter }}">No Announcements</li>
                         </ul>
                     </div>
+                    {% if request.user.groups.all %}
+    {% for group in request.user.groups.all %}
+        {% if group.name == "Mentors" or group.name == "Subleads" %}
+                    {% comment %} {% if request.user|get_user_group == "Mentors" or request.user|get_user_group == "Subleads" %} {% endcomment %}
                     <div class="announcement-form">
                         <h4>Add a Contribution</h4>
                         <form class="announcement-form" id="announcement-form{{ forloop.counter }}">
@@ -399,16 +404,23 @@
                             <button type="submit" class="a-button">Submit</button>
                         </form>
                     </div>
+                    {% comment %} {% endif %} {% endcomment %}
                 </div>
             </div>
         </div>
+        {% endif %}
+        {% endfor %}
+    {% endif %}
+</div>
+</div>
+</div>
         {% endfor %}
     
     <hr>
-    <h4>Sub clubs Incharges</h4>
+    <h2>Sub clubs Leads</h2>
     {% for clubname , subleads in all_leads.items %}
     {% for lead in subleads%}
-        <h5 style="color: #b5b5b5;">{{clubname }} Sub leads</h5>
+        <h4 style="color: black;">{{clubname }} Sub leads</h4>
         <div class="container flex">
             <img src="{% static majorclub|lower %}/unknown.png" id="incharge{{ forloop.counter }}" class="element" style="border-radius: 50%; width: 150px;">
 

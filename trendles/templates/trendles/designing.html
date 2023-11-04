@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
+        {% load static%}
         <title>Designing</title>
         <style>
             body {
@@ -186,7 +187,7 @@
             }
         }
         .profile {
-            background-image: url(creative.png);
+            background-image: url('{%static 'trendles/creative.png'%}');
             background-size: cover;
             /* background-position: center bottom; */
             display: flex;
@@ -216,7 +217,7 @@
         .uploader{
             background-color: rgba(210, 213, 209, 0.508);
             padding: 5px;
-            background-image: url(litrate.png);
+            background-image: url('{%static 'trendles/litrate.png'%}');
             background-size: cover;
             background-position: center bottom;
         }
@@ -249,7 +250,7 @@
             height: 150px;
         }
         .image-container {
-            background-image: url(trendleslogo1.png);
+            background-image:  url('{%static 'trendles/trendleslogo1.png'%}');
             background-size: cover;
             width: 200px;
             height: 74px;
@@ -360,14 +361,35 @@
             <div class="card profile">
                 <div class="overlay"></div>
                 <div class="profile-content icontent">
-                    <h1>Welcome to Literature Club</h1>
+                    <h1>Welcome to Design Club</h1>
                     <h5 class="vanish-reappear-text">----------You can put your Announcements here-------------</h5>
                 </div>
             </div>
+            {% if user.is_authenticated%}
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">🎨 Join the Design Club and Unleash Your Creativity! 🚀</h5>
+                    <p class="card-text">
+                        We believe that every design has the power to inspire, innovate, and make a difference. 💡
+            
+                        If you have a passion for design, it's time to shine and share your unique ideas with the world! ✨
+            
+                        Join our vibrant design community, connect with like-minded creatives, and explore endless opportunities to showcase your talent. 🌟
+            
+                        Let your creativity flow, participate in exciting design challenges and projects, and be part of a dynamic club that celebrates imagination and innovation. 🎉
+            
+                        Upload your design ideas, share your vision, and make your mark on the world. 🎨
+            
+                        Together, we'll turn ideas into reality, one design at a time. 💪
+                    </p>
+                    
+                </div>
+            </div>
+            
             <div class="card-container">
                 <div class="card c uploader">
                     <h3 class="icontent">
-                        You can Upload your Ideas here
+                        You can Upload your Posters here
                     </h3>
                     <div class="overlay"></div>
                     <div class="inner-card card icontent" id="dropArea">
@@ -386,6 +408,28 @@
                         <input type="submit" value="Upload Document" id="fileInput" class="corner">
                     </form>
                 </div>
+                {% else%}
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">🎨 Join the Design Club and Unleash Your Creativity! 🚀</h5>
+                        <p class="card-text">
+                            We believe that every design has the power to inspire, innovate, and make a difference. 💡
+                
+                            If you have a passion for design, it's time to shine and share your unique ideas with the world! ✨
+                
+                            Join our vibrant design community, connect with like-minded creatives, and explore endless opportunities to showcase your talent. 🌟
+                
+                            Let your creativity flow, participate in exciting design challenges and projects, and be part of a dynamic club that celebrates imagination and innovation. 🎉
+                
+                            Upload your design ideas, share your vision, and make your mark on the world. 🎨
+                
+                            Together, we'll turn ideas into reality, one design at a time. 💪
+                        </p>
+                        <a href="/login" class="btn btn-primary">Login to upload to creative ideas</a>
+                    </div>
+                </div>
+                
+                {% endif%}
         </div>
         <div class="dancegif moving-hand">
             <img src="https://i.pinimg.com/736x/7d/24/93/7d2493af9873eaaf753415a8127ee8e1.jpg" alt="Chitra's cam" width="90px">

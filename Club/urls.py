@@ -19,9 +19,14 @@ from django.urls import path,include
 from django.conf import settings
 from django.conf.urls.static import static
 
+
+from Home.views import custom_login_view 
+
+admin.site.login = custom_login_view
+
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('Home/',include('Home.urls')),
+    path('',include('Home.urls')),
     path('wildbeats/',include('wildbeats.urls')),
     path('trendles/',include('trendles.urls')),
     path('betalabs/',include('betalabs.urls')),

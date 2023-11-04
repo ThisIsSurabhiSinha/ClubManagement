@@ -1,241 +1,253 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Chitrachaya</title>
-        <style>
-            body {
-                margin: 0;
-                font-family: Arial, sans-serif;
-            }
-/*_____________________________________________________________________________________________________________________________________________________*/
-            nav {
-                min-height: 131px;
-                -webkit-box-shadow: 5px 0 10px rgba(0, 0, 0, .1);
-                box-shadow: 0 0 20px rgba(0, 0, 0, .1);
-                background-color: #fff;
-                position: fixed;
-                top: 0;
-                right: 0;
-                left: 0;
-                z-index: 1030;
-            }
-        /*___________________________________________________________________________for responsiveness of logo________________________________________________________________________________*/
+  <head>
+    {% comment %} {% load auth %} {% endcomment %}
+    <title>Chitrachaya</title>
+    {% load static%}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+        integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <style>
+      body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+      }
+      /*_____________________________________________________________________________________________________________________________________________________*/
+      nav {
+        min-height: 131px;
+        -webkit-box-shadow: 5px 0 10px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        background-color: #fff;
+        position: fixed;
+        top: 0;
+        right: 0;
+        left: 0;
+        z-index: 1030;
+      }
+      /*___________________________________________________________________________for responsiveness of logo________________________________________________________________________________*/
+      .custom-responsive-image {
+        height: 50px;
+        position: absolute;
+        top: 20px;
+        left: 15px;
+      }
+
+      @media only screen and (min-width: 565px) {
         .custom-responsive-image {
-            height: 50px;
-            position: absolute;
-            top: 20px;
-            left: 15px;
+          height: 80px;
+          top: 10px;
+          left: 10px;
+        }
+      }
+
+      @media only screen and (min-width: 650px) {
+        .custom-responsive-image {
+          height: 100px;
+          top: 5px;
+          left: 10px;
+        }
+      }
+
+      @media only screen and (min-width: 900px) {
+        .custom-responsive-image {
+          height: 120px;
+          top: 5px;
+          left: 10px;
+        }
+      }
+
+      /* ______________________________________________________________________________Animating text_______________________________________________________________________________________ */
+      .custom-brand-name {
+        color: transparent;
+        background: url(https://tse2.mm.bing.net/th?id=OIP.BqA_IdV0cAZu3w6HpAoMOwHaEo&pid=Api&P=0&h=180)
+          repeat;
+        background-size: 200%;
+        background-clip: text;
+        -webkit-background-clip: text;
+        animation-name: masked-animation;
+        animation-duration: 20s;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+        font-family: "Hind", sans-serif;
+      }
+
+      @keyframes masked-animation {
+        0% {
+          background-position: 0 0;
         }
 
-        @media only screen and (min-width: 565px) {
-            .custom-responsive-image {
-                height: 80px;
-                top: 10px;
-                left: 10px;
-            }
+        100% {
+          background-position: 100% 0;
         }
+      }
 
-        @media only screen and (min-width: 650px) {
-            .custom-responsive-image {
-                height: 100px;
-                top: 5px;
-                left: 10px;
-            }
-        }
+      /* ______________________________________________________________________to align sentences column wise to wards end__________________________________________________________________ */
+      .flex-end {
+        align-items: flex-end;
+      }
 
-        @media only screen and (min-width: 900px) {
-            .custom-responsive-image {
-                height: 120px;
-                top: 5px;
-                left: 10px;
-            }
-        }
+      .flex-column {
+        flex-direction: column;
+      }
 
-        /* ______________________________________________________________________________Animating text_______________________________________________________________________________________ */
-        .custom-brand-name {
-            color: transparent;
-            background: url(https://tse2.mm.bing.net/th?id=OIP.BqA_IdV0cAZu3w6HpAoMOwHaEo&pid=Api&P=0&h=180) repeat;
-            background-size: 200%;
-            background-clip: text;
-            -webkit-background-clip: text;
-            animation-name: masked-animation;
-            animation-duration: 20s;
-            animation-iteration-count: infinite;
-            animation-timing-function: linear;
-            font-family: 'Hind', sans-serif;
-        }
+      .flex {
+        display: flex;
+      }
 
-        @keyframes masked-animation {
-            0% {
-                background-position: 0 0;
-            }
+      /* __________________________________________________________________________________Sidewise Nav bar_________________________________________________________________________________ */
+      .side-navbar {
+        margin-top: 131px;
+        width: 170px;
+        /* Adjust the width as needed */
+        background-color: #333;
+        /* Sidebar background color */
+        color: #fff;
+        /* Text color */
+        position: fixed;
+        /* Fixed position to stay on the side */
+        height: 100%;
+        /* Make it occupy the full height of the screen */
+        overflow-y: auto;
+        /* Enable vertical scrolling if needed */
+        left: 0px;
+        top: 0px;
+      }
 
-            100% {
-                background-position: 100% 0;
-            }
-        }
+      .side-navbar a {
+        padding: 15px 25px;
+        text-align: left;
+        text-decoration: none;
+        font-size: 18px;
+        color: #ccc;
+        display: block;
+      }
+      .side-navbar a:hover {
+        color: #fff;
+      }
+      .side-navbar ul {
+        display: block;
+        list-style-type: disc;
+        margin-block-start: 1em;
+        margin-block-end: 1em;
+        margin-inline-start: 0px;
+        margin-inline-end: 0px;
+        padding-inline-start: 10px;
+      }
+      /* ___________________________________________________________________________________Main Container__________________________________________________________________________________ */
+      .main-container {
+        background-size: 50%;
+        background-position: center bottom;
+        margin-top: 140px;
+        margin-left: 170px;
+        /* 200px for sidebar + 20px for spacing */
+        padding: 10px;
+        border: 1px solid #ddd;
+        background-color: #ffffff;
+      }
+      .card {
+        margin-block: 10px;
+        margin-left: 10px;
+        margin-right: 10px;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        min-width: 0;
+        word-wrap: break-word;
+        background-color: #fff;
+        background-clip: border-box;
+        border: 1px solid #d7dfe3;
+        min-height: 150px;
+        box-shadow: 7px 7px 3px #cedadd;
+      }
+      .overlay {
+        bottom: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.7));
+        position: absolute; /* Change to absolute positioning */
+      }
+      .icontent {
+        position: relative;
+        z-index: 5;
+        padding: 20px; /* Add some padding for spacing */
+        color: #fff; /* Text color on top of the background */
+        text-align: center; /* Center-align the text */
+      }
+      .vanish-reappear-text {
+        animation: vanishReappear 5s linear infinite;
+      }
 
-        /* ______________________________________________________________________to align sentences column wise to wards end__________________________________________________________________ */
-        .flex-end {
-            align-items: flex-end;
+      @keyframes vanishReappear {
+        0% {
+          transform: translateX(100%);
+          opacity: 0;
         }
+        10% {
+          transform: translateX(0);
+          opacity: 1;
+        }
+        90% {
+          transform: translateX(0);
+          opacity: 1;
+        }
+        100% {
+          transform: translateX(-100%);
+          opacity: 0;
+        }
+      }
+      .profile {
+        background-image: url('{%static "trendles/photography2.jpeg"%}');
+        background-size: cover;
+        /* background-position: center bottom; */
+        display: flex;
+        flex-direction: row;
+        /* Change flex-direction to row to place headings side by side */
+        align-items: center;
+        padding: 10px;
+        height: 230px;
+      }
 
-        .flex-column {
-            flex-direction: column;
-        }
+      .profile h1 {
+        top: 30px;
+        color: #f1f1f1;
+      }
+      .dancegif {
+        position: fixed;
+        bottom: 100px;
+        right: 30px;
+        z-index: 20;
+      }
+      .c {
+        width: 60%;
+      }
+      .card-container {
+        justify-content: space-between;
+      }
+      .uploader {
+        background-color: rgba(210, 213, 209, 0.508);
+        padding: 5px;
+        background-image: url('{% static "trendles/photography2.jpeg" %}');
+        background-size: cover;
+        background-position: center bottom;
+      }
 
-        .flex {
-            display: flex;
-        }
+      .inner-card {
+        width: calc(100%-10px);
+        padding: 10px;
+        background-color: rgba(255, 255, 255, 0.7);
+        box-shadow: none;
+        min-height: 150px;
+      }
 
-        /* __________________________________________________________________________________Sidewise Nav bar_________________________________________________________________________________ */
-        .side-navbar {
-            margin-top: 131px;
-            width: 170px;
-            /* Adjust the width as needed */
-            background-color: #333;
-            /* Sidebar background color */
-            color: #fff;
-            /* Text color */
-            position: fixed;
-            /* Fixed position to stay on the side */
-            height: 100%;
-            /* Make it occupy the full height of the screen */
-            overflow-y: auto;
-            /* Enable vertical scrolling if needed */
-            left: 0px;
-            top: 0px;
-        }
-
-        .side-navbar a {
-            padding: 15px 25px;
-            text-align: left;
-            text-decoration: none;
-            font-size: 18px;
-            color: #ccc;
-            display: block;
-        }
-        .side-navbar a:hover {
-            color: #fff;
-        }
-        .side-navbar ul{
-            display: block;
-                list-style-type: disc;
-                margin-block-start: 1em;
-                margin-block-end: 1em;
-                margin-inline-start: 0px;
-                margin-inline-end: 0px;
-                padding-inline-start: 10px;
-        }
-        /* ___________________________________________________________________________________Main Container__________________________________________________________________________________ */
-        .main-container {
-            background-size: 50%;
-            background-position: center bottom;
-            margin-top: 140px;
-            margin-left: 170px;
-            /* 200px for sidebar + 20px for spacing */
-            padding: 10px;
-            border: 1px solid #ddd;
-            background-color: #ffffff;
-        }
-        .card {
-            margin-block: 10px;
-            margin-left: 10px;
-            margin-right: 10px;
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            min-width: 0;
-            word-wrap: break-word;
-            background-color: #fff;
-            background-clip: border-box;
-            border: 1px solid #d7dfe3;
-            min-height: 150px;
-            box-shadow: 7px 7px 3px #cedadd;
-        }
-        .overlay {
-            bottom: 0;
-            left:0;
-            right: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.7));
-            position: absolute; /* Change to absolute positioning */
-        }
-        .icontent {
-            position: relative;
-            z-index: 5;
-            padding: 20px; /* Add some padding for spacing */
-            color: #fff; /* Text color on top of the background */
-            text-align: center; /* Center-align the text */
-        }
-        .vanish-reappear-text {
-            animation: vanishReappear 5s linear infinite;
-        }
-
-        @keyframes vanishReappear {
-            0% {
-                transform: translateX(100%);
-                opacity: 0;
-            }
-            10% {
-                transform: translateX(0);
-                opacity: 1;
-            }
-            90% {
-                transform: translateX(0);
-                opacity: 1;
-            }
-            100% {
-                transform: translateX(-100%);
-                opacity: 0;
-            }
-        }
-        .profile {
-            background-image: url(photography.png);
-            background-size: cover;
-            /* background-position: center bottom; */
-            display: flex;
-            flex-direction: row;
-            /* Change flex-direction to row to place headings side by side */
-            align-items: center;
-            padding: 10px;
-            height: 230px;
-        }
-
-        .profile h1{
-            top:30px;
-            color: #f1f1f1; 
-        }
-        .dancegif{
-            position: fixed;
-            bottom: 100px;
-            right: 30px;
-            z-index: 20;
-        }
-        .c{
-            width: 60%;
-        }
-        .card-container{
-            justify-content: space-between;
-        }
-        .uploader{
-            background-color: rgba(210, 213, 209, 0.508);
-            padding: 5px;
-            background-image: url(https://ipt.imgix.net/205418/x/0/camera-1769414-1920.jpg);
-            background-size: cover;
-            background-position: center bottom;
-        }
-        
-        .inner-card{
-            width:calc(100%-10px);
-            padding: 10px;
-            background-color: rgba(255, 255, 255, 0.7);
-            box-shadow: none;
-            min-height: 150px;
-        }
-
-        /* .dndupload-arrow {
+      /* .dndupload-arrow {
             background: url(https://media2.giphy.com/media/W3MyhCrgfBlXDV349M/giphy.gif) center no-repeat;
             background-size: cover;
             margin-left: 30%;
@@ -244,228 +256,349 @@
             position: absolute;
             top: 5px;
         } */
-        .moving-hand {
-            width: 50px;
-            transform: translateX(-50%);
-            animation: moveUpDown 2s infinite alternate;
-        }
+      .moving-hand {
+        width: 50px;
+        transform: translateX(-50%);
+        animation: moveUpDown 2s infinite alternate;
+      }
 
-        @keyframes moveUpDown {
-            0% {
-                bottom: 0;
-            }
-            100% {
-                bottom: 20px;
-            }
+      @keyframes moveUpDown {
+        0% {
+          bottom: 0;
         }
-        .boardering{
-            width: calc(100%-40px);
-            border: 2px dashed;
-            height: 150px;
+        100% {
+          bottom: 20px;
         }
-        .image-container {
-            background-image: url(trendleslogo1.png);
-            background-size: cover;
-            width: 200px;
-            height: 74px;
-            position: absolute;
-            bottom: 115px;
-            left: 0;
-        }
-        
-        .MyPics{
-            background-image: url(Mypicsback1.png);
-            background-size: cover;
-            width: 60.83%;
-        }
-        .slideshow-card {
-            z-index: 1000;
-            width: 92%;
-            height: 410px;
-            margin: 20px;
-            padding: 10px;
-            background-size: contain;
-            background-repeat: no-repeat;
-            background-position: center;
-            transition: background-image 1s;
-            border: snow 1px solid;
-        }
+      }
+      .boardering {
+        width: calc(100%-40px);
+        border: 2px dashed;
+        height: 150px;
+      }
+      .image-container {
+        background-image: url('{%static "trendles/trendleslogo1.png"%}');
+        background-size: cover;
+        width: 200px;
+        height: 74px;
+        position: absolute;
+        bottom: 115px;
+        left: 0;
+      }
 
-        #addMoreButton {
-            margin: 20px;
-        }
+      .MyPics {
+        background-image: url('{%static "trendles/photography2.jpeg"%}');
+        background-size: cover;
+        width: 60.83%;
+      }
+      .slideshow-card {
+        z-index: 1000;
+        width: 92%;
+        height: 410px;
+        margin: 20px;
+        padding: 10px;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+        transition: background-image 1s;
+        border: snow 1px solid;
+      }
 
-        #addMoreButton {
-            margin: 20px;
-            padding: 10px 20px; /* Adjust the padding for your preferred button size */
-            background-color: #88ff00; /* Background color */
-            color: #fff; /* Text color */
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-            transition: background-color 0.3s;
-        }
+      #addMoreButton {
+        margin: 20px;
+      }
 
-        #addMoreButton:hover {
-            background-color: #00a1b3; /* Change the background color on hover */
-        }
-        </style>
-        <script>
-            function displayFileInfo() {
-                const fileInput = document.getElementById("fileInput");
-                const fileNameElement = document.getElementById("fileName");
-                const fileSizeElement = document.getElementById("fileSize");
-                const uploadDateElement = document.getElementById("uploadDate");
-                const uploadTimeElement = document.getElementById("uploadTime");
-    
-                if (fileInput.files.length > 0) {
-                    const file = fileInput.files[0];
-                    const date = new Date();
-    
-                    // Display file name, size, date, and time
-                    fileNameElement.textContent = file.name;
-                    fileSizeElement.textContent = file.size;
-                    uploadDateElement.textContent = date.toLocaleDateString();
-                    uploadTimeElement.textContent = date.toLocaleTimeString();
-                } else {
-                    // Clear the fields if no file is selected
-                    fileNameElement.textContent = "";
-                    fileSizeElement.textContent = "";
-                    uploadDateElement.textContent = "";
-                    uploadTimeElement.textContent = "";
-                }
-            }
-        </script>
-    </head>
-    <body>
-        <nav class="tofix">
-            <div>
-                <img src="https://lms.iiitkottayam.ac.in/pluginfile.php/1/theme_moove/logo/1663841307/logo.jpg"
-                    alt="IIIT Kottayam Logo" class="custom-responsive-image" style="padding-top: 5px;">
-            </div>
-            <div>
-                <div class="flex flex-column flex-end"> 
-                    <span class="custom-brand-name big-head notranslate"
-                        style="margin:0;font-family: 'Hind', sans-serif; font-size:33px;">
-                        <a href="#!home" style="color: transparent; margin-right: 40px; text-align: right; direction: rtl;"> भारतीय सूचना प्रौद्योगिकी संस्थान कोट्टायम</a>
-                    </span>
-                    <span class="custom-brand-name big-head notranslate" style="margin:0;font-size: 21.5px">
-                        <a href="#!home" style="color: transparent; margin-right: 40px;">Indian Institute of Information Technology
-                            Kottayam</a>
-                    </span>
-                </div>
-            </div>
-        </nav>
-    
-        <nav class="side-navbar">
-            <ul>
-                <a href="{% url 'Homepage'%}">Home</a>
-                <a href="#">Dashboard</a>
-                <a href="{% url 'clubleads' %}?subclub_name={{club}}&majorclub=trendles">Club-leads</a>
-                {% if  user.is_authenticated %}
-                <a href="{% url 'userprofile'%}">Profile</a>
-                {% else%}
-                <a href="{% url 'login'%}">Login</a>
-                {% endif%}
-    
-                <a href="{% url 'calander'%}">Calander</a>
-                <a href="{% url 'announcement'%}">Announcements</a>
-                <a href="{% url 'elections'%}">Elections</a>
-                <a href="{% url 'settings'%}">Settings</a>
-            </ul>
-        </nav>
-        <div class="main-container">
-            <div class="card profile">
-                <div class="overlay"></div>
-                <div class="profile-content icontent">
-                    <h1>Welcome to Chitrachaya</h1>
-                    <h5 class="vanish-reappear-text">----------You can put your Announcements here-------------</h5>
-                </div>
-            </div>
-            <div class="card-container">
-                <div class="card c uploader">
-                    <h3 class="icontent">
-                        You can Upload your Photos here
-                    </h3>
-                    <div class="overlay"></div>
-                    <div class="inner-card card icontent" id="dropArea">
-                        <div class="boardering">
-                            <p>File Name: <span id="fileName"></span></p>
-                            <p>File Size: <span id="fileSize"></span> bytes</p>
-                            <p>Date of Upload: <span id="uploadDate"></span></p>
-                            <p>Time of Uploaded: <span id="uploadTime"></span></p>
+      #addMoreButton {
+        margin: 20px;
+        padding: 10px 20px; /* Adjust the padding for your preferred button size */
+        background-color: #88ff00; /* Background color */
+        color: #fff; /* Text color */
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background-color 0.3s;
+      }
 
-                        </div>
-                    </div>
-                    <form id="upload-form" action="upload.php" method="post" enctype="multipart/form-data" class="icontent">
-                        <label>Select Photo (JPG, JPEG, PNG only):</label>
-                        <input type="file" id="fileInput" onchange="displayFileInfo()" accept=".jpg, .jpeg, .png">
-                        <br><br>
-                        <input type="submit" value="Upload Photo" id="fileInput" class="corner">
-                    </form>
-                </div>
-                <div class="card c MyPics">
-                    <h1 class="icontent">My Pictures</h1>
-                    <div id="slideshow" class="slideshow-card icontent">
-                    </div>
-                    <div class="empty-text icontent" id="emptyText">Empty</div>
-                    <button id="addMoreButton">Add More</button>
-                    <input type="file" id="fileInput" accept=".jpg, .jpeg, .png" style="display: none;">
-                </div>
-            </div>
-            <script>
-                const slideshow = document.getElementById("slideshow");
-                const emptyText = document.getElementById("emptyText");
-                const addMoreButton = document.getElementById("addMoreButton");
-                const fileInput = document.getElementById("fileInput");
-                const images = [];
-                let currentIndex = 0;
-        
-                function displayNextImage() {
-                    if (images.length === 0) {
-                        emptyText.style.display = "none";
-                        slideshow.style.backgroundImage = "none";
-                        return;
-                    }
-        
-                    emptyText.style.display = "none";
-                    slideshow.style.backgroundImage = `url(${images[currentIndex]})`;
-                    currentIndex = (currentIndex + 1) % images.length;
-                }
-        
-                addMoreButton.addEventListener("click", () => {
-                    fileInput.click();
-                });
-        
-                fileInput.addEventListener("change", (event) => {
-                    const file = event.target.files[0];
-                    if (file) {
-                        images.push(URL.createObjectURL(file));
-                        displayNextImage(); // Display the new image immediately
-                    }
-                });
-        
-                setInterval(displayNextImage, 3000);
-        
-                // Initial display
-                displayNextImage();
-            </script>
+      #addMoreButton:hover {
+        background-color: #00a1b3; /* Change the background color on hover */
+      }
+    </style>
+    <script>
+      function displayFileInfo() {
+        const fileInput = document.getElementById("fileInput");
+        const fileNameElement = document.getElementById("fileName");
+        const fileSizeElement = document.getElementById("fileSize");
+        const uploadDateElement = document.getElementById("uploadDate");
+        const uploadTimeElement = document.getElementById("uploadTime");
+
+        if (fileInput.files.length > 0) {
+          const file = fileInput.files[0];
+          const date = new Date();
+
+          // Display file name, size, date, and time
+          fileNameElement.textContent = file.name;
+          fileSizeElement.textContent = file.size;
+          uploadDateElement.textContent = date.toLocaleDateString();
+          uploadTimeElement.textContent = date.toLocaleTimeString();
+        } else {
+          // Clear the fields if no file is selected
+          fileNameElement.textContent = "";
+          fileSizeElement.textContent = "";
+          uploadDateElement.textContent = "";
+          uploadTimeElement.textContent = "";
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <nav class="tofix">
+      <div>
+        <img
+          src="https://lms.iiitkottayam.ac.in/pluginfile.php/1/theme_moove/logo/1663841307/logo.jpg"
+          alt="IIIT Kottayam Logo"
+          class="custom-responsive-image"
+          style="padding-top: 5px"
+        />
+      </div>
+      <div>
+        <div class="flex flex-column flex-end">
+          <span
+            class="custom-brand-name big-head notranslate"
+            style="margin: 0; font-family: 'Hind', sans-serif; font-size: 33px"
+          >
+            <a
+              href="#!home"
+              style="
+                color: transparent;
+                margin-right: 40px;
+                text-align: right;
+                direction: rtl;
+              "
+            >
+              भारतीय सूचना प्रौद्योगिकी संस्थान कोट्टायम</a
+            >
+          </span>
+          <span
+            class="custom-brand-name big-head notranslate"
+            style="margin: 0; font-size: 21.5px"
+          >
+            <a href="#!home" style="color: transparent; margin-right: 40px"
+              >Indian Institute of Information Technology Kottayam</a
+            >
+          </span>
         </div>
-        <div class="dancegif moving-hand">
-            <img src="https://www.pngall.com/wp-content/uploads/2016/03/Photography-Vector-PNG.png" alt="Chitra's cam" width="90px">
+      </div>
+    </nav>
+
+    <nav class="side-navbar">
+      <ul>
+        <a href="{% url 'Homepage'%}">Home</a>
+        <a href="#">Trendles</a>
+        <a href="{% url 'clubleads' %}?subclub_name={{club}}&majorclub=trendles"
+          >Club-leads</a
+        >
+        {% if user.is_authenticated %}
+        <a href="{% url 'userprofile'%}">Profile</a>
+        {% else%}
+        <a href="{% url 'login'%}">Login</a>
+        {% endif%}
+
+        <a href="{% url 'calander'%}">Calander</a>
+        <a href="{% url 'announcement'%}">Announcements</a>
+        <a href="{% url 'elections'%}">Elections</a>
+        <a href="{% url 'settings'%}">Settings</a>
+      </ul>
+    </nav>
+    
+    <div class="main-container">
+      <div class="card profile">
+        <div class="overlay"></div>
+        <div class="profile-content icontent">
+          <h1><center> Welcome to Chitrachaya</center></h1>
+          <h5 class="vanish-reappear-text">
+            Capturing Moments, Creating Stories: Chitrachaya at IIITK
+          </h5>
         </div>
-        <div class="moving-hand"></div>
-        <div class="trcard"></div>
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
-        integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
-        crossorigin="anonymous"></script>
-      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
-        integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
-        crossorigin="anonymous"></script>
+      </div>
+  
+      <div id="messages">
+        {% for message in messages  %}            
+        <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+              <strong>Message : </strong> {{ message }}
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+        {% endfor %} 
+    
+      {% if user.is_authenticated %}
+      <div class="card bg-dark text-white">
+        <div class="card-body">
+            <h5 class="card-title">📸 Calling all photography enthusiasts! 📸</h5>
+            <p class="card-text">
+                We believe that every event is a story waiting to be captured through the lens. 🌟
+                If you've attended any of our club's events and captured breathtaking moments, it's time to share your photographic talent with the world! 📷✨
+                We're excited to see the world through your eyes and relive those amazing memories together. So, grab your camera, select your best shots, and start sharing! 🤩
+                Don't miss the chance to showcase your creativity and be part of our photography community. 🎉
+                Upload your event photos now and let your images tell the story! 📢✨
+            </p>
+            {% comment %} <h2 class="card-subtitle mb-2 text-center"><center><a href="/login">Login to upload pictures</a></cenetr></h2> {% endcomment %}
+        </div>
+    </div>
+      <div class="card-container">
+        <div class="card c uploader">
+          <h3 class="icontent">You can Upload your Photos here</h3>
+         
+          <div class="overlay"></div>
+          <div class="inner-card card icontent" id="dropArea">
+            <div class="boardering">
+              {% comment %} <p>File Name: <span id="fileName" ></span></p> {% endcomment %}
+              <p>File Name: <span id="fileName"></span></p>
+              <input type="hidden" id="hiddenInput" name="file_name" value="">
+
+              <p>File Size: <span id="fileSize"></span> bytes</p>
+              <p>Date of Upload: <span id="uploadDate"></span></p>
+              <p>Time of Uploaded: <span id="uploadTime"></span></p>
+            </div>
+          </div>
+          <form
+            id="upload-form"
+            action="/trendles/upload_image"
+            method="POST"
+            enctype="multipart/form-data"
+            class="icontent"
+            
+          >   {% csrf_token %}
+            <label>Select Photo (JPG, JPEG, PNG , MP4 , AVI , MOV , MKV , WMV , FLV , WEBM only):</label>
+            <input
+              type="file"
+              id="fileInput"
+              onchange="displayFileInfo()"
+              accept=".jpg, .jpeg, .png, .mp4, .avi, .mov, .mkv, .wmv, .flv, .webm"
+            />
+            <br /><br />
+            <label for="eventName">File Name:</label>
+            <input type="text"  name="file_name" />
+            <br /><br />
+            <label for="eventName">Event Name:</label>
+            <input type="text" id="eventName" name="eventName" />
+            <br /><br />
+
+            <!-- Add event date input field -->
+            <label for="eventDate">Event Date:</label>
+            <input type="date" id="eventDate" name="eventDate" />
+            <br /><br />
+            <input
+              type="submit"
+              value="Upload Photo"
+              id="fileInput"
+              class="corner"
+            />
+          </form>
+        </div>
+        <div class="card c MyPics">
+          <h1 class="icontent">My Pictures</h1>
+          <div id="slideshow" class="slideshow-card icontent"></div>
+          <div class="empty-text icontent" id="emptyText">Empty</div>
+          <button id="addMoreButton">Add More</button>
+          <input
+            type="file"
+            {% comment %} id="fileInput" {% endcomment %}
+            id="updateValueButton"
+            accept=".jpg, .jpeg, .png"
+            style="display: none"
+          />
+        </div>
+        
+      
+      </div>
+      {%else%}
+        
+      <div class="card bg-dark text-white">
+        <div class="card-body">
+            <h5 class="card-title">📸 Calling all photography enthusiasts! 📸</h5>
+            <p class="card-text">
+                We believe that every event is a story waiting to be captured through the lens. 🌟
+                If you've attended any of our club's events and captured breathtaking moments, it's time to share your photographic talent with the world! 📷✨
+                We're excited to see the world through your eyes and relive those amazing memories together. So, grab your camera, select your best shots, and start sharing! 🤩
+                Don't miss the chance to showcase your creativity and be part of our photography community. 🎉
+                Upload your event photos now and let your images tell the story! 📢✨
+            </p>
+            <h2 class="card-subtitle mb-2 text-center"><center><a href="/login">Login to upload pictures</a></cenetr></h2>
+        </div>
+    </div>
+       {% endif%}
+
+      <script>
+  document.getElementById("updateValueButton").addEventListener("click", function (event) {
+    event.preventDefault(); // Prevent the default form submission
+    var spanValue = document.getElementById("fileName").textContent;
+    document.getElementById("hiddenInput").value = spanValue;
+    document.forms[0].submit(); // Submit the form
+  });
+</script>
+      <script>
+        const slideshow = document.getElementById("slideshow");
+        const emptyText = document.getElementById("emptyText");
+        const addMoreButton = document.getElementById("addMoreButton");
+        const fileInput = document.getElementById("fileInput");
+        const images = [];
+        let currentIndex = 0;
+
+        function displayNextImage() {
+          if (images.length === 0) {
+            emptyText.style.display = "none";
+            slideshow.style.backgroundImage = "none";
+            return;
+          }
+
+          emptyText.style.display = "none";
+          slideshow.style.backgroundImage = `url(${images[currentIndex]})`;
+          currentIndex = (currentIndex + 1) % images.length;
+        }
+
+        addMoreButton.addEventListener("click", () => {
+          fileInput.click();
+        });
+
+        fileInput.addEventListener("change", (event) => {
+          const file = event.target.files[0];
+          if (file) {
+            images.push(URL.createObjectURL(file));
+            displayNextImage(); // Display the new image immediately
+          }
+        });
+
+        setInterval(displayNextImage, 3000);
+
+        // Initial display
+        displayNextImage();
+      </script>
+    </div>
+    <div class="dancegif moving-hand">
+      <img
+        src="https://www.pngall.com/wp-content/uploads/2016/03/Photography-Vector-PNG.png"
+        alt="Chitra's cam"
+        width="90px"
+      />
+    </div>
+    <div class="moving-hand"></div>
+    <div class="trcard"></div>
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+      integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+      integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+      crossorigin="anonymous"
+    ></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    </body>
+  </body>
 </html>

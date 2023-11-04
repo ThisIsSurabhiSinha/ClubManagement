@@ -2,6 +2,8 @@
 <html>
 <head>
     <title>Clubleads</title>
+    {% load static%}
+    {% comment %} {% load custom_tags %} {% endcomment %}
     <style>
         body {
                 margin: 0;
@@ -74,7 +76,15 @@
                 background-position: 100% 0;
             }
         }
-
+        #incharge1{
+            border-radius: 50%;
+            width: 170px;
+        } 
+        #incharge2
+        {
+            border-radius: 50%;
+            width: 170px;
+        }
         /* ______________________________________________________________________to align sentences column wise to wards end__________________________________________________________________ */
         .flex-end {
             align-items: flex-end;
@@ -198,14 +208,21 @@
                 bottom: 20px;
             }
         }
-        #incharge{
-            border-radius: 50%;
-            width: 170px;
-        }
-        #sub{
+        .lead{
             border-radius: 50%;
             width: 150px;
+            display: inline-block;
+            width: 60%; /* You can adjust the width as needed */ 
+            margin: 10px; /* Add margin for spacing */
         }
+        .sublead{
+            border-radius: 50%;
+            width: 150px;
+            display: inline-block;
+             width: 60%; /* You can adjust the width as needed */ 
+            margin: 10px; /* Add margin for spacing */
+        }
+    
         .element {
             display: inline-block;
             width: 60%; /* You can adjust the width as needed */
@@ -240,7 +257,7 @@
             list-style-type: none;
             padding: 0px;
         }
-        #announcement-text {
+        .announcement-text {
             padding: 10px;
             margin: 5px 0;
             border: 1px solid #ccc;
@@ -274,22 +291,48 @@
         }
     </style>
     <script>
-        let isContainerExpanded = false;
+        var isContainerExpanded = false;
     
-        function toggleContainer(containerId) {
-            var container = document.getElementById(containerId);
-            if (!isContainerExpanded) {
-                container.style.maxHeight = "500px";
-                container.classList.add("expanded");
-                isContainerExpanded = true;
-            } else {
-                container.style.maxHeight = null;
-                container.classList.remove("expanded");
+        // Function to toggle container
+        function toggleContainer(container) {
+            var expandableContent = container.querySelector(".expandable-content");
+            if (isContainerExpanded) {
+                expandableContent.style.maxHeight = null;
+                expandableContent.classList.remove("expanded");
                 isContainerExpanded = false;
+            } else {
+                expandableContent.style.maxHeight = "500px";
+                expandableContent.classList.add("expanded");
+                isContainerExpanded = true;
             }
         }
-
-    </script>        
+    
+        // Function to add a new announcement to the list
+        function addAnnouncement(containerId, text) {
+            const announcementList = document.getElementById("announcement-list" + containerId);
+            const listItem = document.createElement("li");
+            listItem.className = "announcement-item";
+            listItem.textContent = text;
+            announcementList.appendChild(listItem);
+    
+            // Hide the "No Announcements" element when an announcement is added
+            const noAnnouncementsElement = document.getElementById("no-announcements" + containerId);
+            noAnnouncementsElement.style.display = "none";
+        }
+    
+        // Handle form submission for all announcement forms
+        {% for lead in all_leads|slice:":2" %}
+        document.getElementById("announcement-form{{ forloop.counter }}").addEventListener("submit", function (event) {
+            event.preventDefault();
+            const containerId = {{ forloop.counter }};
+            const announcementText = document.getElementById("announcement-text{{ forloop.counter }}").value;
+            if (announcementText) {
+                addAnnouncement(containerId, announcementText);
+                document.getElementById("announcement-text{{ forloop.counter }}").value = ""; // Clear the input field
+            }
+        });
+        {% endfor %}
+    </script>       
     
 </head>
 <body>
@@ -313,11 +356,11 @@
     </nav>
 
     <nav class="side-navbar">
-        <ul>
-            <a href="{% url 'betalabsHome'%}">Dashboard</a>
-            <a href="{% url 'clubleads'%}">Club-leads</a>
+        <ul><a href="{% url 'Homepage'%}">Home</a>
+            <a href="{% url 'betalabsHome'%}">Betalabs</a>
+            <a href="{% url 'Bclubleads'%}">Club-leads</a>
             {% if  user.is_authenticated %}
-            <a href="{% url 'profile'%}">Profile</a>
+            <a href="{% url 'userprofile'%}">Profile</a>
             {% else%}
             <a href="{% url 'login'%}">Login</a>
             {% endif%}
@@ -329,120 +372,71 @@
         </ul>
     </nav>
     <div class="main-container">
-        <h2>Trendles Incharge</h2>
-        <div class="container " onclick="toggleContainer('trendlesContent')">
+        <h2>{{ majorclub }} Mentors</h2>
+        {% for lead in leader %}
+        <div class="container" onclick="toggleContainer(this)">
             <div class="container nillborder flex">
-                <img src="unknown.png" id="incharge" class="element">
-                <div class="element">
-                    <h1>Name of Trendles Incharge</h1>
-                    <p class="element">Email ID:<span id="TMemailID"> username123@iiitkottayam.ac.in</span></p>
-                    <p class="element">Phone Number:<span id="TMphoneNo"> 8976246731</span></p>
+                <img src="{% static majorclub|lower %}/unknown.png" id="incharge{{ forloop.counter }}" class="lead">
+               
+                <div class="lead">
+                    <h1>{{ lead.name }}</h1>
+                    <p class="lead"><b>Email ID:</b><span class="email" id="TM{{ forloop.counter }}emailID">{{ lead.email }}</span></p>
+                    <p class="lead"><b>Phone Number:</b><span class="phone" id="TM{{ forloop.counter }}phoneNo">{{ lead.phone }}</span></p>
                 </div>
             </div>
-            <div id="trendlesContent" class="expandable-content">
+            <div class="expandable-content" id="trendlesContent{{ forloop.counter }}">
                 <div class="a-container">
                     <div class="announcements container">
-                        <h2>Contributions List</h2>
-                        <ul class="announcement-list" id="announcement-list">
-                        <!-- Announcements will be displayed here -->
-                        <li class="announcement-item" id="no-announcements">No Announcements</li>
-                    </ul>
+                        <h2>Announcements</h2>
+                        <ul class="announcement-list" id="announcement-list{{ forloop.counter }}">
+                            <!-- Announcements will be displayed here -->
+                            <li class="announcement-item" id="no-announcements{{ forloop.counter }}">No Announcements</li>
+                        </ul>
                     </div>
+                    {% if request.user.groups.all %}
+    {% for group in request.user.groups.all %}
+        {% if group.name == "Mentors" or group.name == "Subleads" %}
+                    {% comment %} {% if request.user|get_user_group == "Mentors" or request.user|get_user_group == "Subleads" %} {% endcomment %}
                     <div class="announcement-form">
-                        <h4>Add an Contribution</h2>
-                        <form id="announcement-form">
-                            <textarea id="announcement-text" class="announcement-input" rows="4" required></textarea>
+                        <h4>Add a Contribution</h4>
+                        <form class="announcement-form" id="announcement-form{{ forloop.counter }}">
+                            <textarea class="announcement-text" id="announcement-text{{ forloop.counter }}" rows="4" required></textarea>
                             <button type="submit" class="a-button">Submit</button>
                         </form>
                     </div>
+                    {% comment %} {% endif %} {% endcomment %}
                 </div>
             </div>
         </div>
-        <hr>
-        <h4>Sub clubs Incharges</h4>
-        <h5 style="color: #b5b5b5;">Chitrachaya</h5>
+        {% endif %}
+        {% endfor %}
+    {% endif %}
+</div>
+</div>
+</div>
+        {% endfor %}
+    
+    <hr>
+    <h4>Sub club Leads</h4>
+    {% for clubname , subleads in all_leads.items %}
+    {% for lead in subleads%}
+        <h4 style="color: black;">{{clubname }} Sub leads</h4>
         <div class="container flex">
-            <img src="unknown.png" id="sub" class="element">
-            <div class="element">
-                <h1>Name of Chitrachaya Incharge</h1>
-                <p class="element">Email ID:<span id="TC0email"> username123@iiitkottayam.ac.in</span></p>
-                <p class="element">Phone Number:<span id="TC0phoneNo"> 8976246731</span></p>
-            </div>
-        </div>
-        <h5 style="color: #b5b5b5;">Literature Club</h5>
-        <div class="container flex">
-            <img src="unknown.png" id="sub" class="element">
-            <div class="element">
-                <h1>Name of Literature club Incharge</h1>
-                <p class="element">Email ID:<span id="TC1emailID"> username123@iiitkottayam.ac.in</span></p>
-                <p class="element">Phone Number:<span id="TC1phoneNo"> 8976246731</span></p>
-            </div>
-        </div>
-        <h5 style="color: #b5b5b5;">Debating and Quiz Club</h5>
-        <div class="container flex">
-            <img src="unknown.png" id="sub" class="element">
-            <div class="element">
-                <h1>Name of Incharge of Debating</h1>
-                <p class="element">Email ID:<span id="TC2emailID"> username123@iiitkottayam.ac.in</span></p>
-                <p class="element">Phone Number:<span id="TC2phoneNo"> 8976246731</span></p>
-            </div>
-        </div>
-        <h5 style="color: #b5b5b5;">Designing Club</h5>
-        <div class="container flex">
-            <img src="unknown.png" id="sub" class="element">
-            <div class="element">
-                <h1>Name of Designind Club Incharge</h1>
-                <p class="element">Email ID:<span id="TC3emailID"> username123@iiitkottayam.ac.in</span></p>
-                <p class="element">Phone Number:<span id="TC3phoneNo"> 8976246731</span></p>
-            </div>
-        </div>
-        <h5 style="color: #b5b5b5;">Finance Club</h5>
-        <div class="container flex">
-            <img src="unknown.png" id="sub" class="element">
-            <div class="element">
-                <h1>Name of Finance Club Incharge</h1>
-                <p class="element">Email ID:<span id="TC4emailID"> username123@iiitkottayam.ac.in</span></p>
-                <p class="element">Phone Number:<span id="TC4phoneNo"> 8976246731</span></p>
-            </div>
-        </div>
-        <h5 style="color: #b5b5b5;">Marketting and Outreach</h5>
-        <div class="container flex">
-            <img src="unknown.png" id="sub" class="element">
-            <div class="element">
-                <h1>Name of M&O club Incharge</h1>
-                <p class="element">Email ID:<span id="TC5emailID"> username123@iiitkottayam.ac.in</span></p>
-                <p class="element">Phone Number:<span id="TC5phoneNo"> 8976246731</span></p>
-            </div>
-        </div>
-        <hr>
-        <h4>Other Members</h4>
-    </div>
-    <script>
-        // Function to add a new announcement to the list
-        function addAnnouncement(text) {
-            const announcementList = document.getElementById("announcement-list");
-            const listItem = document.createElement("li");
-            listItem.className = "announcement-item";
-            listItem.textContent = text;
-            announcementList.appendChild(listItem);
-            
-            // Hide the "No Announcements" element when an announcement is added
-            const noAnnouncementsElement = document.getElementById("no-announcements");
-            noAnnouncementsElement.style.display = "none";
-        }
+            <img src="{% static majorclub|lower %}/unknown.png" id="incharge{{ forloop.counter }}" class="element" style="border-radius: 50%; width: 150px;">
 
-        // Handle form submission
-        document.getElementById("announcement-form").addEventListener("submit", function (event) {
-            event.preventDefault();
-            const announcementText = document.getElementById("announcement-text").value;
-            if (announcementText) {
-                addAnnouncement(announcementText);
-                document.getElementById("announcement-text").value = ""; // Clear the input field
-            }
-        });
-    </script>
+            <div class="element">
+                <h1>{{lead}} </h1>
+                <a href="/betalabs/clubleads/?subclub_name={{ clubname }}&majorclub={{ majorclub }}">Click for more details</a>
+
+            </div>
+        </div>
+        {% endfor%}
+{% endfor %}
+    </div>
+    
     <div class="dancegif moving-hand">
         <img src="http://i3.cpcache.com/product/1277750812/leader_of_the_pack_wall_decal.jpg?height=630&width=630&qv=90 " width="130px">
     </div>
 </body>
 </html>
+

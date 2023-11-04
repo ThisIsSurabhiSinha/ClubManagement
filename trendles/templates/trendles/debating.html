@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+    {% load static %}
     <head>
         <title>Debates and Quizes</title>
         <style>
@@ -192,7 +193,7 @@
             }
         }
         .profile {
-            background-image: url(debate1.png);
+            background-image: url('{% static 'trendles/debate.png' %}');
             background-size: cover;
             /* background-position: center bottom; */
             display: flex;
@@ -264,7 +265,7 @@
             height: 150px;
         }
         .image-container {
-            background-image: url(trendleslogo1.png);
+            background-image:url('{% static 'trendles/trendleslogo1.png' %}');
             background-size: cover;
             width: 200px;
             height: 74px;
@@ -274,7 +275,7 @@
         }
         
         .MyPics{
-            background-image: url(Mypicsback1.png);
+            background-image: ('{% static 'trendles/Mypicsback1.png' %}');
             background-size: cover;
             width: 60%;
         }
@@ -379,13 +380,13 @@
             background-color: #fcce00; /* Change the background color on hover */
         }
         .y{
-            background-image:url(chatback1.png);
+            background-image:url('{% static 'trendles/chatback1.png' %}');
             background-size: cover;
             background-position: center bottom;
         }
         .q{
             height: 230px;
-            background-image:url(Quiztime.png);
+            background-image:url('{% static 'trendles/Quiztime.png' %}');
             background-size: cover;
             background-position: center bottom;
         }
@@ -414,7 +415,7 @@
         <nav class="side-navbar">
             <ul>
                 <a href="{% url 'Homepage'%}">Home</a>
-                <a href="#">Dashboard</a>
+               
                 <a href="{% url 'clubleads' %}?subclub_name={{club}}&majorclub=trendles">Club-leads</a>
                 {% if  user.is_authenticated %}
                 <a href="{% url 'userprofile'%}">Profile</a>

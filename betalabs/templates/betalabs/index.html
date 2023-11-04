@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome to Technical club Functional Page</title>
+    <title>Betalabs</title>
     <style>
         /*__________________________Some normal styles_____________________________*/
         body {
@@ -325,12 +325,24 @@
 
     <nav class="side-navbar">
         <ul>
-            <a href="#">Dashboard</a>
-            <a href="#">Club-leads</a>
+            <a href="{% url 'Homepage'%}">Home</a>
+            {% comment %} <a href="#">Dashboard</a> {% endcomment %}
+            <a href="{% url 'Ballclubleads' %}">Club-leads</a>
+
+            {% if  user.is_authenticated %}
+            <a href="{% url 'userprofile'%}">Profile</a>
+            {% else%}
+            <a href="{% url 'login'%}">Login</a>
+            {% endif%}
+
+            <a href="{% url 'calander'%}">Calander</a>
+            <a href="{% url 'announcement'%}">Announcements</a>
+            <a href="{% url 'elections'%}">Elections</a>
+            <a href="{% url 'settings'%}">Settings</a>
+            {% if  user.is_authenticated %}
             <a href="{% url 'codingprofile'%}">Coding Profile</a>
-            <a href="#">Calander</a>
-            <a href="#">Elections</a>
-            <a href="#">Settings</a>
+            {% endif%}
+        
         </ul>
         <img src="data:image/png;base64,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" width="200px" alt="Image" class="bottom-left-img">
     </nav>
@@ -338,9 +350,29 @@
     <div class="main-container">
         <div class="card profile">
             
-                <h1><b><font-color="blue">Welcome to  Betalabs (Technical Clubs) of IIIT Kottayam</font-color></b></h1>
+                <h1><b><font-color="blue">Welcome to  Betalabs </font-color></b></h1>
         
         </div>
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">🚀 Join BetaLabs: Your Path to a Technical Future! 💻</h5>
+                <p class="card-text">
+                    BetaLabs is not just a club; it's a launchpad for your technical journey. 🌠
+        
+                    Whether you're into Dynamic Programming, Web Development, AI, Data Science, or any other tech realm, we have a place for you to shine! 💡
+        
+                    Join our vibrant community of tech enthusiasts, collaborate with like-minded individuals, and dive into the ever-evolving world of technology. 🌐
+        
+                    Here, you'll tackle real-world challenges, build projects that matter, and gain the skills needed to shape your future in the tech industry. 🛠️
+        
+                    Be part of our mission to learn, create, and innovate. Your passion and dedication are the keys to success. 🚀
+        
+                    Embrace the opportunities, explore your potential, and turn your aspirations into a reality. Welcome to BetaLabs! 🌟
+                </p>
+                
+            </div>
+        </div>
+        
         <div class="card c club club1">
             <div class="overlay"></div>
             <div class="icontent">
@@ -352,7 +384,12 @@
             <div class="overlay"></div>
             <div class="icontent">
                 <h1><a href={% url "webdevelopment"%}>Web Development</a></h1>
-                <p class="vanish-reappear-text"><a href="webdevelopment.html">Welcome to Web Development</a></p>
+                <p class="vanish-reappear-text">Building the Web, One Line of Code at a Time 🌐
+
+
+
+
+                </p>
             </div>
         </div>
        
@@ -363,13 +400,6 @@
                 <p class="vanish-reappear-text">"Coding like poetry should be short and concise."</p>
             </div>
         </div>
-        <div class="card c club club5">
-            <div class="overlay"></div>
-            <div class="icontent">
-                <h1><a href{% url 'streak'%}="">Rating and Streak-Maintainance</a></h1>
-                <p class="vanish-reappear-text">“A good test is one that has a high probability of breaking the code if there is a problem"</p>
-            </div>
-        </div>
         <div class="card c club club6">
             <div class="overlay"></div>
             <div class="icontent">
@@ -377,19 +407,23 @@
                 <p class="vanish-reappear-text">"Welcome to Dynamic programming"</p>
             </div>
         </div>
-    </div>
     
+    
+        <div class="card c club club5">
+            <div class="overlay"></div>
+            <div class="icontent">
+                <h1><a href="{% url 'streak'%}" >Rating and Streak-Maintainance</a></h1>
+                <p class="vanish-reappear-text">“A good test is one that has a high probability of breaking the code if there is a problem"</p>
+            </div>
+        </div>
+    </div>
+       
     <div class="dancegif">
         <img src="c:\Users\sashi\Downloads\68747470733a2f2f6d69726f2e6d656469756d2e636f6d2f6d61782f313336302f302a37513379765349765f7430696f4a2d5a2e676966.gif" width="130px" align="center">
     </div>
 
     
-    
-    <div class="madeby card">
-        
-        
-    </div>
-    <div class="trcard"></div>
+
 </body>
 
 </html>

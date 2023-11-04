@@ -4,6 +4,7 @@ from .forms import SignupForm
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login,logout
+from django.contrib.auth.models import Group
 
 
 # Create your views here.
@@ -35,6 +36,8 @@ def handle_signup(request):
             else:
                 new_user=User.objects.create_user(username=username,email=email,password=password,first_name=fname,last_name=lname)
                 new_user.save()
+                student_group = Group.objects.get(name='Student')
+                student_group.user_set.add(new_user)
                 messages.success(request, f' {fname} {lname} is successfully registered !')
                 student = Student(
                     student_id=username,
@@ -53,8 +56,7 @@ def handle_signup(request):
     else:
             messages.error(request,"Please try again")
             return redirect('view_signup')
-
-   
+       
 def view_signup(request):
     return render(request,'Home/signup.html')
 def  view_login(request):
@@ -117,3 +119,13 @@ def analyze(request):
 def show_full_result(request):
     mylist= request.GET.get('all', '').split(',')
     return render(request,"Home/quizresult2.html",{'mylist':mylist})
+def custom_login_view(request):
+    # Check if the user is authorized to access the admin page
+    if not request.user.is_staff:
+        return HttpResponse("<h1><center>You are not authorized to view this page</center></h1>", status=401)  # Replace this with your desired response
+
+    # If authorized, redirect to the default admin login view
+    
+    return login(request)
+
+
