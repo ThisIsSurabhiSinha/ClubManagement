@@ -370,7 +370,7 @@
     </nav>
 
     <nav class="side-navbar">
-        <ul>
+        <ul>  <a href="{% url 'Homepage'%}">Home</a>
             <a href="{% url 'trendlesHome'%}">Trendles</a>
             <a href="{% url 'allclubleads'%}">Club-leads</a>
             {% if  user.is_authenticated %}
@@ -380,13 +380,13 @@
             {% endif%}
         <a href="{% url 'calander'%}">Calander</a>
         <a href="{% url 'announcement'%}">Announcements</a>
-        <a href="{% url 'elections'%}">Elections</a>
+        <a href="{% url 'elections' %}?majorclub=Trendles">Elections</a>
         <a href="{% url 'settings'%}">Settings</a>
             <div class="image-container"></div>
         </ul>
     </nav>
     
-    
+  
         <div class="main-container">
             <h2>{{ majorclub }} Mentors</h2>
             {% for lead in all_leads|slice:":2" %}
@@ -411,9 +411,10 @@
                             </ul>
                         </div>
                         <div class="announcement-form">
-                            <h4>Add a Contribution</h4>
-                            <form class="announcement-form" id="announcement-form{{ forloop.counter }}">
-                                <textarea class="announcement-text" id="announcement-text{{ forloop.counter }}" rows="4" required></textarea>
+                            <h4>Add announcements</h4>
+                            <form class="announcement-form" id="announcement-form{{ forloop.counter }} action="/trendles/create_announcement" method="post">
+                                {%csrf_token%}
+                                <textarea name="announcement-text" class="announcement-text" id="announcement-text{{ forloop.counter }}" rows="4" required></textarea>
                                 <button type="submit" class="a-button">Submit</button>
                             </form>
                         </div>
@@ -422,7 +423,9 @@
             </div>
             {% endfor %}
         
-        <hr>
+        <hr> 
+        
+        
         <h2>Sub clubs Leads</h4>
         {% for lead in all_leads %}
         {% if forloop.counter > 2 %}
@@ -432,7 +435,7 @@
                 <img src="{% static majorclub|lower %}/unknown.png" id="incharge{{ forloop.counter }}" class="element" style="border-radius: 50%; width: 150px;">
 
                 <div class="element">
-                    <h1>{{lead.name}} {{forloop.counter|add:"-2"}}</h1>
+                    <h1>{{lead.name}} </h1>
                     <p class="element"><b>Email ID:  </b><span id="TC{{ forloop.counter |add:"-2"}}email">{{ lead.email }} </span></p>
 
                     <p class="element"><b>Phone Number:</b><span id="TC{{ forloop.counter|add:"-2" }}phoneNo">{{ lead.phone }}</span></p>

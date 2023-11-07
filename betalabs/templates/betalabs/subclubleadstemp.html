@@ -2,7 +2,7 @@
 <html>
 <head>
     {% load static%}
-    <title>Clubleads</title>
+   
     <style>
         body {
                 margin: 0;
@@ -432,7 +432,7 @@
                 <img src="{% static majorclub|lower %}/unknown.png" id="incharge{{ forloop.counter }}" class="element" style="border-radius: 50%; width: 150px;">
 
                 <div class="element">
-                    <h1>{{lead.name}} {{forloop.counter|add:"-2"}}</h1>
+                    <h1>{{lead.name}} </h1>
                     <p class="element"><b>Email ID:  </b><span id="TC{{ forloop.counter |add:"-2"}}email">{{ lead.email }} </span></p>
 
                     <p class="element"><b>Phone Number:</b><span id="TC{{ forloop.counter|add:"-2" }}phoneNo">{{ lead.phone }}</span></p>

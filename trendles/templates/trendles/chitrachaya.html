@@ -2,7 +2,7 @@
 <html>
   <head>
     {% comment %} {% load auth %} {% endcomment %}
-    <title>Chitrachaya</title>
+    {% comment %} <title>Chitrachaya</title> {% endcomment %}
     {% load static%}
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -286,7 +286,7 @@
       }
 
       .MyPics {
-        background-image: url('{%static "trendles/photography2.jpeg"%}');
+        background-image: url('{%static "trendles/chitrachayauploader.jpg"%}');
         background-size: cover;
         width: 60.83%;
       }
@@ -393,8 +393,8 @@
     <nav class="side-navbar">
       <ul>
         <a href="{% url 'Homepage'%}">Home</a>
-        <a href="#">Trendles</a>
-        <a href="{% url 'clubleads' %}?subclub_name={{club}}&majorclub=trendles"
+        <a href="{% url 'trendlesHome'%}">Trendles</a>
+        <a href="{% url 'clubleads' %}?subclub_name={{ subclub_name|urlize }}&majorclub={{ majorclub|urlize }}"
           >Club-leads</a
         >
         {% if user.is_authenticated %}
@@ -403,11 +403,11 @@
         <a href="{% url 'login'%}">Login</a>
         {% endif%}
 
-        <a href="{% url 'calander'%}">Calander</a>
+        <a href="{% url 'calander'%}">Calendar</a>
         <a href="{% url 'announcement'%}">Announcements</a>
-        <a href="{% url 'elections'%}">Elections</a>
+        <a href="{% url 'elections' %}?majorclub=Trendles">Elections</a>
         <a href="{% url 'settings'%}">Settings</a>
-      </ul>
+      </ul>  <div class="image-container"></div>
     </nav>
     
     <div class="main-container">
@@ -473,13 +473,12 @@
             <input
               type="file"
               id="fileInput"
+              name="file_name"
               onchange="displayFileInfo()"
               accept=".jpg, .jpeg, .png, .mp4, .avi, .mov, .mkv, .wmv, .flv, .webm"
             />
             <br /><br />
-            <label for="eventName">File Name:</label>
-            <input type="text"  name="file_name" />
-            <br /><br />
+            
             <label for="eventName">Event Name:</label>
             <input type="text" id="eventName" name="eventName" />
             <br /><br />
@@ -509,7 +508,17 @@
             style="display: none"
           />
         </div>
-        
+        <div>
+
+        </div>
+        <ul>
+        {% for image in pic%}
+    {% comment %} <li><img src="{{ image.media_file.url }}" alt="Image"></li> {% endcomment %}
+    <a href="{{ image.media_file.url }}"> Clickhere</a>
+    {% comment %} "{{ image.media_file.url }}"
+    <img src=""/media/trendles/images/{{image.media_file.url}}"" alt="Image"> {% endcomment %}
+  
+{% endfor %}
       
       </div>
       {%else%}
@@ -524,7 +533,8 @@
                 Don't miss the chance to showcase your creativity and be part of our photography community. 🎉
                 Upload your event photos now and let your images tell the story! 📢✨
             </p>
-            <h2 class="card-subtitle mb-2 text-center"><center><a href="/login">Login to upload pictures</a></cenetr></h2>
+            {% comment %} <h2 class="card-subtitle mb-2 text-center"><center><a href="/login">Login to upload pictures</a></cenetr></h2> {% endcomment %}
+              <a href="/login" class="btn btn-primary">Login to show your creative writing skills.</a>
         </div>
     </div>
        {% endif%}

@@ -1,7 +1,43 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Elections</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+        integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    {% comment %} <title>Elections</title> {% endcomment %}
+    <script>
+        const countdownContainer = document.querySelector('.countdown-container');
+
+        const targetDate = new Date('2023-11-21');
+        const currentDate = new Date();
+        const difference = targetDate.getTime() - currentDate.getTime();
+        const daysLeft = Math.floor(difference / (1000 * 60 * 60 * 24));
+        
+        if (daysLeft > 0) {
+          const countdownNumberElement = document.createElement('span');
+          countdownNumberElement.classList.add('countdown-number');
+          countdownNumberElement.textContent = daysLeft;
+        
+          const countdownLabelElement = document.createElement('span');
+          countdownLabelElement.classList.add('countdown-label');
+          countdownLabelElement.textContent = daysLeft === 1 ? 'day' : 'days';
+        
+          countdownContainer.appendChild(countdownNumberElement);
+          countdownContainer.appendChild(countdownLabelElement);
+        } else {
+          const countdownMessageElement = document.createElement('p');
+          countdownMessageElement.textContent = 'Feature unlocked! 🎉';
+          countdownContainer.appendChild(countdownMessageElement);
+        }
+        
+
+    </script>
     <style>
         body {
                 margin: 0;
@@ -242,6 +278,44 @@
             background: linear-gradient(to bottom, transparent, rgba(227, 226, 226, 0.7));
             position: absolute; /* Change to absolute positioning */
         }
+        {% comment %} body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        } {% endcomment %}
+        
+        .container {
+            text-align: center;
+            background-color: #fff;
+            border-radius: 8px;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            display: flex; 
+            {% comment %} height: 100vh; {% endcomment %}
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .message {
+            animation: fade-in 1s ease-in-out forwards;
+        }
+        
+        @keyframes fade-in {
+            0% {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+          
     </style>
 </head>
 <body>
@@ -267,7 +341,9 @@
     <nav class="side-navbar">
         <ul>
             <a href="{% url 'Homepage'%}">Home</a>
-            <a href="#">Dashboard</a>
+            {% comment %} <a href="{% url 'trendlesHome'%}">Trendles</a> {% endcomment %}
+            <a href="{% url majorclub|lower|add:'Home' %}">{{ majorclub }}</a>
+
             {% comment %} <a href="{% url 'clubleads' %}?subclub_name={{club}}&majorclub=all">Club-leads</a> {% endcomment %}
             {% if  user.is_authenticated %}
             <a href="{% url 'userprofile'%}">Profile</a>
@@ -275,9 +351,9 @@
             <a href="{% url 'login'%}">Login</a>
             {% endif%}
 
-            <a href="{% url 'calander'%}">Calander</a>
+            <a href="{% url 'calander'%}">Calendar</a>
             <a href="{% url 'announcement'%}">Announcements</a>
-            <a href="{% url 'elections'%}">Elections</a>
+            <a href="{% url 'elections' %}?majorclub=Trendles">Elections</a>
             <a href="{% url 'settings'%}">Settings</a>
             <div class="image-container"></div>
         </ul>
@@ -286,14 +362,50 @@
         <div class="card c club club1">
             <div class="overlay"></div>
             <div class="icontent">
-                <h1 class="sub-head" style="text-shadow: #333;">Elections</h1>
+                <h1 class="sub-head" style="text-shadow: #333;"><b>Elections</b/></h1>
                 <p class="vanish-reappear-text">Will be comming soon</p>
             </div>
         </div>
     </div>
+    {% comment %} <div class="container">
+        <h1>Get Excited for Our Upcoming Feature!</h1>
+        <p>We're thrilled to announce that a brand-new feature is on the horizon.</p>
+        <p>Stay tuned for more exciting updates - it's not going to be long now!</p>
+        <p>This feature will be unlocked in <span id="countdown"></span> days!</p>
+
+    </div> {% endcomment %}
+       <div class="container">
+        <div class="message">
+            <h1 style="color:blue">Stay tuned!</h1>
+            <p>We're preparing something special for you.</p>
+            <p>We're thrilled to announce that a brand-new feature is on the horizon.</p>
+        <p>We're putting the finishing touches on this exciting new feature, and it'll be available to you soon.</p>
+           
+            <p>Keep an eye on this space for updates!</p>
+        </div>
+    </div>
+    
+      
+
 
     <div class="dancegif moving-hand">
         <img src="https://tse1.mm.bing.net/th?id=OIP.GXaE9k6_SkQQhVxw9MKKPwHaE6&pid=Api&P=0&h=180" width="130px">
     </div>
+    <script
+    src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"
+    ></script>
+    <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+    integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+    crossorigin="anonymous"
+    ></script>
+    <script
+    src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+    integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+    crossorigin="anonymous"
+    ></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </body>
 </html>

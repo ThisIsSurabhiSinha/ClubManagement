@@ -2,7 +2,16 @@
 <html>
     <head>
         {%load static%}
-        <title>Finance</title>
+        <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+        integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+        {% comment %} <title>Finance</title> {% endcomment %}
         <style>
             body {
                 margin: 0;
@@ -223,7 +232,7 @@
         .uploader{
             background-color: rgba(210, 213, 209, 0.508);
             padding: 5px;
-            background-image: url('{%static 'trendles/litrate.png'%}');
+            background-image: url('{%static 'trendles/finance2.jpg'%}');
             background-size: cover;
             background-position: center bottom;
         }
@@ -296,7 +305,7 @@
         #fileInput{
             margin: 20px;
             padding: 10px 20px; /* Adjust the padding for your preferred button size */
-            background-color: #ffee00; /* Background color */
+            background-color: hsla(176, 100%, 50%, 0.345); /* Background color */
             color: #fff; /* Text color */
             border: none;
             border-radius: 5px;
@@ -305,7 +314,8 @@
             transition: background-color 0.3s;
         }
         #fileInput:hover{
-            background-color: #88fc03;
+            background-color:hsla(176, 100%, 50%, 0.134);
+           
         }
         </style>
         <script>
@@ -369,20 +379,29 @@
                 <a href="{% url 'login'%}">Login</a>
                 {% endif%}
     
-                <a href="{% url 'calander'%}">Calander</a>
+                <a href="{% url 'calander'%}">Calendar;</a>
                 <a href="{% url 'announcement'%}">Announcements</a>
-                <a href="{% url 'elections'%}">Elections</a>
+                <a href="{% url 'elections' %}?majorclub=Trendles">Elections</a>
                 <a href="{% url 'settings'%}">Settings</a>
-            </ul>
+            </ul>  <div class="image-container"></div>
         </nav>
         <div class="main-container">
             <div class="card profile">
                 <div class="overlay"></div>
                 <div class="profile-content icontent">
-                    <h1>Welcome to  Club</h1>
-                    <h5 class="vanish-reappear-text">----------You can put your Announcements here-------------</h5>
+                    <h1><b>Welcome to Finance Club</b></h1>
+                    <h3 class="vanish-reappear-text"> Let's navigate the world of finance together with confidence and determination!</h3>
                 </div>
             </div>
+            <div id="messages">
+                {% for message in messages  %}            
+                <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                      <strong>Message : </strong> {{ message }}
+                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                {% endfor %} 
             {%if user.is_authenticated%}
             <div class="card">
                 <div class="card-body">
@@ -406,8 +425,8 @@
             
             <div class="card-container">
                 <div class="card c uploader">
-                    <h3 class="icontent">
-                        You can Upload your excel sheets here
+                    <h3 class="icontent" style="color:black">
+                        <b>You can Upload your excel sheets here</B>
                     </h3>
                     <div class="overlay"></div>
                     <div class="inner-card card icontent" id="dropArea">
@@ -419,9 +438,15 @@
 
                         </div>
                     </div>
-                    <form id="upload-form" action="upload.php" method="post" enctype="multipart/form-data" class="icontent">
-                        <label>Select Photo (PDF, Word, excel):</label>
-                        <input type="file" id="fileInput" onchange="displayFileInfo()">
+                    <form id="upload-form" action="/trendles/finance_club_upload_document" method="post" enctype="multipart/form-data" class="icontent">
+                        {% csrf_token %}<label>Accepted file format (PDF, Word, excel):</label>
+                        <input type="file" name="document" id="fileInput" onchange="displayFileInfo()">
+                        <br>
+                        <label>Title</label>
+                        <input type="text" name="title" id="fileInput">
+                        <br>
+                        <label>Description</label>
+                        <input type="text" name="description" id="fileInput">
                         <br>
                         <input type="submit" value="Upload Document" id="fileInput" class="corner">
                     </form>
@@ -454,5 +479,21 @@
         </div>
         <div class="moving-hand"></div>
         <div class="trcard"></div>
+        <script
+src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+crossorigin="anonymous"
+></script>
+<script
+src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+crossorigin="anonymous"
+></script>
+<script
+src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+crossorigin="anonymous"
+></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     </body>
 </html>

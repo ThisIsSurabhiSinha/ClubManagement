@@ -13,12 +13,7 @@ def subClub_detail(request,subClub_slug):
    
     slug=subClub_slug[0].upper()+subClub_slug[1:]
     displayClub = SubClub.objects.filter( club_name=slug).first()
-    print(displayClub)
     all_leads=[]
-    # if displayClub.leader1.lower()!= "none":
-    #     all_leads.append(displayClub.leader1)
-    # if displayClub.leader2.lower()!= "none":
-    #     all_leads.append(displayClub.leader2)
     if displayClub.subleader1.lower()!= "none":
         all_leads.append(displayClub.subleader1)
     if displayClub.subleader2.lower()!= "none":

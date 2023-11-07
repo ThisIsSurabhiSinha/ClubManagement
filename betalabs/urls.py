@@ -10,6 +10,7 @@ urlpatterns = [
     path('streak/',views.streak,name="streak"),
     path('registration/',views.registration,name="registration"),
     path('profile/',views.profile,name="profile"),
+    path('settings/',views.Bsettings,name="Bsettings"),
     path('dp/',views.dp,name="dp"),
     path('advancecoding/',views.advancecoding,name="advancecoding"),
     path('profile/',views.codingprofile,name="codingprofile"),

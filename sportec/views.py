@@ -2,8 +2,9 @@ from django.shortcuts import render,HttpResponse
 from sportec.models import SubClub
 # Create your views here.
 def index(request):
-    SubClubs=SubClub.objects.all()
-    return render(request,'sportec/sportec.html',{'SubClubs':SubClubs})
+    SubClubs=SubClub.objects.all().first()
+
+    return render(request,'sportec/home.html',{'SubClubs':SubClubs})
 def subClub_detail(request,subClub_slug):
     slug=subClub_slug[0].upper()+subClub_slug[1:]
     displayClub = SubClub.objects.filter( club_name=slug).first()

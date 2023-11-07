@@ -357,66 +357,67 @@
 
     <nav class="side-navbar">
         <ul>
+            <a href="{% url 'Homepage'%}">Home</a>
             <a href="{% url 'trendlesHome'%}">Trendles</a>
-            <a href="{% url 'clubleads'%}">Club-leads</a>
+            {% comment %} <a href="{% url 'clubleads'%}">Club-leads</a> {% endcomment %}
             {% if  user.is_authenticated %}
             <a href="{% url 'userprofile'%}">Profile</a>
             {% else%}
             <a href="{% url 'login'%}">Login</a>
             {% endif%}
-        <a href="{% url 'calander'%}">Calander</a>
+        <a href="{% url 'calander'%}">Calendar</a>
         <a href="{% url 'announcement'%}">Announcements</a>
-        <a href="{% url 'elections'%}">Elections</a>
+        <a href="{% url 'elections' %}?majorclub=Trendles">Elections</a>
         <a href="{% url 'settings'%}">Settings</a>
             <div class="image-container"></div>
         </ul>
     </nav>
+
     <div class="main-container">
         <h2>{{ majorclub }} Mentors</h2>
-        {% for lead in leader %}
+        {% for lead in all_leads1 %}
         <div class="container" onclick="toggleContainer(this)">
             <div class="container nillborder flex">
-                <img src="{% static majorclub|lower %}/unknown.png" id="incharge{{ forloop.counter }}" class="lead">
-               
-                <div class="lead">
+                <img src="{% static majorclub|lower %}/unknown.png" id="incharge{{ forloop.counter }}" class="element">
+                {% comment %} <img src="{% static majorclub|lower %}/unknown.png" id="incharge{{ forloop.counter }}" class="element" style="border-radius: 50%; width: 150px;"> {% endcomment %}
+
+                <div class="element">
                     <h1>{{ lead.name }}</h1>
-                    <p class="lead"><b>Email ID:</b><span class="email" id="TM{{ forloop.counter }}emailID">{{ lead.email }}</span></p>
-                    <p class="lead"><b>Phone Number:</b><span class="phone" id="TM{{ forloop.counter }}phoneNo">{{ lead.phone }}</span></p>
+                    <p class="element"><b>Email ID:</b><span class="email" id="TM{{ forloop.counter }}emailID">{{ lead.email }}</span></p>
+                    <p class="element"><b>Phone Number:</b><span class="phone" id="TM{{ forloop.counter }}phoneNo">{{ lead.phone }}</span></p>
                 </div>
             </div>
             <div class="expandable-content" id="trendlesContent{{ forloop.counter }}">
                 <div class="a-container">
                     <div class="announcements container">
                         <h2>Announcements</h2>
-                        <ul class="announcement-list" id="announcement-list{{ forloop.counter }}">
-                            <!-- Announcements will be displayed here -->
-                            <li class="announcement-item" id="no-announcements{{ forloop.counter }}">No Announcements</li>
+                        <ul class="announcement-list">
+                            {% for announcement in announcements_two_days_ago %}
+                                <li class="announcement-item">{{ announcement.content }}</li>
+                            {% empty %}
+                                {% comment %} <li class="announcement-item">No Announcements</li> {% endcomment %}
+                            {% endfor %}
                         </ul>
+                      
                     </div>
-                    {% if request.user.groups.all %}
-    {% for group in request.user.groups.all %}
-        {% if group.name == "Mentors" or group.name == "Subleads" %}
-                    {% comment %} {% if request.user|get_user_group == "Mentors" or request.user|get_user_group == "Subleads" %} {% endcomment %}
                     <div class="announcement-form">
-                        <h4>Add a Contribution</h4>
-                        <form class="announcement-form" id="announcement-form{{ forloop.counter }}">
-                            <textarea class="announcement-text" id="announcement-text{{ forloop.counter }}" rows="4" required></textarea>
+                        <h4>Add announcements</h4>
+
+                        <form class="announcement-form" id="announcement-form{{ forloop.counter }}" action="/trendles/create_announcement" method="post">
+                            {% csrf_token %}
+                            <textarea name="announcement-text" class="announcement-text" id="announcement-text{{ forloop.counter }}" rows="4" required></textarea>
                             <button type="submit" class="a-button">Submit</button>
                         </form>
+                        
                     </div>
-                    {% comment %} {% endif %} {% endcomment %}
                 </div>
             </div>
         </div>
-        {% endif %}
-        {% endfor %}
-    {% endif %}
-</div>
-</div>
-</div>
         {% endfor %}
     
-    <hr>
+    <hr> 
+    
+    
     <h2>Sub clubs Leads</h2>
     {% for clubname , subleads in all_leads.items %}
     {% for lead in subleads%}

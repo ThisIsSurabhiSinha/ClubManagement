@@ -315,7 +315,7 @@
         }
 /*____________________________________________________________________________________________________trendles logo______________________________________________________________________*/
         .image-container {
-            {% comment %} background-image:url('{% static 'trendles/trendleslogo1.jpg' %}'); {% endcomment %}
+            background-image:url('{% static 'trendles/trendleslogo1.png' %}');
             background-size: cover;
             width: 200px;
             height: 75px;
@@ -356,16 +356,16 @@
             <a href="{% url 'Homepage'%}">Home</a>
             {% comment %} <a href="#">Dashboard</a> {% endcomment %}
             <a href="{% url 'allclubleads' %}">Club-leads</a>
-
+            
             {% if  user.is_authenticated %}
             <a href="{% url 'userprofile'%}">Profile</a>
             {% else%}
             <a href="{% url 'login'%}">Login</a>
             {% endif%}
 
-            <a href="{% url 'calander'%}">Calander</a>
+            <a href="{% url 'calander'%}">Calendar</a>
             <a href="{% url 'announcement'%}">Announcements</a>
-            <a href="{% url 'elections'%}">Elections</a>
+            <a href="{% url 'elections' %}?majorclub=Trendles">Elections</a>
             <a href="{% url 'settings'%}">Settings</a>
         </ul>
         <div class="image-container"></div>
@@ -381,7 +381,7 @@
         <div class="card c club club1">
             <div class="overlay"></div>
             <div class="icontent">
-                <h1 class="sub-head">Debating and Quizes</h1>
+                <h1 class="sub-head">Debate and Quizes </h1>
                 <p class="vanish-reappear-text">"Ideas collide, perspectives unite, and knowledge thrives."</p>
             </div>
         </div>
@@ -390,7 +390,7 @@
         <div class="card c club club2">
             <div class="overlay"></div>
             <div class="icontent">
-                <h1 class="sub-head">Literacy club</h1>
+                <h1 class="sub-head">Literary club</h1>
                 <p class="vanish-reappear-text">"Words have the power to paint pictures in the mind and ignite the imagination."</p>
             </div>
         </div>
@@ -399,7 +399,7 @@
         <div class="card c club club3">
             <div class="overlay"></div>
             <div class="icontent">
-                <h1 class="sub-head">Chitrachaya (Videography and Photography club)</h1>
+                <h1 class="sub-head">Chitrachaya </h1>
                 <p class="vanish-reappear-text">"If you can see it, you can shoot it."</p>
             </div>
         </div> 
@@ -417,7 +417,7 @@
         <div class="card c club club5">
             <div class="overlay"></div>
             <div class="icontent">
-                <h1 class="sub-head">Marketting and Outreach</h1>
+                <h1 class="sub-head">Marketing and Outreach Club</h1>
                 <p class="vanish-reappear-text">"Marketting is all about innovation"</p>
             </div>
         </div>

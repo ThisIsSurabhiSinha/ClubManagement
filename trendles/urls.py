@@ -17,12 +17,13 @@ urlpatterns = [
     path('calander',views.calander,name="calander"),
     path('announcement',views.announcement,name="announcement"),
     path('settings',views.settings,name="settings"),
-    path('elections',views.elections,name="elections"),
+    # path('elections',views.elections,name="elections"),
+    re_path(r'^elections/$', views.elections, name="elections"),
     path('upload_image',views.upload_image,name="upload_image"),
-    # re_path(r'^allclubleads/$', views.subclubleads, name="clubleads2"),
-    # re_path(r'^allclubleads/(?P<subclub_name>[\w\s-]+)/(?P<majorclub>[\w\s-]+)/$', views.subclubleads, name="clubleads2")
-
-    # path('<str:slug>',views.subclubleads,name="subclubleads"),
-    
-    #path('<str:subClub_slug>', views.subClub_detail, name='subClub_detail'),
+    path('quizclub',views.quizclub,name="quizclub"),
+    path('Literary_upload_document',views.Literary_upload_document,name="Literary_upload_document"),
+    path('design_club_upload_document',views.design_club_upload_document,name="design_club_upload_document"),
+    path('finance_club_upload_document',views.finance_club_upload_document,name="finance_club_upload_document"),
+    path('market_club_upload_document',views.market_club_upload_document,name="market_club_upload_document"),
+    path('create_announcement', views.create_announcement, name='create_announcement'),
 ]

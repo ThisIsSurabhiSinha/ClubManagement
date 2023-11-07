@@ -2,7 +2,16 @@
 <html>
     <head>
         {% load static%}
-        <title>Literature</title>
+        {% comment %} <title>Literature</title> {% endcomment %}
+        <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+        integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
         <style>
             body {
                 margin: 0;
@@ -358,32 +367,63 @@
         <nav class="side-navbar">
             <ul>
                 <a href="{% url 'Homepage'%}">Home</a>
-                <a href="#">Dashboard</a>
-                <a href="{% url 'clubleads' %}?subclub_name={{club}}&majorclub=trendles">Club-leads</a>
+                <a href="{% url 'trendlesHome'%}">Trendles</a>
+                {% comment %} <a href="{% url 'clubleads' %}?subclub_name={{ subclub_name|urlize }}&majorclub={{ majorclub|urlize }}">Club-leads</a> {% endcomment %}
+                <a href="{% url 'clubleads' %}?subclub_name={{ subclub_name|urlize }}&majorclub={{ majorclub|urlize }}">Club-leads</a>
                 {% if  user.is_authenticated %}
                 <a href="{% url 'userprofile'%}">Profile</a>
                 {% else%}
                 <a href="{% url 'login'%}">Login</a>
                 {% endif%}
     
-                <a href="{% url 'calander'%}">Calander</a>
+                <a href="{% url 'calander'%}">Calendar</a>
                 <a href="{% url 'announcement'%}">Announcements</a>
-                <a href="{% url 'elections'%}">Elections</a>
+                <a href="{% url 'elections' %}?majorclub=Trendles">Elections</a>
                 <a href="{% url 'settings'%}">Settings</a>
-            </ul>
+            </ul>  <div class="image-container"></div>
         </nav>
         <div class="main-container">
             <div class="card profile">
                 <div class="overlay"></div>
                 <div class="profile-content icontent">
-                    <h1>Welcome to Literature Club</h1>
-                    <h5 class="vanish-reappear-text">----------You can put your Announcements here-------------</h5>
+                    <h1>Welcome to Literary Club</h1>
+                    <h5 class="vanish-reappear-text">
+                        Where Words Come to Life</h5>
+                </div>
+            </div>
+            <div id="messages">
+                {% for message in messages  %}            
+                <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                      <strong>Message : </strong> {{ message }}
+                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                {% endfor %} 
+            {% if user.is_authenticated%}
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">💰 Join the Finance Club and Shape Your Financial Future! 📈</h5>
+                    <p class="card-text">
+                        We are the architects of financial success, the stewards of wealth, and the builders of prosperous futures. 💼
+            
+                        If you have a passion for finance, investments, or financial planning, this is your opportunity to shine and take control of your financial destiny! 💡
+            
+                        Join our elite club, connect with experts in the field, and unlock a world of possibilities to grow your knowledge, build wealth, and secure your financial future. 💰
+            
+                        Together, we'll explore investment strategies, financial planning techniques, and navigate the complex world of finance with confidence. 📊
+            
+                        Be part of our journey to make informed financial decisions, achieve your goals, and lead a life of financial independence. 🌟
+            
+                        Your financial goals are within reach, and we'll help you get there. Let's shape your financial future, together! 🚀
+                    </p>
+                    {% comment %} <a href="#" class="btn btn-primary">Start Your Journey</a> {% endcomment %}
                 </div>
             </div>
             <div class="card-container">
                 <div class="card c uploader">
                     <h3 class="icontent">
-                        You can Upload your Photos here
+                        You can Upload your scripts here
                     </h3>
                     <div class="overlay"></div>
                     <div class="inner-card card icontent" id="dropArea">
@@ -395,14 +435,58 @@
 
                         </div>
                     </div>
-                    <form id="upload-form" action="upload.php" method="post" enctype="multipart/form-data" class="icontent">
-                        <label>Select Photo (JPG, JPEG, PNG, PDF, Word):</label>
-                        <input type="file" id="fileInput" onchange="displayFileInfo()">
+                    <form id="upload-form" action="Literary_upload_document" method="post" enctype="multipart/form-data" class="icontent">
+                         {% csrf_token %}<label>Select Photo (JPG, JPEG, PNG, PDF, Word):</label>
+                        <input type="file" name="document" id="fileInput" onchange="displayFileInfo()">
+                        <br>
+                        <label>Title</label>
+                        <input type="text" name="title" id="fileInput">
+                        <br>
+                        <label>Description</label>
+                        <input type="text" name="description" id="fileInput">
                         <br>
                         <input type="submit" value="Upload Document" id="fileInput" class="corner">
                     </form>
                 </div>
+                {% else%}
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            📚 Join the Literary Club and Unleash Your Creative Words! 🖋️</h5>
+        <p class="card-text">
+            We are the wordsmiths, the dreamers, and the storytellers who bring tales to life through the power of words. 📖
+            
+            If you have a passion for literature, writing, or expressing your thoughts through the written word, this is your platform to shine and explore the boundless world of creativity. 📝
+            
+            Join our vibrant club, connect with fellow wordsmiths, and embark on a journey of imagination, storytelling, and literary exploration. 🌈
+            
+            Together, we'll dive into the realms of poetry, prose, and creative writing, unleashing your inner wordsmith and nurturing your literary talents. ✨
+            
+            Be a part of our literary adventure, where your words become stories, your ideas transform into narratives, and your creativity knows no bounds. 🎨
+            
+            Your literary dreams are just a pen stroke away, and we're here to help you make them a reality. Let's create stories, poems, and art with words, together! 📔
+                        </p>
+                         <a href="/login" class="btn btn-primary">Login to show your creative writing skills.</a>
+                    </div>
+                </div>
+                {%endif%}
         </div>
+        <script
+        src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"
+      ></script>
+      <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+        integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+        crossorigin="anonymous"
+      ></script>
+      <script
+        src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+        integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+        crossorigin="anonymous"
+      ></script>
+      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <div class="dancegif moving-hand">
             <img src="https://tse4.mm.bing.net/th?id=OIP.810pYq-OpQC4phaPj5yBxwHaEX&pid=Api&P=0&h=180" alt="Chitra's cam" width="90px">
         </div>

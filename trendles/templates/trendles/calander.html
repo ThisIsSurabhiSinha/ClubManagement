@@ -2,6 +2,7 @@
 <html>
     <head>
         <title>Calender</title>
+        {%load static%}
         <style>
             body {
                 margin: 0;
@@ -263,7 +264,7 @@
             height: 150px;
             }
             .image-container {
-            background-image: url(trendleslogo1.png);
+            background-image: url('{%static "trendles/trendleslogo1.png"%}');
             background-size: cover;
             width: 200px;
             height: 74px;
@@ -560,14 +561,14 @@
     
         <nav class="side-navbar">
             <ul>  <a href="{% url 'Homepage'%}">Home</a>
-                <a href="{% url 'trendlesHome'%}">Dashboard</a>
-                <a href="{% url 'clubleads' %}?subclub_name={{club}}&majorclub=trendles">Club-leads</a>
+                <a href="{% url 'trendlesHome'%}">Trendles</a>
+                {% comment %} <a href="{% url 'clubleads' %}?subclub_name={{club}}&majorclub=trendles">Club-leads</a> {% endcomment %}
                 {% if  user.is_authenticated %}
                 <a href="{% url 'userprofile'%}">Profile</a>
                 {% endif%}
-            <a href="{% url 'calander'%}">Calander</a>
+            <a href="{% url 'calander'%}">Calendar</a>
             <a href="{% url 'announcement'%}">Announcements</a>
-            <a href="{% url 'elections'%}">Elections</a>
+            <a href="{% url 'elections' %}?majorclub=Trendles">Elections</a>
             <a href="{% url 'settings'%}">Settings</a>
                 <div class="image-container"></div>
             </ul>
@@ -639,10 +640,8 @@
             <div class="date" style="--color:#d9db7a">31</div>
             <!-- Add more date elements here -->
     
-            <div class="month month--title" style="--color:#7ab6db">you've got plans</div>
-            <div class="explanation" style="--color:#7ab2db">
-                Part of the <a href="https://codepen.io/collection/DQvYpQ/" target="_blank">CSS Grid collection here</a>.
-            </div>
+            <div class="month month--title" style="--color:#7ab6db">You've got plans</div>
+           
             <footer style="--color:#7ab2db">
                 <a href="https://twitter.com/meowlivia_" target="_blank">
                     <i class="icon-social-twitter icons"></i>

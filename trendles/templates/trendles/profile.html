@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>My Profile</title>
+        
         <style>
             body {
                 margin: 0;
@@ -276,31 +276,32 @@
                 {% else%}
                 <a href="{% url 'login'%}">Login</a>
                 {% endif%}
-{% comment %}     
-                <a href="{% url 'calander'%}">Calander</a>
+     
+                <a href="{% url 'calander'%}">Calendar</a>
                 <a href="{% url 'announcement'%}">Announcements</a>
-                <a href="{% url 'elections'%}">Elections</a>
-                <a href="{% url 'settings'%}">Settings</a> {% endcomment %}
-                <div class="image-container"></div>
+                <a href="{% url 'elections' %}?majorclub=Trendles">Elections</a>
+                <a href="{% url 'settings'%}">Settings</a> 
+                {% comment %} <div class="image-container"></div> {% endcomment %}
             </ul>
         </nav>
         <div class="main-container">
             <div class="profile-container">
                 <img class="profile-pic" src="https://www.shareicon.net/data/512x512/2015/09/18/103159_user_512x512.png" alt="Profile Picture">
-                <h1>Name: {{ first_name}} {{last_name}}</h1>
-                <p>Email: {{ email}}</p>
-                {% if phone is not None%}
-                <p>Phone: {{phone}}</p>{% endif%}
-                {% if linkedin_profile is not None%}
-                <p>Linkedin:{{linkedin_profile}}</p>{% endif%}
-                {% if program is not program%}
-                <p>Program :{{program }}</p>{% endif%}
-                {% if batch is not None%}
-                <p>Department:{{ department}}</p>{% endif%}
-                {% if batch is not None%}
-                <p>Batch:{{batch}}</p>{% endif%}
+                <h1>Name: {{ student_info.first_name}} {{student_info.last_name}}</h1>
+                <p>Email: {{ student_info.email}}</p>
+                {% if student_info.phone is not None%}
+                <p>Phone: {{student_info.phone}}</p>{% endif%}
+                {% if student_info.linkedin_profile is not None%}
+                <p>Linkedin:{{student_info.linkedin_profile}}</p>{% endif%}
+                {% if student_info.program is not None%} 
+                <p>Program :{{student_info.program }}</p>{% endif%}
+                {% comment %} {% endif%} {% endcomment %}
+                {% if student_info.department is not None%}
+                <p>Department:{{ student_info.department}}</p>{% endif%}
+                {% if student_info.batch is not None%}
+                <p>Batch:{{student_info.batch}}</p>{% endif%}
                 
-                <div class="achievements">
+                 <div class="achievements">
                     <h2>Achievements:</h2>
                     <ul>
                         <li>First Place in XYZ Competition</li>
@@ -308,13 +309,22 @@
                         <!-- Add more achievements as needed -->
                     </ul>
                 </div>
-        
+         
                 <div class="contributions">
                     <h2>Contributions:</h2>
                     <ul>
-                        <li>Suggestions: <b>{{suggestion_count}}</b></li>
-                        <li>Started a charity project in 2019</li>
-                        <li>Contributed to open-source projects</li>
+                        {% for x,y in contributions.items %}
+                        {% if y %} 
+
+                        
+                        <li>{{x }} : <b>{{y}}</B></li>
+                        {% comment %} <li>Suggestions: <b> {{Suggestions}}</b></li> {% endcomment %}
+                        {% comment %} <li>Started a charity project in 2019</li>
+                        <li>Contributed to open-source projects</li> {% endcomment %}
+                       
+                        
+                        {% endif %}
+                        {% endfor %}
                     </ul>
                 </div>
                 <button class="logout-button" onclick="logout()">Logout</button>
@@ -325,7 +335,7 @@
         function logout()
         {
             // Define the URL you want to redirect to
-            var url = '/Home/logout';  // Replace with your desired URL
+            var url = '/logout';  // Replace with your desired URL
 
             // Redirect to the specified URL
             window.location.href = url;

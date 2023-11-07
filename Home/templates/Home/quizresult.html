@@ -39,12 +39,12 @@
 
         .centered-box:hover {
             transform: scale(1.2);
-            box-shadow: 0 0 40px 20px rgba(255, 215, 0, 1); /* Changed glow color to gold */
+            box-shadow: 0 0 40px 20px rgb(255, 0, 191); /* Changed glow color to gold */
         }
 
         .centered-box:hover .box-content {
-            color: #ffd700; /* Changed text color to gold */
-            text-shadow: 0 0 20px rgba(255, 215, 0, 1); /* Added glow effect to text */
+            color: #ff0080; /* Changed text color to gold */
+            text-shadow: 0 0 20px rgb(255, 0, 166); /* Added glow effect to text */
         }
 
         .box-text {
@@ -61,14 +61,14 @@
         }
 
         .external-link:hover {
-            color: #ffd700;
+            color: #ff00bb;
         }
     </style>
 </head>
 <body>
     <div class="centered-box">
         <div class="box-content">
-            <div class="box-text">{{ my_list.mylist.0 }}</div>
+            <div class="box-text"><b>{{ my_list.mylist.0 }}</b></div>
         </div>
     </div>
     <a href="{% url 'quizresult2' %}?all={{ my_list.mylist|join:',' }}" class="external-link">Click here to explore all the clubs</a>
