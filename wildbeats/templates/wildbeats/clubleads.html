@@ -1,8 +1,9 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
-    {% load static%}
     <title>Clubleads</title>
+    {% load static%}
+    {% comment %} {% load custom_tags %} {% endcomment %}
     <style>
         body {
                 margin: 0;
@@ -75,7 +76,15 @@
                 background-position: 100% 0;
             }
         }
-
+        #incharge1{
+            border-radius: 50%;
+            width: 170px;
+        } 
+        #incharge2
+        {
+            border-radius: 50%;
+            width: 170px;
+        }
         /* ______________________________________________________________________to align sentences column wise to wards end__________________________________________________________________ */
         .flex-end {
             align-items: flex-end;
@@ -199,39 +208,25 @@
                 bottom: 20px;
             }
         }
-         #incharge1{
+        .lead{
             border-radius: 50%;
-            width: 170px;
-        } 
-        #incharge2
-        {
-            border-radius: 50%;
-            width: 170px;
-        }
-         .incharge-image-element{
-            border-radius: 50%;
-            width: 170px;
+            width: 150px;
             display: inline-block;
-            width: 60%; /* You can adjust the width as needed */
-            margin: 10px; /*
-        } 
-        #sub1{
+            width: 60%; /* You can adjust the width as needed */ 
+            margin: 10px; /* Add margin for spacing */
+        }
+        .sublead{
             border-radius: 50%;
             width: 150px;
+            display: inline-block;
+             width: 60%; /* You can adjust the width as needed */ 
+            margin: 10px; /* Add margin for spacing */
         }
-        #sub2{
-            border-radius: 50%;
-            width: 150px;
-        }
-        #sub3{
-            border-radius: 50%;
-            width: 150px;
-        }
+    
         .element {
             display: inline-block;
             width: 60%; /* You can adjust the width as needed */
             margin: 10px; /* Add margin for spacing */
-            
         }
         .expandable-content {
             max-height: 0;
@@ -294,59 +289,50 @@
         .a-button:hover{
             background-color: rgba(172, 255, 47, 0.974)
         }
-        #sub2{
-            border-radius: 50%;
-            width: 150px;
-        }
-        #sub3{
-            border-radius: 50%;
-            width: 150px;
-        }
     </style>
-
-<script>
-    var isContainerExpanded = false;
-
-    // Function to toggle container
-    function toggleContainer(container) {
-        var expandableContent = container.querySelector(".expandable-content");
-        if (isContainerExpanded) {
-            expandableContent.style.maxHeight = null;
-            expandableContent.classList.remove("expanded");
-            isContainerExpanded = false;
-        } else {
-            expandableContent.style.maxHeight = "500px";
-            expandableContent.classList.add("expanded");
-            isContainerExpanded = true;
+    <script>
+        var isContainerExpanded = false;
+    
+        // Function to toggle container
+        function toggleContainer(container) {
+            var expandableContent = container.querySelector(".expandable-content");
+            if (isContainerExpanded) {
+                expandableContent.style.maxHeight = null;
+                expandableContent.classList.remove("expanded");
+                isContainerExpanded = false;
+            } else {
+                expandableContent.style.maxHeight = "500px";
+                expandableContent.classList.add("expanded");
+                isContainerExpanded = true;
+            }
         }
-    }
-
-    // Function to add a new announcement to the list
-    function addAnnouncement(containerId, text) {
-        const announcementList = document.getElementById("announcement-list" + containerId);
-        const listItem = document.createElement("li");
-        listItem.className = "announcement-item";
-        listItem.textContent = text;
-        announcementList.appendChild(listItem);
-
-        // Hide the "No Announcements" element when an announcement is added
-        const noAnnouncementsElement = document.getElementById("no-announcements" + containerId);
-        noAnnouncementsElement.style.display = "none";
-    }
-
-    // Handle form submission for all announcement forms
-    {% for lead in all_leads|slice:":2" %}
-    document.getElementById("announcement-form{{ forloop.counter }}").addEventListener("submit", function (event) {
-        event.preventDefault();
-        const containerId = {{ forloop.counter }};
-        const announcementText = document.getElementById("announcement-text{{ forloop.counter }}").value;
-        if (announcementText) {
-            addAnnouncement(containerId, announcementText);
-            document.getElementById("announcement-text{{ forloop.counter }}").value = ""; // Clear the input field
+    
+        // Function to add a new announcement to the list
+        function addAnnouncement(containerId, text) {
+            const announcementList = document.getElementById("announcement-list" + containerId);
+            const listItem = document.createElement("li");
+            listItem.className = "announcement-item";
+            listItem.textContent = text;
+            announcementList.appendChild(listItem);
+    
+            // Hide the "No Announcements" element when an announcement is added
+            const noAnnouncementsElement = document.getElementById("no-announcements" + containerId);
+            noAnnouncementsElement.style.display = "none";
         }
-    });
-    {% endfor %}
-</script>
+    
+        // Handle form submission for all announcement forms
+        {% for lead in all_leads|slice:":2" %}
+        document.getElementById("announcement-form{{ forloop.counter }}").addEventListener("submit", function (event) {
+            event.preventDefault();
+            const containerId = {{ forloop.counter }};
+            const announcementText = document.getElementById("announcement-text{{ forloop.counter }}").value;
+            if (announcementText) {
+                addAnnouncement(containerId, announcementText);
+                document.getElementById("announcement-text{{ forloop.counter }}").value = ""; // Clear the input field
+            }
+        });
+        {% endfor %}
+    </script>       
     
 </head>
 <body>
@@ -370,85 +356,85 @@
     </nav>
 
     <nav class="side-navbar">
-        <ul>  <a href="{% url 'Homepage'%}">Home</a>
-            <a href="{% url 'trendlesHome'%}">Trendles</a>
-            <a href="{% url 'allclubleads'%}">Club-leads</a>
+        <ul>
+            <a href="{% url 'Homepage'%}">Home</a>
+            <a href="{% url 'wildbeatsHome'%}">Wildbeats</a>
+            {% comment %} <a href="{% url 'clubleads'%}">Club-leads</a> {% endcomment %}
             {% if  user.is_authenticated %}
             <a href="{% url 'userprofile'%}">Profile</a>
             {% else%}
             <a href="{% url 'login'%}">Login</a>
             {% endif%}
-        <a href="{% url 'calander'%}">Calander</a>
+        <a href="{% url 'calander'%}">Calendar</a>
         <a href="{% url 'announcement'%}">Announcements</a>
-        <a href="{% url 'elections' %}?majorclub=Trendles">Elections</a>
+        <a href="{% url 'elections' %}?majorclub=Wildbeats">Elections</a>
         <a href="{% url 'settings'%}">Settings</a>
             <div class="image-container"></div>
         </ul>
     </nav>
-    
-  
-        <div class="main-container">
-            <h2>{{ majorclub }} Mentors</h2>
-            {% for lead in all_leads|slice:":2" %}
-            <div class="container" onclick="toggleContainer(this)">
-                <div class="container nillborder flex">
-                    <img src="{% static majorclub|lower %}/unknown.png" id="incharge{{ forloop.counter }}" class="element">
-                    {% comment %} <img src="{% static majorclub|lower %}/unknown.png" id="incharge{{ forloop.counter }}" class="element" style="border-radius: 50%; width: 150px;"> {% endcomment %}
 
-                    <div class="element">
-                        <h1>{{ lead.name }}</h1>
-                        <p class="element"><b>Email ID:</b><span class="email" id="TM{{ forloop.counter }}emailID">{{ lead.email }}</span></p>
-                        <p class="element"><b>Phone Number:</b><span class="phone" id="TM{{ forloop.counter }}phoneNo">{{ lead.phone }}</span></p>
-                    </div>
+    <div class="main-container">
+        <h2>{{ majorclub }} Mentors</h2>
+        {% for lead in all_leads1 %}
+        <div class="container" onclick="toggleContainer(this)">
+            <div class="container nillborder flex">
+                <img src="{% static majorclub|lower %}/unknown.png" id="incharge{{ forloop.counter }}" class="element">
+                {% comment %} <img src="{% static majorclub|lower %}/unknown.png" id="incharge{{ forloop.counter }}" class="element" style="border-radius: 50%; width: 150px;"> {% endcomment %}
+
+                <div class="element">
+                    <h1>{{ lead.name }}</h1>
+                    <p class="element"><b>Email ID:</b><span class="email" id="TM{{ forloop.counter }}emailID">{{ lead.email }}</span></p>
+                    <p class="element"><b>Phone Number:</b><span class="phone" id="TM{{ forloop.counter }}phoneNo">{{ lead.phone }}</span></p>
                 </div>
-                <div class="expandable-content" id="trendlesContent{{ forloop.counter }}">
-                    <div class="a-container">
-                        <div class="announcements container">
-                            <h2>Announcements</h2>
-                            <ul class="announcement-list" id="announcement-list{{ forloop.counter }}">
-                                <!-- Announcements will be displayed here -->
-                                {% for announcement in announcements_two_days_ago %}
+            </div>
+            <div class="expandable-content" id="trendlesContent{{ forloop.counter }}">
+                <div class="a-container">
+                    <div class="announcements container">
+                        <h2>Announcements</h2>
+                        <ul class="announcement-list">
+                            {% for announcement in announcements_two_days_ago %}
                                 <li class="announcement-item"><marquee><b>{{ announcement.content }}</b></marquee></li>
                             {% empty %}
                                 {% comment %} <li class="announcement-item">No Announcements</li> {% endcomment %}
                             {% endfor %}
-                            </ul>
-                        </div>
-                        <div class="announcement-form">
-                            <h4>Add announcements</h4>
-                            <form class="announcement-form" id="announcement-form{{ forloop.counter }}" action="/trendles/create_announcement" method="post">
-                                {% csrf_token %}
-                                <textarea name="announcement-text-{{ lead.id }}" class="announcement-text" id="announcement-text{{ forloop.counter }}" rows="4" required></textarea>
-                                
-                                <button type="submit" class="a-button">Submit</button>
-                            </form>
-                        </div>
+                        </ul>
+                      
+                    </div>
+                    <div class="announcement-form">
+                        <h4>Add announcements</h4>
+
+                        <form class="announcement-form" id="announcement-form{{ forloop.counter }}" action="/trendles/create_announcement" method="post">
+                            {% csrf_token %}
+                            <textarea name="announcement-text-{{ lead.id }}" class="announcement-text" id="announcement-text{{ forloop.counter }}" rows="4" required></textarea>
+                            
+                            <button type="submit" class="a-button">Submit</button>
+                        </form>
+                        
                     </div>
                 </div>
             </div>
-            {% endfor %}
-        
-        <hr> 
-        
-        
-        <h2>Sub clubs Leads</h4>
-        {% for lead in all_leads %}
-        {% if forloop.counter > 2 %}
-            <h4 style="color: Black;">{{subclub_name }} Sub leads</h4>
-            <div class="container flex">
-                {% comment %} <img src="{% static majorclub|lower %}/unknown.png" id="sub{{ forloop.counter|add:"-2"}} class="element"> {% endcomment %}
-                <img src="{% static majorclub|lower %}/unknown.png" id="incharge{{ forloop.counter }}" class="element" style="border-radius: 50%; width: 150px;">
-
-                <div class="element">
-                    <h1>{{lead.name}} </h1>
-                    <p class="element"><b>Email ID:  </b><span id="TC{{ forloop.counter |add:"-2"}}email">{{ lead.email }} </span></p>
-
-                    <p class="element"><b>Phone Number:</b><span id="TC{{ forloop.counter|add:"-2" }}phoneNo">{{ lead.phone }}</span></p>
-                </div>
-            </div>
-       {% endif %}
-    {% endfor %}
         </div>
+        {% endfor %}
+    
+    <hr> 
+    
+    
+    <h2>Sub clubs Leads</h2>
+    {% for clubname , subleads in all_leads.items %}
+    {% for lead in subleads%}
+        <h4 style="color: black;">{{clubname }} Sub leads</h4>
+        <div class="container flex">
+            <img src="{% static majorclub|lower %}/unknown.png" id="incharge{{ forloop.counter }}" class="element" style="border-radius: 50%; width: 150px;">
+
+            <div class="element">
+                <h1>{{lead}} </h1>
+                <a href="/wildbeats/clubleads/?subclub_name={{ clubname }}&majorclub={{ majorclub }}">Click for more details</a>
+
+            </div>
+        </div>
+        {% endfor%}
+{% endfor %}
+    </div>
     
     <div class="dancegif moving-hand">
         <img src="http://i3.cpcache.com/product/1277750812/leader_of_the_pack_wall_decal.jpg?height=630&width=630&qv=90 " width="130px">

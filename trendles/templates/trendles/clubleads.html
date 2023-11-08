@@ -393,7 +393,7 @@
                         <h2>Announcements</h2>
                         <ul class="announcement-list">
                             {% for announcement in announcements_two_days_ago %}
-                                <li class="announcement-item">{{ announcement.content }}</li>
+                                <li class="announcement-item"><marquee><b>{{ announcement.content }}</b></marquee></li>
                             {% empty %}
                                 {% comment %} <li class="announcement-item">No Announcements</li> {% endcomment %}
                             {% endfor %}
@@ -405,7 +405,8 @@
 
                         <form class="announcement-form" id="announcement-form{{ forloop.counter }}" action="/trendles/create_announcement" method="post">
                             {% csrf_token %}
-                            <textarea name="announcement-text" class="announcement-text" id="announcement-text{{ forloop.counter }}" rows="4" required></textarea>
+                            <textarea name="announcement-text-{{ lead.id }}" class="announcement-text" id="announcement-text{{ forloop.counter }}" rows="4" required></textarea>
+                            
                             <button type="submit" class="a-button">Submit</button>
                         </form>
                         

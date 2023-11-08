@@ -342,7 +342,7 @@
         <ul>
             <a href="{% url 'Homepage'%}">Home</a>
             {% comment %} <a href="{% url 'trendlesHome'%}">Trendles</a> {% endcomment %}
-            <a href="{% url majorclub|lower|add:'Home' %}">{{ majorclub }}</a>
+            {% comment %} <a href="{% url majorclub|lower|add:'Home' %}">{{ majorclub }}</a> {% endcomment %}
 
             {% comment %} <a href="{% url 'clubleads' %}?subclub_name={{club}}&majorclub=all">Club-leads</a> {% endcomment %}
             {% if  user.is_authenticated %}

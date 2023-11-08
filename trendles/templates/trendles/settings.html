@@ -310,7 +310,7 @@ button.addEventListener('click', () => {
 
     <nav class="side-navbar">
         <ul>   <a href="{% url 'Homepage'%}">Home</a>
-            <a href="{% url 'trendlesHome'%}">Trendles</a>
+            {% comment %} <a href="{% url 'trendlesHome'%}">Trendles</a> {% endcomment %}
             {% comment %} <a href="{% url 'clubleads'%}">Club-leads</a> {% endcomment %}
             {% if  user.is_authenticated %}
             <a href="{% url 'userprofile'%}">Profile</a>

@@ -188,7 +188,7 @@
             list-style-type: none;
             padding: 0px;
         }
-        #announcement-text {
+        .announcement-text {
             padding: 10px;
             margin: 5px 0;
             border: 1px solid #ccc;
@@ -248,7 +248,52 @@
             }
         }
     </style>
-</head>
+  
+    <script>
+        var isContainerExpanded = false;
+    
+        // Function to toggle container
+        function toggleContainer(container) {
+            var expandableContent = container.querySelector(".expandable-content");
+            if (isContainerExpanded) {
+                expandableContent.style.maxHeight = null;
+                expandableContent.classList.remove("expanded");
+                isContainerExpanded = false;
+            } else {
+                expandableContent.style.maxHeight = "500px";
+                expandableContent.classList.add("expanded");
+                isContainerExpanded = true;
+            }
+        }
+    
+        // Function to add a new announcement to the list
+        function addAnnouncement(containerId, text) {
+            const announcementList = document.getElementById("announcement-list" + containerId);
+            const listItem = document.createElement("li");
+            listItem.className = "announcement-item";
+            listItem.textContent = text;
+            announcementList.appendChild(listItem);
+    
+            // Hide the "No Announcements" element when an announcement is added
+            const noAnnouncementsElement = document.getElementById("no-announcements" + containerId);
+            noAnnouncementsElement.style.display = "none";
+        }
+    
+        // Handle form submission for all announcement forms
+        {% for lead in all_leads|slice:":2" %}
+        document.getElementById("announcement-form{{ forloop.counter }}").addEventListener("submit", function (event) {
+            event.preventDefault();
+            const containerId = {{ forloop.counter }};
+            const announcementText = document.getElementById("announcement-text{{ forloop.counter }}").value;
+            if (announcementText) {
+                addAnnouncement(containerId, announcementText);
+                document.getElementById("announcement-text{{ forloop.counter }}").value = ""; // Clear the input field
+            }
+        });
+        {% endfor %}
+    </script>
+         
+    </head>
 <body>
     {% load static%}
     <nav class="tofix">
@@ -273,7 +318,7 @@
 
     <nav class="side-navbar">
         <ul>  <a href="{% url 'Homepage'%}">Home</a>
-            <a href="{% url 'trendlesHome'%}">Trendles</a>
+            {% comment %} <a href="{% url 'trendlesHome'%}">Trendles</a> {% endcomment %}
             {% comment %} <a href="{% url 'clubleads'%}">Club-leads</a> {% endcomment %}
             {% if  user.is_authenticated %}
             <a href="{% url 'userprofile'%}">Profile</a>
@@ -292,61 +337,23 @@
         <div class="head container"> 
         <h1 class="heading"></h1>
         </div>
+       
         <div class="a-container">
             <div class="announcements container">
-                <h2>Announcement List</h2>
-                <ul class="announcement-list" id="announcement-list">
-                <!-- Announcements will be displayed here -->
-                <li class="announcement-item" id="no-announcements">No Announcements</li>
-            </ul>
+                <h2>Announcements</h2>
+                <ul class="announcement-list" id="announcement-list{{ forloop.counter }}">
+                    <!-- Announcements will be displayed here -->
+                    {% for announcement in announcements_two_days_ago %}
+                    <li class="announcement-item"><marquee><b>{{ announcement.content }} HII</b></marquee></li>
+                {% empty %}
+                   {% endfor%}
+                </ul>
             </div>
-            {% if request.user.groups.all %}
-            {% for group in request.user.groups.all %}
-                {% if group.name == "Mentors" or group.name == "Subleads" %}
-                            {% comment %} {% if request.user|get_user_group == "Mentors" or request.user|get_user_group == "Subleads" %} {% endcomment %}
-                            <div class="announcement-form">
-                                <h4>Add a Contribution</h4>
-                                <form class="announcement-form" id="announcement-form{{ forloop.counter }}">
-                                    <textarea class="announcement-text" id="announcement-text{{ forloop.counter }}" rows="4" required></textarea>
-                                    <button type="submit" class="a-button">Submit</button>
-                                </form>
-                            </div>
-                            {% comment %} {% endif %} {% endcomment %}
-                        </div>
-                    </div>
-                </div>
-                {% endif %}
-                {% endfor %}
-            {% endif %}
-            </div>
-        </div>
-        
+     
+    </div> 
     </div>
-
-    <script>
-        // Function to add a new announcement to the list
-        function addAnnouncement(text) {
-            const announcementList = document.getElementById("announcement-list");
-            const listItem = document.createElement("li");
-            listItem.className = "announcement-item";
-            listItem.textContent = text;
-            announcementList.appendChild(listItem);
-            
-            // Hide the "No Announcements" element when an announcement is added
-            const noAnnouncementsElement = document.getElementById("no-announcements");
-            noAnnouncementsElement.style.display = "none";
-        }
-
-        // Handle form submission
-        document.getElementById("announcement-form").addEventListener("submit", function (event) {
-            event.preventDefault();
-            const announcementText = document.getElementById("announcement-text").value;
-            if (announcementText) {
-                addAnnouncement(announcementText);
-                document.getElementById("announcement-text").value = ""; // Clear the input field
-            }
-        });
-    </script>
+   
+    
     <div class="dancegif moving-hand">
         <img src="https://tse4.mm.bing.net/th?id=OIP.5JnHCZJDdQhbtc8bKqJwBgHaE-&pid=Api&P=0&h=180" width="130px">
     </div>

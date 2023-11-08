@@ -5,10 +5,11 @@ from django.contrib.auth.models import User
 from django.contrib.contenttypes.models import ContentType
 from django.utils import timezone
 from django.contrib import messages
+from trendles.models import Announcement
 # Create your views here.
 def index(request):
     SubClubs=SubClub.objects.all()
-    return render(request,'wildbeats/wildbeats.html',{'SubClubs':SubClubs})
+    return render(request,'wildbeats/functional.html',{'SubClubs':SubClubs})
 def subClub_detail(request,subClub_slug):
    
     slug=subClub_slug[0].upper()+subClub_slug[1:]
@@ -44,4 +45,76 @@ def handle_suggestion(request,subClub_slug):
           return redirect('subClub_detail', subClub_slug=subClub_slug)
      else:
          return HttpResponse("Error")
-     
+def clubleads(request):
+    # Fetch the first SubClub object
+    displayClub = SubClub.objects.all()
+    displayClub1 = SubClub.objects.all().first()
+    all_leads = {}
+    all_leads1=[]
+    leader_fields = ['leader1', 'leader2']
+    k=1
+    for field in leader_fields:
+        leader_name = getattr(displayClub1, field)
+        leader_email = getattr(displayClub1, f"{field}mail")
+        leader_phone = getattr(displayClub1, f"{field}phone")
+        leader_id = k
+        k+=1
+        if leader_name.lower() != "none" and leader_name:
+            field = {
+                'name': leader_name,
+                'email': leader_email,
+                'phone': leader_phone,
+                'id':leader_id
+            }
+            
+            all_leads1.append(field)
+
+    
+    for club in displayClub:
+
+        l=[]
+        if club.subleader1.lower()!="none":
+            l.append(club.subleader1)
+        if club.subleader2.lower()!="none":
+            l.append(club.subleader2)
+        if club.subleader3.lower()!="none":
+            l.append(club.subleader3)
+        all_leads[club]=l
+        two_days_ago = timezone.now() - timezone.timedelta(days=2)
+        announcements_two_days_ago = Announcement.objects.filter(date__gte=two_days_ago)
+ 
+   
+
+    return render(request,'wildbeats/clubleads.html',{'all_leads': all_leads,'majorclub':'Wildbeats','subclub_name':displayClub,'all_leads1': all_leads1,'announcements_two_days_ago':announcements_two_days_ago})
+def subclubleads(request):
+
+    subclub_name = request.GET.get('subclub_name')
+  
+    majorclub = request.GET.get('majorclub')
+ 
+    displayClub = SubClub.objects.filter(club_name=subclub_name).first()
+   
+    
+    all_leads = []
+
+    # Define a list of leader fields to iterate through
+    leader_fields = ['leader1', 'leader2', 'subleader1', 'subleader2', 'subleader3']
+    k=1
+    for field in leader_fields:
+        leader_name = getattr(displayClub, field)
+        leader_email = getattr(displayClub, f"{field}mail")
+        leader_phone = getattr(displayClub, f"{field}phone")
+
+        if leader_name.lower() != "none" and leader_name:
+            field = {
+                'name': leader_name,
+                'email': leader_email,
+                'phone': leader_phone,
+                'id':k
+            }
+            k+=1
+        
+            all_leads.append(field)
+    two_days_ago = timezone.now() - timezone.timedelta(days=2)
+    announcements_two_days_ago = Announcement.objects.filter(date__gte=two_days_ago)
+    return render(request, 'wildbeats/subclubleadstemp.html', {'displayClub': displayClub, 'all_leads': all_leads, 'subclub_name': subclub_name,'majorclub':majorclub,'announcements_two_days_ago':announcements_two_days_ago})

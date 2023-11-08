@@ -176,11 +176,11 @@
             align-items: center;
         }
 
-        .card-image {
+       .card-image {
             width: 100px;
             height: 100px;
             margin-right: 20px;
-        }
+        } 
 
         .card-container {
             display: flex;
@@ -228,26 +228,26 @@
             font-size: 35px;
             transition: font-size ease 0.2s;
         }
-        .club1{
-            background-image: url('{% static 'trendles/debate.png' %}');
+         .club1{
+            background-image:  url('{% static 'wildbeats/dance_club.webp' %}');
         }
 
         .club2{
-            background-image: url('{% static 'trendles/literature.png' %}');
+            background-image: url('{% static 'wildbeats/dramawildbeats.jpeg' %}');
         }
 
         .club3{
-            background-image:url('{% static 'trendles/photography.png' %}');
+            background-image:url('{% static 'wildbeats/musicwildbeats.jpg' %}');
         }
         .club4{
-            background-image: url('{% static 'trendles/creative.png' %}');
+            background-image: url('{% static 'wildbeats/DigitalArt.jpg' %}');
         }
-        .club5{
+        {% comment %} .club5{
             background-image: url('{% static 'trendles/marketting.png' %}');
         }
         .club6{
             background-image: url('{% static 'trendles/finance.png' %}');
-        }
+        }  {% endcomment %}
         .madeby{
             text-align: center;
         }
@@ -315,7 +315,7 @@
         }
 /*____________________________________________________________________________________________________trendles logo______________________________________________________________________*/
         .image-container {
-            background-image:url('{% static 'trendles/trendleslogo1.png' %}');
+            background-image:url('/mediawildbeatslogo.jpg');
             background-size: cover;
             width: 200px;
             height: 75px;
@@ -327,7 +327,11 @@
         .bottom-left-img {
             width: 100%; /* Ensure the image takes the full width of the container */
         }
-
+        .card-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* This property ensures that the image fills the entire space while maintaining its aspect ratio */
+        }
     </style>
 </head>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
@@ -355,7 +359,7 @@
         <ul class="side-head">
             <a href="{% url 'Homepage'%}">Home</a>
             {% comment %} <a href="#">Dashboard</a> {% endcomment %}
-            <a href="{% url 'allclubleads' %}">Club-leads</a>
+            <a href="{% url 'Wallclubleads' %}">Club-leads</a>
             
             {% if  user.is_authenticated %}
             <a href="{% url 'userprofile'%}">Profile</a>
@@ -365,7 +369,7 @@
 
             <a href="{% url 'calander'%}">Calendar</a>
             <a href="{% url 'announcement'%}">Announcements</a>
-            <a href="{% url 'elections' %}?majorclub=Trendles">Elections</a>
+            <a href="{% url 'elections' %}?majorclub=Wildbeats">Elections</a>
             <a href="{% url 'settings'%}">Settings</a>
         </ul>
         <div class="image-container"></div>
@@ -374,65 +378,37 @@
     <div class="main-container">
         <div class="card profile">
             <div class="profile-content">
-                <h1 class="welcome">Welcome to Trendles</h1>
+                <h1 class="welcome">Welcome to Wildbeats </h1>
             </div>
         </div>
-        <a href="{% url 'debating'%}" >
-        <div class="card c club club1">
-            <div class="overlay"></div>
-            <div class="icontent">
-                <h1 class="sub-head">Debate and Quizes </h1>
-                <p class="vanish-reappear-text">"Ideas collide, perspectives unite, and knowledge thrives."</p>
-            </div>
-        </div>
-        </a>
-        <a href="{% url 'literature'%}" target="_self">
-        <div class="card c club club2">
-            <div class="overlay"></div>
-            <div class="icontent">
-                <h1 class="sub-head">Literary club</h1>
-                <p class="vanish-reappear-text">"Words have the power to paint pictures in the mind and ignite the imagination."</p>
-            </div>
-        </div>
-        </a>
-        <a href="{% url 'chitrachaya'%}" >
-        <div class="card c club club3">
-            <div class="overlay"></div>
-            <div class="icontent">
-                <h1 class="sub-head">Chitrachaya </h1>
-                <p class="vanish-reappear-text">"If you can see it, you can shoot it."</p>
-            </div>
-        </div> 
-        </a>
-        <a href="{% url 'designing'%}" > 
-        <div class="card c club club4">
-            <div class="overlay"></div>
-            <div class="icontent">
-                <h1 class="sub-head">Design Club</h1>
-                <p class="vanish-reappear-text">"Design is intelligence made visible"</p>
-            </div>
-        </div>
-        </a>
-        <a href="{% url 'marketing'%}" >
-        <div class="card c club club5">
-            <div class="overlay"></div>
-            <div class="icontent">
-                <h1 class="sub-head">Marketing and Outreach Club</h1>
-                <p class="vanish-reappear-text">"Marketting is all about innovation"</p>
-            </div>
-        </div>
-        </a>
-        <a href="{% url 'finance'%}" >
-        <div class="card c club club6">
-            <div class="overlay"></div>
-            <div class="icontent">
-                <h1 class="sub-head">Finance Club</h1>
-                <p class="vanish-reappear-text">"Unless you control your money, making more wont help.<br>You'll have bigger parameters"</p>
-            </div>
-        </div>
-        </a>
+        {% for message in messages  %}            
+<div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+      <strong>Message : </strong> {{ message }}
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
     </div>
-    <div class="dancegif">
+{% endfor %} 
+{% for i in SubClubs%}
+<a href="{{ i.club_name|slugify }}">
+        {% comment %} <a href="{% url 'debating'%}" > {% endcomment %}
+        <div class="card c club club{{forloop.counter}}">
+            
+            {% comment %} <img src="/media/{{i.image}}" alt="{{i.club_name}} Club"  class="card-image" > {% endcomment %}
+            <div class="overlay"></div>
+             {% comment %} <img src="/media/{{i.image}}" alt="{{i.club_name}} Club" >  {% endcomment %}
+            <div class="icontent">
+                <h1 class="sub-head">{{i.club_name}}</h1>
+                <p class="vanish-reappear-text">{{i.tagline}}</p>
+            </div>
+        </div></a>
+ 
+        {% comment %} </a> {% endcomment %}
+        {% endfor%}
+    </div>  
+
+       
+  <div class="dancegif">
         <img src="https://media.giphy.com/media/7uwHroFO2GIDe/giphy.gif" width="130px">
     </div>
 

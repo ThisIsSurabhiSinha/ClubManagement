@@ -125,4 +125,4 @@ class Announcement(models.Model):
     date=models.DateField(auto_now_add=True)  # The date and time the announcement was created
 
     def __str__(self):
-        return self.id
+        return "annoucement"

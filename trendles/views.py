@@ -39,33 +39,23 @@ def clubleads(request):
     all_leads = {}
     all_leads1=[]
     leader_fields = ['leader1', 'leader2']
-
+    k=1
     for field in leader_fields:
         leader_name = getattr(displayClub1, field)
         leader_email = getattr(displayClub1, f"{field}mail")
         leader_phone = getattr(displayClub1, f"{field}phone")
-
+        leader_id = k
+        k+=1
         if leader_name.lower() != "none" and leader_name:
             field = {
                 'name': leader_name,
                 'email': leader_email,
                 'phone': leader_phone,
+                'id':leader_id
             }
-        
+            
             all_leads1.append(field)
-    # leader=[]
-    # leader1={
-    #     'name': displayClub[0].leader1,
-    #             'email': displayClub[0].leader1mail,
-    #             'phone': displayClub[0].leader1phone,
-    #         }
-    # leader.append(leader1)
-    # leader2={
-    #     'name': displayClub[0].leader2,
-    #             'email': displayClub[0].leader2mail,
-    #             'phone': displayClub[0].leader2phone,
-    #         }
-    # leader.append(leader2)
+
     
     for club in displayClub:
 
@@ -78,7 +68,7 @@ def clubleads(request):
             l.append(club.subleader3)
         all_leads[club]=l
         two_days_ago = timezone.now() - timezone.timedelta(days=2)
-        announcements_two_days_ago = Announcement.objects.filter(date=two_days_ago)
+        announcements_two_days_ago = Announcement.objects.filter(date__gte=two_days_ago)
  
    
 
@@ -88,7 +78,10 @@ def calander(request):
 def quizclub(request):
     return render(request,'trendles/quizpage.html')
 def announcement(request):
-    return render(request,'trendles/announcements.html')
+    two_days_ago = timezone.now() - timezone.timedelta(days=2)
+    announcements_two_days_ago = Announcement.objects.filter(date__gte=two_days_ago)
+    print(announcements_two_days_ago)
+    return render(request,'trendles/announcements.html',{'announcements_two_days_ago':announcements_two_days_ago})
 def elections(request):
      
      majorclub = request.GET.get('majorclub', None)
@@ -148,7 +141,7 @@ def subclubleads(request):
 
     # Define a list of leader fields to iterate through
     leader_fields = ['leader1', 'leader2', 'subleader1', 'subleader2', 'subleader3']
-
+    k=1
     for field in leader_fields:
         leader_name = getattr(displayClub, field)
         leader_email = getattr(displayClub, f"{field}mail")
@@ -159,11 +152,14 @@ def subclubleads(request):
                 'name': leader_name,
                 'email': leader_email,
                 'phone': leader_phone,
+                'id':k
             }
+            k+=1
         
             all_leads.append(field)
-
-    return render(request, 'trendles/subclubleadstemp.html', {'displayClub': displayClub, 'all_leads': all_leads, 'subclub_name': subclub_name,'majorclub':majorclub})
+    two_days_ago = timezone.now() - timezone.timedelta(days=2)
+    announcements_two_days_ago = Announcement.objects.filter(date__gte=two_days_ago)
+    return render(request, 'trendles/subclubleadstemp.html', {'displayClub': displayClub, 'all_leads': all_leads, 'subclub_name': subclub_name,'majorclub':majorclub,'announcements_two_days_ago':announcements_two_days_ago})
 
 @login_required
 def upload_image(request):
@@ -351,17 +347,21 @@ def market_club_upload_document(request):
 @login_required
 def create_announcement(request):
     if request.method == 'POST':
-        content = request.POST.get('annoucement-text')
-        print(content)
-        user = request.user
-        student = get_object_or_404(Student, student_id=request.user.username)
-        # student=Student.objects.filter(student_id=user.username)
-        uploaded_by = student # Replace 'student' with the actual ForeignKey reference
-
-        # Create an Announcement object
-        announcement = Announcement(user=user, uploaded_by=uploaded_by, content=content, )
-        announcement.save()
+        displayClub = SubClub.objects.all()
+        displayClub1 = SubClub.objects.all().first()
+        all_leads1=[1,2]
+        for lead in all_leads1:  
+            content = request.POST.get('announcement-text-{}'.format(lead))
+            print(content)
+            if content:
+                user = request.user  # Get the currently logged-in user
+                student=student = get_object_or_404(Student, student_id=request.user.username)
+                announcement = Announcement(user=user, content=content,uploaded_by=student)
+                announcement.save()
+       
         two_days_ago = timezone.now() - timezone.timedelta(days=2)
         announcements_two_days_ago = Announcement.objects.filter(date=two_days_ago)
-        return HttpResponse("<h1>Done</h1>")
+        return redirect('Homepage')
+    else:
+        return HttpResponse("404 Not found")
     # return render(request, 'clubleads.html',{'announcements_two_days_ago':announcements_two_days_ago})

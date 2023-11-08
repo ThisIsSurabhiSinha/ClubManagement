@@ -197,6 +197,32 @@
     padding: 10px;
     font-size: 1.5rem;
 }
+/* Apply styles to the table and its elements */
+.leaders-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+.leaders-table th, .leaders-table td {
+    padding: 8px 12px;
+    text-align: left;
+    border: 1px solid #fff; /* White border */
+    color: #fff; /* White text color */
+}
+
+.leaders-table th {
+    background-color: #333; /* Dark gray background */
+}
+
+.leaders-table tbody tr:nth-child(odd) {
+    background-color: #444; /* Slightly lighter gray background for odd rows */
+}
+
+/* Add more CSS rules to customize the table appearance further */
+
+
+/* Add more CSS rules to customize the table appearance further */
 
     </style>
 </head>
@@ -230,7 +256,7 @@
 
     <section id="leaders">
         <h2>Group Leaders</h2>
-            <table>
+        <table class="leaders-table">
         <thead>
             <tr>
                 <th>Name</th>
@@ -243,13 +269,14 @@
             <tr>
                 <td>{{lead}}</td>
                 <td>Sub Lead</td>
-                <td>{{lead}}@example.com</td>
+                <td>sublead{{forloop.counter}}@iiitkottayam.ac.in</td>
             </tr>
            {% endfor %}
             <!-- Add more leaders here -->
         </tbody>
     </table>
-    </section>
+</section>
+    {% comment %} </section>
 
     <section id="history">
         <h2>Event History</h2>
@@ -262,7 +289,7 @@
     <section id="poll">
         <h2>Poll</h2>
         <!-- Add a poll or survey form here -->
-    </section>
+    </section> {% endcomment %}
      <script>
         function submit_suggestion()
         {
@@ -271,38 +298,6 @@
         }
     </script> 
  
-    {% comment %} <script>
-        $(document).ready(function() {
-            $('#suggestion_submission').submit(function(event) {
-                event.preventDefault(); // Prevent the default form submission
-    
-                // Serialize the form data
-                var formData = $(this).serialize();
-    
-                // Extract the current URL slug
-                var currentURL = window.location.href;
-                var slug = currentURL.split('/').pop();  // Assuming the slug is at the end of the URL
-    
-                $.ajax({
-                    type: 'POST',
-                    url: 'handle_suggestion/' + slug,  // Include the slug in the URL
-                    data: formData,
-                    success: function(data) {
-                        // Handle the response from the server
-                        console.log(data); // You can display the response in the console or update the page content
-    
-                        // Show a success message to the user
-                        alert('Thank you for your feedback. Your input is valuable!');
-    
-                        // Optionally, you can redirect the user to another page here
-                    },
-                    error: function() {
-                        alert("Sorry, we couldn't record your response. Please try again.");
-                    }
-                });
-            });
-        });
-    </script> {% endcomment %}
     
 
 {% if user.is_authenticated%}
@@ -328,7 +323,7 @@
     <section id="social-media">
         <h2>Connect with Us</h2>
         <div class="social-media-icons">
-            <a href="{{ displayClub.facebook_handle }}" target="_blank" class="fa fa-facebook"> facebook</a>
+            <a href="{{ displayClub.facebook_handle }}" target="_blank" class="fa fa-facebook"> Facebook</a>
             <a href="{{ displayClub.linkedin_handle }}" class="fa fa-twitter"> Linkedin</a>
             <a href="{{ displayClub.instagram_handle }}" class="fa fa-instagram"> Instagram</a>
             <a href="{{ displayClub.youtube_handle }}" class="fa fa-youtube"> Youtube</a>

@@ -371,8 +371,8 @@
 
     <nav class="side-navbar">
         <ul>  <a href="{% url 'Homepage'%}">Home</a>
-            <a href="{% url 'trendlesHome'%}">Trendles</a>
-            <a href="{% url 'allclubleads'%}">Club-leads</a>
+            <a href="{% url 'wildbeatsHome'%}">Wildbeats</a>
+            <a href="{% url 'Wallclubleads'%}">Club-leads</a>
             {% if  user.is_authenticated %}
             <a href="{% url 'userprofile'%}">Profile</a>
             {% else%}
@@ -380,7 +380,7 @@
             {% endif%}
         <a href="{% url 'calander'%}">Calander</a>
         <a href="{% url 'announcement'%}">Announcements</a>
-        <a href="{% url 'elections' %}?majorclub=Trendles">Elections</a>
+        <a href="{% url 'elections' %}?majorclub=Wildbeats">Elections</a>
         <a href="{% url 'settings'%}">Settings</a>
             <div class="image-container"></div>
         </ul>
