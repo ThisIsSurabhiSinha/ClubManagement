@@ -1,0 +1,331 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head><style>
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f0f0;
+}
+
+.container {
+    text-align: center;
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.message {
+    animation: fade-in 1s ease-in-out forwards;
+}
+
+@keyframes fade-in {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+</style>
+<script>const loadingContainer = document.querySelector('.loading-container');
+
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    loadingContainer.classList.add('hidden');
+  }, 2000);
+});
+</script>
+  <meta charset="UTF-8">
+  <title>Loading Animation</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>   <div class="container">
+        <div class="message">
+            <h1>Exciting News!</h1>
+            <p>We're preparing something special for you.</p>
+            <p>Stay tuned for the upcoming Club Leader Election,</p>
+            <p>where you'll have the chance to make your voice heard and choose your future leaders.</p>
+            <p>We can't wait to share this experience with you.</p>
+            <p>Keep an eye on this space for updates!</p>
+        </div>
+    </div>
+ 
+</body>
+</html>
+ -->
+ <!DOCTYPE html>
+ <html>
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <style>
+ body {
+   font-family: Arial;
+   margin: 0;
+ }
+ 
+ * {
+   box-sizing: border-box;
+ }
+ 
+ img {
+   vertical-align: middle;
+ }
+ 
+ /* Position the image container (needed to position the left and right arrows) */
+ .container {
+   position: relative;
+ }
+ 
+ /* Hide the images by default */
+ .mySlides {
+   display: none;
+ }
+ 
+ /* Add a pointer when hovering over the thumbnail images */
+ .cursor {
+   cursor: pointer;
+ }
+ 
+ /* Next & previous buttons */
+ .prev,
+ .next {
+   cursor: pointer;
+   position: absolute;
+   top: 40%;
+   width: auto;
+   padding: 16px;
+   margin-top: -50px;
+   color: white;
+   font-weight: bold;
+   font-size: 20px;
+   border-radius: 0 3px 3px 0;
+   user-select: none;
+   -webkit-user-select: none;
+ }
+ 
+ /* Position the "next button" to the right */
+ .next {
+   right: 0;
+   border-radius: 3px 0 0 3px;
+ }
+ 
+ /* On hover, add a black background color with a little bit see-through */
+ .prev:hover,
+ .next:hover {
+   background-color: rgba(0, 0, 0, 0.8);
+ }
+ 
+ /* Number text (1/3 etc) */
+ .numbertext {
+   color: #f2f2f2;
+   font-size: 12px;
+   padding: 8px 12px;
+   position: absolute;
+   top: 0;
+ }
+ 
+ /* Container for image text */
+ .caption-container {
+   text-align: center;
+   background-color: #222;
+   padding: 2px 16px;
+   color: white;
+ }
+ 
+ .row:after {
+   content: "";
+   display: table;
+   clear: both;
+ }
+ 
+ /* Six columns side by side */
+ .column {
+   float: left;
+   width: 16.66%;
+ }
+ 
+ /* Add a transparency effect for thumnbail images */
+ .demo {
+   opacity: 0.6;
+ }
+ 
+ .active,
+ .demo:hover {
+   opacity: 1;
+ }
+ 
+ #text-container::after { 
+             content: ""; 
+             position: absolute; 
+             top: 0; 
+             left: 0; 
+             right: 0; 
+             bottom: 0; 
+             border-radius: 20px; 
+             border: 1px solid rgba(0, 0, 0, 0.2); 
+         } 
+   
+         #text-container span { 
+             position: relative; 
+             z-index: 2; 
+             outline: 1px solid rgba(0, 0, 0, 0.1); 
+             border-radius: 10px; 
+         } 
+         #text-container { 
+             font-size: 32px; 
+             text-align: center; 
+             display: inline-block; 
+             padding: 10px; 
+             border-radius: 20px; 
+             background-color: #f2f2f2; 
+             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); 
+             transition: color 0.05s linear; 
+             position: relative; 
+         } 
+     .head{
+         font-size: 32px; 
+         font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+         color:blue;
+     }
+ </style>
+ <body>
+ 
+ <h2 class="head" style="text-align:center">Welcome to IIIT Kottayam</h2>
+ 
+ <div class="container">
+   <div class="mySlides">
+     <div class="numbertext">1 / 6</div>
+     <img src="https://www.iiitkottayam.ac.in/data/images/home/longview111.jpg" style="width:100%">
+   </div>
+ 
+   <div class="mySlides">
+     <div class="numbertext">2 / 6</div>
+     <img src="https://www.iiitkottayam.ac.in/data/images/events/Revents/rev10.jpg" style="width:100%">
+   </div>
+ 
+   <div class="mySlides">
+     <div class="numbertext">3 / 6</div>
+     <img src="https://pbs.twimg.com/media/FGJLFMAVkAoggbc?format=jpg&name=4096x4096" style="width:100%">
+   </div>
+     
+   <a class="prev" onclick="plusSlides(-1)"><</a>
+   <a class="next" onclick="plusSlides(1)">></a>
+ 
+   <div class="caption-container">
+     <p id="caption"></p>
+   </div>
+ 
+   <div class="row">
+     <div class="column">
+       <img class="demo cursor" src="https://www.iiitkottayam.ac.in/data/images/home/longview111.jpg" style="width:100%" onclick="currentSlide(1)" alt="IIITK">
+     </div>
+     <div class="column">
+       <img class="demo cursor" src="https://www.iiitkottayam.ac.in/data/images/events/Revents/rev10.jpg" style="width:100%" onclick="currentSlide(2)" alt="EVENTS">
+     </div>
+     <div class="column">
+       <img class="demo cursor" src="https://pbs.twimg.com/media/FGJLFMAVkAoggbc?format=jpg&name=4096x4096" style="width:100%" onclick="currentSlide(3)" alt="EVENTS">
+     </div>
+     <div class="column">
+         <img class="demo cursor" src="https://www.iiitkottayam.ac.in/data/images/home/longview111.jpg" style="width:100%" onclick="currentSlide(1)" alt="EVENTS">
+       </div>
+       <div class="column">
+         <img class="demo cursor" src="https://www.iiitkottayam.ac.in/data/images/events/Revents/rev10.jpg" style="width:100%" onclick="currentSlide(2)" alt="EVENTS">
+       </div>
+       <div class="column">
+         <img class="demo cursor" src="https://pbs.twimg.com/media/FGJLFMAVkAoggbc?format=jpg&name=4096x4096" style="width:100%" onclick="currentSlide(3)" alt="EVENTS">
+       </div>
+     
+   </div>
+ </div>
+ 
+ <script>
+ let slideIndex = 1;
+ showSlides(slideIndex);
+ 
+ function plusSlides(n) {
+   showSlides(slideIndex += n);
+ }
+ 
+ function currentSlide(n) {
+   showSlides(slideIndex = n);
+ }
+ 
+ function showSlides(n) {
+   let i;
+   let slides = document.getElementsByClassName("mySlides");
+   let dots = document.getElementsByClassName("demo");
+   let captionText = document.getElementById("caption");
+   if (n > slides.length) {slideIndex = 1}
+   if (n < 1) {slideIndex = slides.length}
+   for (i = 0; i < slides.length; i++) {
+     slides[i].style.display = "none";
+   }
+   for (i = 0; i < dots.length; i++) {
+     dots[i].className = dots[i].className.replace(" active", "");
+   }
+   slides[slideIndex-1].style.display = "block";
+   dots[slideIndex-1].className += " active";
+   captionText.innerHTML = dots[slideIndex-1].alt;
+ }
+ </script>
+ 
+ <h1 style="color:rgb(189, 105, 2)"> 
+     KNOW MORE ABOUT US... 
+ </h1> 
+ 
+ <div id="text-container"> 
+     <span>Mission and Vision</span> 
+ </div> 
+ <br>
+ <div id="text-container"> 
+     <span>Mission</span> 
+ </div> 
+ 
+ <h3>To produce graduates who are competent in their profession, creative in solving real-world problems, and exhibit professional ethics with a caring attitude towards the society.
+     To solve local problems using global technologies and solve global problems using local technologies across disciplines.
+     To promote the significance of ethics and integrity in technical education further fostering the learning with respect for individual human rights and an unyielding commitment to the principles of equal opportunity, equity, and justice.
+     To provide academic excellence in Engineering and Technology by imparting quality as well as value-based education, and foster a collaborative environment open to the free exchange of ideas, where research capabilities could be leveraged to address the challenges of the present scenario.
+     To project the nation to the forefront of information technology research and development.</h3> 
+   
+ <div id="text-container"> 
+     <span>Vision</span> 
+ </div> 
+ 
+ <h3>
+ "Generating knowledge for the future" is IIIT Kottayam's motto in the fields of IT and IT-enabled research. In a short period of time, the institute has transformed into a hub for knowledge development, emphasizing ideas that address both local and global concerns. The mission of IIIT Kottayam includes the following essential elements:
+ Become a top-tier, research-driven organization in a variety of development and research domains.
+ Converting bright young academics and researchers into Technoprenuers.
+ Excelling in information technology, conducting cutting-edge research, and providing important resources to the business and societal sectors, all while making major contributions to India and the global community.
+ IIT Kottayam is a notable example of an Indian IIIT that is developing quickly. The institute encourages instructors and students to work with businesses to realize their creative ideas. The students get knowledge of cutting-edge technology, practical coding experience, and exposure to the real world of business from a global standpoint.
+ </h3>
+ 
+ <script>
+ const textContainer = 
+             document.getElementById("text-container"); 
+         let hue = 0; 
+   
+         const animateText = () => { 
+             hue = (hue + 1) % 360; 
+             const color = hsl(${hue}, 100%, 50%); 
+             const shadowColor = hsla(${hue}, 100%, 50%, 0.3); 
+             textContainer.style.color = color; 
+             textContainer.style.textShadow  
+                 = 2px 2px 4px ${shadowColor}; 
+   
+             // Continuously animate the text 
+             requestAnimationFrame(animateText); 
+         }; 
+   
+         // Start the animation 
+         animateText(); 
+ </script>
+     
+ </body>
+ </html>

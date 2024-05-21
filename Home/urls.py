@@ -13,6 +13,9 @@ urlpatterns = [
     path('login/handle_login/',views.handle_login,name="handlelogin"),
     path('quizpage/',views.show_quiz,name="quizpage"),
     path('quizpage/analyze/',views.analyze,name="quizresult"),
+    path('countdown/',views.countdown,name="countdown"),
+    path('details/',views.details,name="details"),
+    path('kh/',views.kh,name="kh"),
     re_path(r'^quizpage/analyze/result/$',views.show_full_result,name="quizresult2"),
     #   re_path(r'^clubleads/$', views.subclubleads, name="clubleads"),
   

@@ -46,7 +46,7 @@ def handle_suggestion(request,subClub_slug):
      else:
          return HttpResponse("Error")
 def clubleads(request):
-    # Fetch the first SubClub object
+   
     displayClub = SubClub.objects.all()
     displayClub1 = SubClub.objects.all().first()
     all_leads = {}
@@ -68,7 +68,7 @@ def clubleads(request):
             }
             
             all_leads1.append(field)
-
+    user_groups = request.user.groups.all().values_list('name', flat=True)
     
     for club in displayClub:
 
@@ -85,7 +85,7 @@ def clubleads(request):
  
    
 
-    return render(request,'wildbeats/clubleads.html',{'all_leads': all_leads,'majorclub':'Wildbeats','subclub_name':displayClub,'all_leads1': all_leads1,'announcements_two_days_ago':announcements_two_days_ago})
+    return render(request,'wildbeats/clubleads.html',{'all_leads': all_leads,'majorclub':'Wildbeats','subclub_name':displayClub,'all_leads1': all_leads1,'announcements_two_days_ago':announcements_two_days_ago,'user_groups':user_groups})
 def subclubleads(request):
 
     subclub_name = request.GET.get('subclub_name')
@@ -115,6 +115,7 @@ def subclubleads(request):
             k+=1
         
             all_leads.append(field)
+    user_groups = request.user.groups.all().values_list('name', flat=True)
     two_days_ago = timezone.now() - timezone.timedelta(days=2)
     announcements_two_days_ago = Announcement.objects.filter(date__gte=two_days_ago)
-    return render(request, 'wildbeats/subclubleadstemp.html', {'displayClub': displayClub, 'all_leads': all_leads, 'subclub_name': subclub_name,'majorclub':majorclub,'announcements_two_days_ago':announcements_two_days_ago})
+    return render(request, 'wildbeats/subclubleadstemp.html', {'displayClub': displayClub, 'all_leads': all_leads, 'subclub_name': subclub_name,'majorclub':majorclub,'announcements_two_days_ago':announcements_two_days_ago,'user_groups':user_groups})

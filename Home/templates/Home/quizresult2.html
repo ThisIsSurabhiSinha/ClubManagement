@@ -43,6 +43,7 @@
           transition: transform 0.3s, box-shadow 0.3s;
           cursor: pointer;
         }
+
         li:nth-child(3) {
           font-size: 30px;
           margin: 20px 0;
@@ -64,11 +65,15 @@
             cursor: pointer;
         }
         li:hover {
+            
             transform: scale(1.05);
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1), 0 0 40px rgba(255, 165, 0, 0.8); /* Enhanced glow effect on hover */
             color: rgba(255, 165, 0, 0.8);
             
 
+        }
+        a:hover{
+            text-decoration:none;
         }
     </style>
 </head>
@@ -76,8 +81,9 @@
     <div class="container">
         <h1 class="mb-4"><b>Recommended Clubs Based on Your Interests</b></h1>
         <ul>
+            
             {% for item in mylist %}
-                <li><B>{{ item }}</B></li>
+               <A href="/{{item|lower}}"> <li><B>{{ item }}</B></li></a>
             {% endfor %}
         </ul>
     </div>

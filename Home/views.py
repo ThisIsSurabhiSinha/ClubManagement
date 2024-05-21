@@ -33,7 +33,12 @@ def index(request):
    major_clubs=MajorClub.objects.all()
    return render(request,'Home/home.html',{'major_clubs':major_clubs})
 
-
+def countdown(request):
+    return render(request,'Home/countdown.html')
+def kh(request):
+    return render(request,'Home/kh.html')
+def details(request):
+    return render(request,'Home/detail.html')
 def handle_signup(request):
     if request.method == 'POST':
             username = request.POST.get('username')
@@ -101,7 +106,7 @@ def handle_login(request):
         if user is not None:
   
             login(request, user)
-            messages.success(request, 'Logged in')
+            messages.success(request, f'{user.username} Logged in')
             return redirect('Homepage')  
         else:
            

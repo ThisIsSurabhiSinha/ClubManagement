@@ -69,10 +69,10 @@ def clubleads(request):
         all_leads[club]=l
         two_days_ago = timezone.now() - timezone.timedelta(days=2)
         announcements_two_days_ago = Announcement.objects.filter(date__gte=two_days_ago)
- 
+        user_groups = request.user.groups.all().values_list('name', flat=True)
    
 
-    return render(request,'trendles/clubleads.html',{'all_leads': all_leads,'majorclub':'Trendles','subclub_name':displayClub,'all_leads1': all_leads1,'announcements_two_days_ago':announcements_two_days_ago})
+    return render(request,'trendles/clubleads.html',{'all_leads': all_leads,'majorclub':'Trendles','subclub_name':displayClub,'all_leads1': all_leads1,'announcements_two_days_ago':announcements_two_days_ago,'user_groups':user_groups})
 def calander(request):
     return render(request,'trendles/calander.html')
 def quizclub(request):
@@ -80,7 +80,7 @@ def quizclub(request):
 def announcement(request):
     two_days_ago = timezone.now() - timezone.timedelta(days=2)
     announcements_two_days_ago = Announcement.objects.filter(date__gte=two_days_ago)
-    print(announcements_two_days_ago)
+    
     return render(request,'trendles/announcements.html',{'announcements_two_days_ago':announcements_two_days_ago})
 def elections(request):
      
@@ -157,9 +157,10 @@ def subclubleads(request):
             k+=1
         
             all_leads.append(field)
+    user_groups = request.user.groups.all().values_list('name', flat=True)
     two_days_ago = timezone.now() - timezone.timedelta(days=2)
     announcements_two_days_ago = Announcement.objects.filter(date__gte=two_days_ago)
-    return render(request, 'trendles/subclubleadstemp.html', {'displayClub': displayClub, 'all_leads': all_leads, 'subclub_name': subclub_name,'majorclub':majorclub,'announcements_two_days_ago':announcements_two_days_ago})
+    return render(request, 'trendles/subclubleadstemp.html', {'displayClub': displayClub, 'all_leads': all_leads, 'subclub_name': subclub_name,'majorclub':majorclub,'announcements_two_days_ago':announcements_two_days_ago,'user_groups':user_groups})
 
 @login_required
 def upload_image(request):
@@ -347,6 +348,12 @@ def market_club_upload_document(request):
 @login_required
 def create_announcement(request):
     if request.method == 'POST':
+        user = request.user
+
+        is_mentor = user.groups.filter(name='mentor').exists()
+        is_sublead = user.groups.filter(name='sublead').exists()
+        if not is_mentor and is_sublead:
+            return HttpResponse("You are not authorized to do this action.")
         displayClub = SubClub.objects.all()
         displayClub1 = SubClub.objects.all().first()
         all_leads1=[1,2]

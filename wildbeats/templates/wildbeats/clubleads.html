@@ -387,6 +387,7 @@
                     <p class="element"><b>Phone Number:</b><span class="phone" id="TM{{ forloop.counter }}phoneNo">{{ lead.phone }}</span></p>
                 </div>
             </div>
+            {% if  user.is_authenticated %}
             <div class="expandable-content" id="trendlesContent{{ forloop.counter }}">
                 <div class="a-container">
                     <div class="announcements container">
@@ -400,21 +401,23 @@
                         </ul>
                       
                     </div>
+                    {% comment %} {% if "Mentor" in user_groups or "Sublead" in user_groups%} {% endcomment %}
                     <div class="announcement-form">
-                        <h4>Add announcements</h4>
-
+                        <h4>Add announcement</h4>
                         <form class="announcement-form" id="announcement-form{{ forloop.counter }}" action="/trendles/create_announcement" method="post">
                             {% csrf_token %}
                             <textarea name="announcement-text-{{ lead.id }}" class="announcement-text" id="announcement-text{{ forloop.counter }}" rows="4" required></textarea>
                             
                             <button type="submit" class="a-button">Submit</button>
                         </form>
-                        
                     </div>
+                    {% comment %} {% endif %} {% endcomment %}
                 </div>
             </div>
+            {%endif%}
         </div>
         {% endfor %}
+        
     
     <hr> 
     

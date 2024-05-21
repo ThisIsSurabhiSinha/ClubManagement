@@ -262,10 +262,10 @@
             <nav>
                 <ul class="sidenav">
                     <li><img src="\static\Home\iiitklogo.jpg" class="logo"></li>
-                    <li class="section"><a href="#">Home</a></li>
-                    <li class="section"><a href="#">About</a></li>
-                    <li class="section"><a href="#">Contact</a></li>
-                    <li class="section"><a href="#">Menu</a></li>
+                    <li class="section"><a href="{% url 'countdown'%}">Home</a></li>
+                    <li class="section"><a href="{% url 'details'%}">About</a></li>
+                    {% comment %} <li class="section"><a href="{% url 'details'%}">Contact</a></li> {% endcomment %}
+                    <li class="section"><a href="{% url 'kh'%}">Details</a></li>
                     {% if  user.is_authenticated %}
                     <li class="section" style="float: right;"><a href="{% url 'userprofile' %}">Profile</a></li>
                     <li class="section" style="float: right;"><a href="{% url 'handle_logout' %}">Logout</a></li>
@@ -282,8 +282,8 @@
             <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
             <div class="overlay-content">
               <a href="{% url 'quizpage'%}">&#9884;Quiz</a>
-              <a href="#">&#9884;</a>
-              <a href="#">&#9884;</a>
+              <a href="{% url 'countdown'%}">&#9884;About us</a>
+              <a href="https://linktr.ee/trendles_iiitk?utm_source=linktree_profile_share&ltsid=521f983c-9b6e-4a27-a7b9-c883833f64ad">&#9884;Join Trendles</a>
               <a href="#">&#9884;</a>
             </div>
           </div>

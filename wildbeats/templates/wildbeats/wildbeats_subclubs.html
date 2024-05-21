@@ -219,12 +219,7 @@
     background-color: #444; /* Slightly lighter gray background for odd rows */
 }
 
-/* Add more CSS rules to customize the table appearance further */
-
-
-/* Add more CSS rules to customize the table appearance further */
-
-    </style>
+</style>
 </head>
 <body>
     <header>
@@ -276,20 +271,6 @@
         </tbody>
     </table>
 </section>
-    {% comment %} </section>
-
-    <section id="history">
-        <h2>Event History</h2>
-    </section>
-
-    <section id="upcoming-events">
-        <h2>Upcoming Events</h2>
-    </section>
-
-    <section id="poll">
-        <h2>Poll</h2>
-        <!-- Add a poll or survey form here -->
-    </section> {% endcomment %}
      <script>
         function submit_suggestion()
         {
@@ -303,7 +284,6 @@
 {% if user.is_authenticated%}
     <section id="suggestion-box">
         <h2>Suggestion Box</h2>
-        {% comment %} <!-- Add a suggestion box form or contact information here -->{% url: handle_suggestion%} {% endcomment %}
        <form method="POST" id="suggestion_submission" action="handle_suggestion/{{slug}}"> <div class="form-floating" method="POST">
         {% csrf_token %}
             <textarea class="form-control" placeholder="Leave a comment here" name="floatingTextarea" id="floatingTextarea"></textarea>
