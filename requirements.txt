@@ -1,7 +1,7 @@
 Django==5.0.6
 gunicorn
 django-heroku
-psycopg2
+psycopg2-binary==2.9.9
 django-phonenumber-field
 phonenumbers
 whitenoise
