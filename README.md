@@ -20,9 +20,8 @@ Django 3.x
 SQLite (default with Django)
 •	Installation and Setup
 •	Clone the repository:
-git clone <repository-url>
+git clone https://github.com/ThisIsSurabhiSinha/ClubManagement/
 •	Navigate to the project directory:
-bash
 cd Club
 •	Install dependencies: You may want to use a virtual environment.
 pip install -r requirements.txt
