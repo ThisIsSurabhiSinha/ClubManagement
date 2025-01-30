@@ -37,20 +37,17 @@ Before running this project, ensure you have the following installed:
 1. **Clone the repository**:
    ```bash
    git clone https://github.com/ThisIsSurabhiSinha/ClubManagement/
-2 **Navigate to the project directory**:
+2. **Navigate to the project directory**:
    ```bash
    cd Club
-3.Install dependencies: It is recommended to use a virtual environment.
-
+3. **Install dependencies: It is recommended to use a virtual environment**:
     ```bash
     pip install -r requirements.txt
-4.**Apply migrations**:
-
+4. **Apply migrations**:
     ```bash
     python manage.py migrate
-5.**Run the development server**:
-
+5. **Run the development server**:
     ```bash
     python manage.py runserver
-6.**Access the application**:
+6. **Access the application**:
     Open your browser and navigate to http://127.0.0.1:8000 to view the project.
