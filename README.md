@@ -1,4 +1,4 @@
-# Club Management System
+# ClubCatalyst - Club Management System
 
 ## Project Overview
 This is a **Club Management System** developed using Django, designed to manage different clubs within our institute - **Indian Institute of Information Technology Kottayam**. The system includes features such as managing club events, members, and resources.
