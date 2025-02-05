@@ -51,3 +51,7 @@ Before running this project, ensure you have the following installed:
     python manage.py runserver
 6. **Access the application**:
     Open your browser and navigate to http://127.0.0.1:8000 to view the project.
+
+ ---
+   
+This project was developed by a team of 7 members from the Indian Institute of Information Technology Kottayam. Each member contributed to different aspects of the project, including development, testing, and deployment.
