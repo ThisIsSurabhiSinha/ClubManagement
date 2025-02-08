@@ -54,4 +54,8 @@ Before running this project, ensure you have the following installed:
 
  ---
    
+Team Contribution
+
 This project was developed by a team of 7 members from the Indian Institute of Information Technology Kottayam. Each member contributed to different aspects of the project, including development, testing, and deployment.
+
+**My Role:** I served as the **Backend Developer** for this project. My responsibilities included designing and implementing the database models, creating RESTful APIs, handling server-side logic, and ensuring efficient data flow and management across the system. I also contributed to integrating the backend with the frontend components and optimizing the performance of the application.
